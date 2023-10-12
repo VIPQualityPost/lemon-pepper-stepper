@@ -4,6 +4,13 @@
 
   (paper "A4")
 
+  (title_block
+    (title "GATE DRIVER")
+    (date "2023-10-11")
+    (rev "0.1")
+    (company "matei repair lab")
+  )
+
   (lib_symbols
     (symbol "Device:C_Small" (pin_numbers hide) (pin_names (offset 0.254) hide) (in_bom yes) (on_board yes)
       (property "Reference" "C" (at 0.254 1.778 0)
@@ -1002,7 +1009,7 @@
     (pin "1" (uuid aa473c3a-d22f-4e23-8ba0-3ecaa2ef9c49))
     (pin "2" (uuid 117e554e-a001-4f3e-8470-462dcecd6fb2))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
           (reference "D502") (unit 1)
         )
@@ -1027,7 +1034,7 @@
     )
     (pin "1" (uuid 0c0abbf1-0703-406d-b00e-b56d8e174525))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
           (reference "#PWR0501") (unit 1)
         )
@@ -1052,7 +1059,7 @@
     )
     (pin "1" (uuid d2f4d327-e6e8-4460-8165-2821fc0a2991))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
           (reference "#PWR0503") (unit 1)
         )
@@ -1081,7 +1088,7 @@
     (pin "1" (uuid 414609da-a248-461a-99c1-0ef0b127ea98))
     (pin "2" (uuid 5d55db17-482a-4369-a619-c52723720e2a))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
           (reference "C502") (unit 1)
         )
@@ -1110,7 +1117,7 @@
     (pin "1" (uuid bc93459d-3753-4e7e-8d9f-351251dd8307))
     (pin "2" (uuid 2f82cacb-ab03-46e7-8bc8-67c824f13123))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
           (reference "C503") (unit 1)
         )
@@ -1121,7 +1128,7 @@
   (symbol (lib_id "matei:FD6288") (at 125.73 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 39aaa904-7190-442d-832b-a8fc5e76059c)
-    (property "Reference" "U?" (at 127.9241 80.01 0)
+    (property "Reference" "U501" (at 127.9241 80.01 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "FD6288" (at 127.9241 82.55 0)
@@ -1162,9 +1169,9 @@
     (pin "8" (uuid c77f1f57-0c65-451c-aea1-363dab67b363))
     (pin "25" (uuid e30f323b-9345-465a-a358-2be2c57f8f8f))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
-          (reference "U?") (unit 1)
+          (reference "U501") (unit 1)
         )
       )
     )
@@ -1197,7 +1204,7 @@
     (pin "1" (uuid 23cdaa72-e5a4-4afe-9b17-a1b2bc56e3f5))
     (pin "2" (uuid fea46661-5cf8-4f88-8326-febdf11102b1))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
           (reference "D503") (unit 1)
         )
@@ -1220,11 +1227,14 @@
     (property "Datasheet" "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf" (at 123.19 58.42 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
+    (property "LCSC Part" "C20917" (at 123.19 58.42 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
     (pin "1" (uuid 3bf4bab7-43cb-46f7-aa1c-e8d1a0a4aa99))
     (pin "2" (uuid 980e18d6-ebd8-432d-b86a-3f44358ce03c))
     (pin "3" (uuid a04de887-bbcc-4dd4-ac0d-1b0a90d0794c))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
           (reference "Q501") (unit 1)
         )
@@ -1249,7 +1259,7 @@
     )
     (pin "1" (uuid f8b997a4-78b7-451d-a5d5-b67d7facbf25))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
           (reference "#PWR0502") (unit 1)
         )
@@ -1284,7 +1294,7 @@
     (pin "1" (uuid 95bf7167-2995-47f9-a8d8-958fd047a60f))
     (pin "2" (uuid ccdf077e-f3f8-4886-b036-b479745680d6))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
           (reference "D501") (unit 1)
         )
@@ -1309,7 +1319,7 @@
     )
     (pin "1" (uuid 8ec29143-50bd-41c9-89ff-0adb2f3074f4))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
           (reference "#PWR0504") (unit 1)
         )
@@ -1338,7 +1348,7 @@
     (pin "1" (uuid f446e57b-7c49-4b52-b2a9-a58a5fcbec4b))
     (pin "2" (uuid a0644bad-358d-42a8-865f-e815578c38b0))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
           (reference "C504") (unit 1)
         )
@@ -1367,7 +1377,7 @@
     (pin "1" (uuid afe825c9-f879-438c-8755-81c1555edab4))
     (pin "2" (uuid dc88c0c4-d03f-43bd-bcbd-cdb64ea7f23e))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
           (reference "C501") (unit 1)
         )
@@ -1396,7 +1406,7 @@
     (pin "1" (uuid d6d76c34-ca37-42ef-9501-659ff133494b))
     (pin "2" (uuid 5df6a088-ea0a-421b-88a1-24d6a4e84cb5))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/40d0f733-2cb2-4037-bc30-ae30111fe2e1"
           (reference "R501") (unit 1)
         )

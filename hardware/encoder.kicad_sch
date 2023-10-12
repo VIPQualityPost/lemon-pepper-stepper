@@ -6,8 +6,8 @@
 
   (title_block
     (title "MAGNETIC ENCODER 14 BIT")
-    (date "2023-06-17")
-    (rev "1.0")
+    (date "2023-10-11")
+    (rev "0.1")
     (company "matei repair lab")
   )
 
@@ -391,7 +391,7 @@
     )
     (pin "1" (uuid 8b960071-4b7c-42c5-a436-42736b745200))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/e3a86f21-c1c7-4a99-9511-7bc9966878a0"
           (reference "#PWR0403") (unit 1)
         )
@@ -416,7 +416,7 @@
     )
     (pin "1" (uuid 637d68aa-8b22-422f-b046-8a7f968f2f2b))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/e3a86f21-c1c7-4a99-9511-7bc9966878a0"
           (reference "#PWR0402") (unit 1)
         )
@@ -441,7 +441,7 @@
     )
     (pin "1" (uuid 9d6b8dde-0575-4377-955e-84d085821fee))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/e3a86f21-c1c7-4a99-9511-7bc9966878a0"
           (reference "#PWR0401") (unit 1)
         )
@@ -470,7 +470,7 @@
     (pin "1" (uuid f53fb32b-3a2c-4887-a9c0-b2b502d21882))
     (pin "2" (uuid 8492d99f-2c31-4bf2-a46a-99337d011985))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/e3a86f21-c1c7-4a99-9511-7bc9966878a0"
           (reference "C401") (unit 1)
         )
@@ -513,7 +513,7 @@
     (pin "12" (uuid 8c983c32-f8df-4cf1-9b1c-d2419f12affe))
     (pin "9" (uuid d965725c-f3df-4ef6-9412-9faaf1caf813))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/e3a86f21-c1c7-4a99-9511-7bc9966878a0"
           (reference "U401") (unit 1)
         )

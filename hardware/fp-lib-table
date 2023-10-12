@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "mechanical")(type "KiCad")(uri "/Users/mateijordache/Documents/electronics_projects/lemon-pepper-stepper/mechanical")(options "")(descr ""))
+)

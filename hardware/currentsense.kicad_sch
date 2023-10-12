@@ -4,6 +4,13 @@
 
   (paper "A4")
 
+  (title_block
+    (title "HALL CURRENT SENSING")
+    (date "2023-10-11")
+    (rev "0.1")
+    (company "matei repair lab")
+  )
+
   (lib_symbols
     (symbol "Device:C_Small" (pin_numbers hide) (pin_names (offset 0.254) hide) (in_bom yes) (on_board yes)
       (property "Reference" "C" (at 0.254 1.778 0)
@@ -639,7 +646,7 @@
     )
     (pin "1" (uuid d7584505-3156-42d5-8daf-6ea9f0b22afc))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "#PWR0803") (unit 1)
         )
@@ -668,7 +675,7 @@
     (pin "1" (uuid 56a55ae7-d404-4b8f-a95e-d0572a303828))
     (pin "2" (uuid 11f6f032-36c9-4616-9f78-e756e4ed8371))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "R806") (unit 1)
         )
@@ -693,7 +700,7 @@
     )
     (pin "1" (uuid c53fc451-0c66-474f-a09c-a3f7ac4bbdd0))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "#PWR0804") (unit 1)
         )
@@ -718,7 +725,7 @@
     )
     (pin "1" (uuid d831934f-eb99-40b6-9260-4b53cc229dd1))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "#PWR0801") (unit 1)
         )
@@ -753,7 +760,7 @@
     (pin "7" (uuid cc63bf9e-e88a-4d75-8551-bb229f942e48))
     (pin "8" (uuid 92acbd06-d11f-47bf-bb53-fd810aed74f2))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "U802") (unit 1)
         )
@@ -778,7 +785,7 @@
     )
     (pin "1" (uuid bc946a06-4145-4061-8a6b-e18f04ec083a))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "#PWR0809") (unit 1)
         )
@@ -807,7 +814,7 @@
     (pin "1" (uuid b4b17ff5-f8d9-418d-bb62-ab0fa43adc40))
     (pin "2" (uuid ba0f5a2f-33e9-4a97-98a5-6dadf9a623a2))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "R803") (unit 1)
         )
@@ -836,7 +843,7 @@
     (pin "1" (uuid b8eda239-0709-4448-8cb6-41541ee90573))
     (pin "2" (uuid 12430fe0-834b-40a9-9554-08ae3ba221b9))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "R801") (unit 1)
         )
@@ -865,7 +872,7 @@
     (pin "1" (uuid e37cd4b5-550d-4d15-875d-2458b88d2bc0))
     (pin "2" (uuid 8be99f7e-a50a-490c-8b33-0ed89c06b217))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "R805") (unit 1)
         )
@@ -894,7 +901,7 @@
     (pin "1" (uuid 09ea1129-204f-4524-a2ad-9c261a11e28e))
     (pin "2" (uuid 0c33e86a-12b7-414d-9624-6f623df6e81c))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "R804") (unit 1)
         )
@@ -929,7 +936,7 @@
     (pin "7" (uuid 2d3f65fb-bdee-4f19-9352-2c9e4ce6e42d))
     (pin "8" (uuid 8911b635-0de7-47e2-af93-e495f4c0956b))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "U801") (unit 1)
         )
@@ -954,7 +961,7 @@
     )
     (pin "1" (uuid 53836e6e-9d2b-4074-92e8-3d79c5967e63))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "#PWR0807") (unit 1)
         )
@@ -989,7 +996,7 @@
     (pin "7" (uuid 6671560e-31e0-45e3-96e4-272d5cf7bb61))
     (pin "8" (uuid e795073f-084c-45f6-8bbe-57df65620142))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "U803") (unit 1)
         )
@@ -1014,7 +1021,7 @@
     )
     (pin "1" (uuid 4ded7da6-e0b1-43a1-958e-9ab44471724f))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "#PWR0808") (unit 1)
         )
@@ -1043,7 +1050,7 @@
     (pin "1" (uuid 7b01324b-c43d-46c6-8afc-32e7adaa91ad))
     (pin "2" (uuid 7f0bd7b2-c831-429e-b223-5c78868f14e9))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "R802") (unit 1)
         )
@@ -1068,7 +1075,7 @@
     )
     (pin "1" (uuid e138613b-beb9-47cb-8561-3ca6302c2a53))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "#PWR0806") (unit 1)
         )
@@ -1093,7 +1100,7 @@
     )
     (pin "1" (uuid b4485340-764a-4f58-b550-e4f4db844383))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "#PWR0805") (unit 1)
         )
@@ -1122,7 +1129,7 @@
     (pin "1" (uuid d486effc-04c2-4351-834c-41feae40256a))
     (pin "2" (uuid f9dcc03e-d0ca-4eae-8306-d8cd309563b7))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "C802") (unit 1)
         )
@@ -1147,7 +1154,7 @@
     )
     (pin "1" (uuid 864eeaad-e172-4792-a78b-7f37e98ceade))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "#PWR0802") (unit 1)
         )
@@ -1176,7 +1183,7 @@
     (pin "1" (uuid 06814548-eea9-402f-b3b8-784ce6198a23))
     (pin "2" (uuid ef0a646e-be0c-4b44-8d13-589ed30893b5))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "C801") (unit 1)
         )
@@ -1205,7 +1212,7 @@
     (pin "1" (uuid 388c97af-ccef-4799-a96b-514056fa18f9))
     (pin "2" (uuid 0219e857-7df8-4d33-80a3-6452e6610a21))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/41d11f3b-333a-47c0-a126-1f991ee11e83"
           (reference "C803") (unit 1)
         )

@@ -6,8 +6,8 @@
 
   (title_block
     (title "USB & ESD")
-    (date "2023-06-17")
-    (rev "1.0")
+    (date "2023-10-11")
+    (rev "0.1")
     (company "matei repair lab")
   )
 
@@ -1071,7 +1071,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 137.16 115.57 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 398ab1ff-223b-4b1c-84f5-fe1531ef075d)
-    (property "Reference" "TP?" (at 134.62 106.68 0)
+    (property "Reference" "TP202" (at 134.62 106.68 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "USB GND" (at 134.62 109.22 0)
@@ -1085,9 +1085,9 @@
     )
     (pin "1" (uuid aab3bf50-00ff-43c3-a2ea-6e0865a18612))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/3af4e77c-61b4-4c93-bd22-ce60f55b568c"
-          (reference "TP?") (unit 1)
+          (reference "TP202") (unit 1)
         )
       )
     )
@@ -1118,7 +1118,7 @@
     (pin "5" (uuid 61eb033c-0b8e-4309-a171-3821e323d3b2))
     (pin "6" (uuid f9370a51-9121-4d2e-97c1-8d85e270b53a))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/3af4e77c-61b4-4c93-bd22-ce60f55b568c"
           (reference "U201") (unit 1)
         )
@@ -1134,7 +1134,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 137.16 74.93 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7a24488a-69e8-4f05-9908-5bad7d13e145)
-    (property "Reference" "TP?" (at 134.62 66.04 0)
+    (property "Reference" "TP201" (at 134.62 66.04 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "USB VBUS" (at 134.62 68.58 0)
@@ -1148,9 +1148,9 @@
     )
     (pin "1" (uuid 20b2ad40-c75a-4ef0-8d90-d3fb79cbce54))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/3af4e77c-61b4-4c93-bd22-ce60f55b568c"
-          (reference "TP?") (unit 1)
+          (reference "TP201") (unit 1)
         )
       )
     )
@@ -1165,10 +1165,13 @@
     (property "Value" "USB_C_Receptacle_USB2.0" (at 114.3 69.85 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12" (at 118.11 90.17 0)
+    (property "Footprint" "easyeda2kicad:USB-C-SMD_GT-USB-7052_1" (at 118.11 90.17 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://www.usb.org/sites/default/files/documents/usb_type-c.zip" (at 118.11 90.17 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "LCSC Part" "C963223" (at 114.3 90.17 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "A1" (uuid 5255c5a6-31d9-4cf0-aafd-a0f673a77ea5))
@@ -1189,7 +1192,7 @@
     (pin "B9" (uuid 7079ec6f-9ece-4689-aa5e-0dbf60dd3784))
     (pin "S1" (uuid 583113b2-56fc-42f5-8ff3-07d5735f0e47))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/3af4e77c-61b4-4c93-bd22-ce60f55b568c"
           (reference "J201") (unit 1)
         )
@@ -1219,7 +1222,7 @@
     )
     (pin "1" (uuid c686f69c-cbbe-4e17-a49f-88f4da5973e9))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/3af4e77c-61b4-4c93-bd22-ce60f55b568c"
           (reference "#PWR0202") (unit 1)
         )
@@ -1259,7 +1262,7 @@
     (pin "1" (uuid 2d6e43b7-26c3-4686-ad4b-a20eca59dac5))
     (pin "2" (uuid b4ac73e1-eec0-49f0-a97e-e144cf09a682))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/3af4e77c-61b4-4c93-bd22-ce60f55b568c"
           (reference "D201") (unit 1)
         )
@@ -1288,7 +1291,7 @@
     (pin "1" (uuid a68ec3f4-08d0-4e7b-aa91-dd9258ba6b08))
     (pin "2" (uuid 314d754f-41ce-4b91-a56c-171bbe374e38))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/3af4e77c-61b4-4c93-bd22-ce60f55b568c"
           (reference "C202") (unit 1)
         )
@@ -1321,7 +1324,7 @@
     )
     (pin "1" (uuid 44f350c1-0140-4c1d-9b0c-c81c82814eec))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/3af4e77c-61b4-4c93-bd22-ce60f55b568c"
           (reference "#PWR0201") (unit 1)
         )
@@ -1361,7 +1364,7 @@
     (pin "1" (uuid e53fb375-9c03-418d-933f-ca8400b433b6))
     (pin "2" (uuid 6fe978cd-6970-4822-94d0-42594a3c5dcf))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/3af4e77c-61b4-4c93-bd22-ce60f55b568c"
           (reference "C201") (unit 1)
         )
@@ -1394,7 +1397,7 @@
     )
     (pin "1" (uuid 8e4c25e1-a02b-4fc4-9c32-6500eb07951d))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/3af4e77c-61b4-4c93-bd22-ce60f55b568c"
           (reference "#PWR0203") (unit 1)
         )

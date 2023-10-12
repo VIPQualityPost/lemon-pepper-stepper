@@ -6,8 +6,8 @@
 
   (title_block
     (title "MICROCONTROLLER")
-    (date "2023-06-17")
-    (rev "1.0")
+    (date "2023-10-11")
+    (rev "0.1")
     (company "matei repair lab")
   )
 
@@ -1309,8 +1309,6 @@
     (uuid f15ed735-877a-430b-8c52-bfcc0fadc2ca)
   )
 
-  (no_connect (at 80.01 77.47) (uuid 1ec3e7b8-b98d-4614-a7e8-fdea16a08279))
-  (no_connect (at 241.3 148.59) (uuid 481437a2-a2ec-446b-9da4-e85134cd1e78))
   (no_connect (at 80.01 102.87) (uuid 4f502c39-6aff-4783-aef1-073727b10863))
   (no_connect (at 241.3 133.35) (uuid 5b75cf75-f42f-4ca7-9e07-cbffc61cb20b))
   (no_connect (at 80.01 100.33) (uuid 5d8a12b4-69e9-4a7b-b454-0adba86b4fbf))
@@ -1319,10 +1317,8 @@
   (no_connect (at 80.01 72.39) (uuid 7cdc3639-ed5d-40b2-b979-b2ffdad6c93f))
   (no_connect (at 92.71 46.99) (uuid 978c225f-ee58-48c6-9f3f-273d7f0dff63))
   (no_connect (at 241.3 140.97) (uuid aa82db08-751b-4258-b91d-eb6f54ae8293))
-  (no_connect (at 80.01 74.93) (uuid bbf4d18e-7796-49b0-a3f5-13b363aec496))
   (no_connect (at 80.01 85.09) (uuid bfdf1340-de3a-433b-a21d-f95bd418abd3))
   (no_connect (at 241.3 135.89) (uuid c5a989be-9875-4f76-8bab-ea22fd33d47b))
-  (no_connect (at 241.3 146.05) (uuid e0a2e161-8dcf-4e5c-818d-5157533a500c))
 
   (wire (pts (xy 116.84 40.64) (xy 116.84 41.91))
     (stroke (width 0) (type default))
@@ -1395,6 +1391,10 @@
   (wire (pts (xy 248.92 44.45) (xy 248.92 45.72))
     (stroke (width 0) (type default))
     (uuid 2613a400-9d48-49d1-a124-6f9f06a3679b)
+  )
+  (wire (pts (xy 68.58 74.93) (xy 80.01 74.93))
+    (stroke (width 0) (type default))
+    (uuid 2ad2c1ae-807b-48e6-a8da-a5cf749c91a6)
   )
   (wire (pts (xy 69.85 95.25) (xy 80.01 95.25))
     (stroke (width 0) (type default))
@@ -1504,6 +1504,10 @@
     (stroke (width 0) (type default))
     (uuid 5ec60124-c93c-4122-8f40-526b5736c701)
   )
+  (wire (pts (xy 229.87 148.59) (xy 241.3 148.59))
+    (stroke (width 0) (type default))
+    (uuid 6053d2b2-a195-416e-b79c-59731542c333)
+  )
   (wire (pts (xy 69.85 107.95) (xy 80.01 107.95))
     (stroke (width 0) (type default))
     (uuid 61103ffc-33eb-4b83-9e37-90edd699dbe4)
@@ -1511,6 +1515,10 @@
   (wire (pts (xy 113.03 74.93) (xy 116.84 74.93))
     (stroke (width 0) (type default))
     (uuid 62005394-02a9-4823-9824-e2737b1f7f05)
+  )
+  (wire (pts (xy 229.87 146.05) (xy 241.3 146.05))
+    (stroke (width 0) (type default))
+    (uuid 65b49a3a-b073-4183-b90c-1722359841df)
   )
   (wire (pts (xy 196.85 38.1) (xy 196.85 40.64))
     (stroke (width 0) (type default))
@@ -1700,6 +1708,10 @@
     (stroke (width 0) (type default))
     (uuid baa59ac6-1210-4b5b-8de0-a98a82482723)
   )
+  (wire (pts (xy 68.58 77.47) (xy 80.01 77.47))
+    (stroke (width 0) (type default))
+    (uuid bef8e186-b3c7-47d3-b416-4434d27e8142)
+  )
   (wire (pts (xy 177.8 92.71) (xy 184.15 92.71))
     (stroke (width 0) (type default))
     (uuid c39d370f-cc37-4739-aab9-3661d6a5282b)
@@ -1834,6 +1846,10 @@
     (uuid 1570ec38-e506-4295-98ef-2b89ae4c5da0)
   )
 
+  (label "UART3_RX" (at 68.58 77.47 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 1b897bcb-24e2-4a07-8aaf-ad5d7aa55c89)
+  )
   (label "SWCLK" (at 229.87 128.27 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 2393391a-675b-43b4-a563-9063de98fb65)
@@ -1857,6 +1873,10 @@
   (label "XOUT" (at 69.85 64.77 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 484f0e2e-d438-4b3a-9ac9-c6c7ad1571ae)
+  )
+  (label "UART3_TX" (at 229.87 148.59 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 527f4a63-777b-491a-8f60-6fe069299a46)
   )
   (label "CAN_RX" (at 172.72 48.26 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
@@ -1905,6 +1925,14 @@
   (label "XIN" (at 69.85 62.23 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid e8284938-adc0-4f79-aefc-5adb4b370d16)
+  )
+  (label "UART3_RX" (at 229.87 146.05 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid e9ae5182-1ecf-4ff4-b2f0-2efe9fb9ce7c)
+  )
+  (label "UART3_TX" (at 68.58 74.93 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid f23c18fc-1652-45b3-b2cb-ffb20f2827be)
   )
   (label "XIN" (at 177.8 92.71 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
@@ -2041,7 +2069,7 @@
     (pin "1" (uuid 5d5ba227-99db-43de-80a5-5e316352f8cb))
     (pin "2" (uuid 776eded8-5301-475e-9018-56f808b04e6c))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "R306") (unit 1)
         )
@@ -2060,7 +2088,7 @@
   (symbol (lib_id "Device:Crystal_GND24") (at 194.31 92.71 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 0bb03e1a-94ab-4e17-8f7d-750a0bf4dccf)
-    (property "Reference" "Y?" (at 184.15 83.82 0)
+    (property "Reference" "Y301" (at 184.15 83.82 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "12MHz" (at 184.15 86.36 0)
@@ -2080,9 +2108,9 @@
     (pin "3" (uuid ab01cba3-fc25-4b57-b857-748d8502d203))
     (pin "4" (uuid d16b4c66-bf1b-4b87-89e0-f463c7ea0843))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "Y?") (unit 1)
+          (reference "Y301") (unit 1)
         )
       )
     )
@@ -2091,7 +2119,7 @@
   (symbol (lib_id "Device:C_Small") (at 184.15 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 142bb1df-93a0-4996-98cb-f8bc864c5d8e)
-    (property "Reference" "C?" (at 186.69 97.7963 0)
+    (property "Reference" "C306" (at 186.69 97.7963 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "20p" (at 186.69 100.3363 0)
@@ -2109,9 +2137,9 @@
     (pin "1" (uuid a8bcc33b-e13e-4964-858a-55dd226e13fc))
     (pin "2" (uuid 576fa060-6714-48af-9d69-3137210d8532))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "C?") (unit 1)
+          (reference "C306") (unit 1)
         )
       )
       (project "stm32g431-mt6701-stspin233"
@@ -2125,7 +2153,7 @@
   (symbol (lib_id "Device:C_Small") (at 240.03 49.53 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 16ccc106-b3e7-4cc8-9c5f-8d61dc8d1657)
-    (property "Reference" "C?" (at 237.49 48.2663 0)
+    (property "Reference" "C308" (at 237.49 48.2663 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "100n" (at 237.49 50.8063 0)
@@ -2143,9 +2171,9 @@
     (pin "1" (uuid ba8863d9-b894-49a5-bcef-b65f48ed46e8))
     (pin "2" (uuid f8bb52d5-b6eb-43bf-ab48-cf2466049661))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "C?") (unit 1)
+          (reference "C308") (unit 1)
         )
       )
       (project "stm32g431-mt6701-stspin233"
@@ -2177,7 +2205,7 @@
     (pin "1" (uuid 5f17b7c6-2b2c-4fdc-9e00-3a82cd850aa4))
     (pin "2" (uuid d36011d0-dfbe-44be-b09d-bab2738e446b))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "R301") (unit 1)
         )
@@ -2207,7 +2235,7 @@
     )
     (pin "1" (uuid a3f12c4d-65ca-42a4-898f-572eec710eb4))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0302") (unit 1)
         )
@@ -2244,7 +2272,7 @@
     (pin "1" (uuid 8882b754-d8eb-483d-b0e6-d2c4989abac7))
     (pin "2" (uuid 4de33cba-fb8a-4c85-8bf9-4dedcb153ab6))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "C304") (unit 1)
         )
@@ -2278,7 +2306,7 @@
     (pin "1" (uuid cbd3be7e-afd2-436b-aa86-1b15a5af2e2d))
     (pin "2" (uuid a5728bbb-517f-428a-859a-5e11ea56724f))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "D302") (unit 1)
         )
@@ -2308,7 +2336,7 @@
     )
     (pin "1" (uuid ff43bd17-3880-41f8-9207-c38b73f360f1))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0315") (unit 1)
         )
@@ -2327,7 +2355,7 @@
   (symbol (lib_id "Device:R_Small_US") (at 248.92 41.91 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 392ec31e-90f7-4902-843e-5021667aa8f7)
-    (property "Reference" "R?" (at 246.38 40.64 0)
+    (property "Reference" "R305" (at 246.38 40.64 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10k" (at 246.38 43.18 0)
@@ -2345,9 +2373,9 @@
     (pin "1" (uuid 980a4134-2829-4570-83d8-b768e4828f68))
     (pin "2" (uuid f5b6cb26-9142-452e-a72a-6a696aac9d1e))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "R?") (unit 1)
+          (reference "R305") (unit 1)
         )
       )
       (project "stm32g431-mt6701-stspin233"
@@ -2382,7 +2410,7 @@
     (pin "1" (uuid 68c696f7-b57e-43bc-b257-24a09a6d1cf3))
     (pin "2" (uuid b21e2c72-411e-47dd-9341-50fd5923e813))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "C302") (unit 1)
         )
@@ -2416,7 +2444,7 @@
     (pin "1" (uuid 05795468-0211-4830-a9f2-8e745058fa01))
     (pin "2" (uuid 87a9fedf-077f-4a3f-b395-c428b92b74d3))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "C303") (unit 1)
         )
@@ -2446,7 +2474,7 @@
     )
     (pin "1" (uuid 60ddf753-58f3-4cc2-967c-2bcfb24b9d24))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0307") (unit 1)
         )
@@ -2479,7 +2507,7 @@
     )
     (pin "1" (uuid c7be138f-a7a8-4d4f-9186-f6568806b87e))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0314") (unit 1)
         )
@@ -2512,7 +2540,7 @@
     )
     (pin "1" (uuid 0fb98626-174e-4c27-bfaf-90112ce45c86))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0305") (unit 1)
         )
@@ -2549,7 +2577,7 @@
     (pin "1" (uuid 94069524-2c6b-412f-8c96-fb07875b0230))
     (pin "2" (uuid 603ebac9-71bf-4952-8fe5-a5911a8d0e76))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "C301") (unit 1)
         )
@@ -2630,7 +2658,7 @@
     (pin "8" (uuid a18a6888-bef5-4c6d-adca-0abf97d7bada))
     (pin "9" (uuid c66aeab6-768c-4369-a2b4-1f53c95f6287))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "U301") (unit 1)
         )
@@ -2663,7 +2691,7 @@
     )
     (pin "1" (uuid 8260ecb8-4a44-4c3f-96f3-76b2eb44f5c5))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0309") (unit 1)
         )
@@ -2700,7 +2728,7 @@
     (pin "1" (uuid 589d4d7b-e6d9-4478-a63e-dd46569073f7))
     (pin "2" (uuid b7bb4a50-5624-41a1-97a1-7fe8dd9f267b))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "R303") (unit 1)
         )
@@ -2737,7 +2765,7 @@
     (pin "1" (uuid a2bea353-7a86-4557-a4a6-aab5c94a7aff))
     (pin "2" (uuid 1802bd08-e0c6-4195-8c5f-fedac959f40d))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "R304") (unit 1)
         )
@@ -2770,7 +2798,7 @@
     )
     (pin "1" (uuid 0493a471-1eef-4fad-8855-108fef87639b))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0313") (unit 1)
         )
@@ -2803,7 +2831,7 @@
     )
     (pin "1" (uuid 4991d9d9-a991-4019-ad16-fa51394a7077))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0306") (unit 1)
         )
@@ -2836,7 +2864,7 @@
     )
     (pin "1" (uuid cf0a82c8-12e9-4770-acea-e371ffd7c9a4))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0304") (unit 1)
         )
@@ -2869,7 +2897,7 @@
     )
     (pin "1" (uuid 17364daa-ce3c-4251-9f3d-86cd36b14045))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0312") (unit 1)
         )
@@ -2902,7 +2930,7 @@
     )
     (pin "1" (uuid 948276f9-8605-488d-9e12-3c93593f6fcb))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0308") (unit 1)
         )
@@ -2939,7 +2967,7 @@
     (pin "1" (uuid bf6d48d8-4455-4753-a5f2-948c6cf44ca7))
     (pin "2" (uuid daabdcfa-f692-479e-97f5-97cba4de4157))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "R302") (unit 1)
         )
@@ -2969,7 +2997,7 @@
     )
     (pin "1" (uuid 27eeef42-3a72-4c0f-bac9-c02303100b99))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0303") (unit 1)
         )
@@ -3006,7 +3034,7 @@
     (pin "1" (uuid 99d3dc5a-9484-48ff-ae1a-30d6042daec3))
     (pin "2" (uuid 40de3873-74a9-44c1-9018-0267013df74b))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "D301") (unit 1)
         )
@@ -3022,7 +3050,7 @@
   (symbol (lib_id "Interface_CAN_LIN:SN65HVD230") (at 196.85 48.26 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ddce32a1-14d3-461c-8f22-1d4b78cfd7dc)
-    (property "Reference" "U?" (at 199.0441 38.1 0)
+    (property "Reference" "U302" (at 199.0441 38.1 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "SN65HVD230" (at 199.0441 40.64 0)
@@ -3046,9 +3074,9 @@
     (pin "7" (uuid 99d19c9a-8666-450a-862b-3fe04deb6e57))
     (pin "8" (uuid 8f9d5132-3fa7-4d8b-9179-1c4ed916a043))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "U?") (unit 1)
+          (reference "U302") (unit 1)
         )
       )
     )
@@ -3071,7 +3099,7 @@
     )
     (pin "1" (uuid af0ae41a-75f9-4c88-a5a9-467d91621a5f))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0311") (unit 1)
         )
@@ -3090,7 +3118,7 @@
   (symbol (lib_id "Switch:SW_Push_45deg") (at 255.27 43.18 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid df3ad6bb-a832-4f3a-b450-20b83592fd00)
-    (property "Reference" "SW?" (at 255.27 46.99 90)
+    (property "Reference" "SW302" (at 255.27 46.99 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "USER" (at 255.27 49.53 90)
@@ -3108,9 +3136,9 @@
     (pin "1" (uuid 10d2e9c6-4bc8-4889-93da-6cc2401e0b86))
     (pin "2" (uuid 3a39f530-57e2-4a97-933d-880b53c2b6dd))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "SW?") (unit 1)
+          (reference "SW302") (unit 1)
         )
       )
       (project "stm32g431-mt6701-stspin233"
@@ -3125,9 +3153,9 @@
   )
 
   (symbol (lib_id "Connector:Conn_ST_STDC14") (at 254 135.89 0) (mirror y) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
+    (in_bom no) (on_board yes) (dnp no)
     (uuid e51acd24-4d85-40a1-b251-31c95e56d23a)
-    (property "Reference" "J?" (at 262.89 134.62 0)
+    (property "Reference" "J301" (at 262.89 134.62 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "DEBUG" (at 262.89 137.16 0)
@@ -3154,9 +3182,9 @@
     (pin "8" (uuid be8da709-a6dc-44de-a4d7-48a5e4b5c6b6))
     (pin "9" (uuid 3a6453bf-ec6d-4198-aa0b-f8e94647747e))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "J?") (unit 1)
+          (reference "J301") (unit 1)
         )
       )
     )
@@ -3179,7 +3207,7 @@
     )
     (pin "1" (uuid 82154c59-7650-4fb9-8077-c460a9ee67d8))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0310") (unit 1)
         )
@@ -3216,7 +3244,7 @@
     (pin "1" (uuid c608943f-92e4-458a-b300-3d9fbe870ed9))
     (pin "2" (uuid 74fe1abe-a4a3-4bc5-8b85-574565ce3b72))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "SW301") (unit 1)
         )
@@ -3253,7 +3281,7 @@
     (pin "1" (uuid ea3c072b-0f67-45d4-918e-fb5b1dab7a84))
     (pin "2" (uuid 80a50449-bdd8-4e0f-823a-5f53df22172b))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "C305") (unit 1)
         )
@@ -3269,7 +3297,7 @@
   (symbol (lib_id "Device:C_Small") (at 204.47 99.06 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f4fd6cee-a64c-4c59-b5e4-778c1c3ed0e7)
-    (property "Reference" "C?" (at 201.93 97.7963 0)
+    (property "Reference" "C307" (at 201.93 97.7963 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "20p" (at 201.93 100.3363 0)
@@ -3287,9 +3315,9 @@
     (pin "1" (uuid 11969597-87a8-4f7f-83a0-455663c646f1))
     (pin "2" (uuid ed465cc5-871b-4f64-a01c-bad46a5720ff))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "C?") (unit 1)
+          (reference "C307") (unit 1)
         )
       )
       (project "stm32g431-mt6701-stspin233"
@@ -3317,7 +3345,7 @@
     )
     (pin "1" (uuid 6fa44bc9-310c-476d-ba45-edf13b65501e))
     (instances
-      (project "sfoc-stepper"
+      (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
           (reference "#PWR0301") (unit 1)
         )
