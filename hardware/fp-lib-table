@@ -1,4 +1,5 @@
 (fp_lib_table
   (version 7)
   (lib (name "mechanical")(type "KiCad")(uri "/Users/mateijordache/Documents/electronics_projects/lemon-pepper-stepper/mechanical")(options "")(descr ""))
+  (lib (name "footprints")(type "KiCad")(uri "/Users/mateijordache/Documents/github-stuff/CLN17/hardware/CLN17-V1/libs/footprints.pretty")(options "")(descr ""))
 )
