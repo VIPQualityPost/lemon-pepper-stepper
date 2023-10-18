@@ -832,6 +832,21 @@
     (uuid d45cd4fd-6bb5-45e7-88bb-db2959151649)
   )
 
+  (netclass_flag "" (length 2.54) (shape round) (at 144.78 68.58 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 3f57642c-9af2-42e4-b294-0a4d28a8ea8c)
+    (property "Netclass" "MOTOR" (at 152.4 72.39 0)
+      (effects (font (size 1.27 1.27) italic) (justify right))
+    )
+  )
+  (netclass_flag "" (length 2.54) (shape round) (at 129.54 58.42 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid b4114221-d3cc-489d-8aa4-285694c7f864)
+    (property "Netclass" "MOTOR" (at 128.8415 55.88 0)
+      (effects (font (size 1.27 1.27) italic) (justify right))
+    )
+  )
+
   (symbol (lib_id "easyeda2kicad:L6226QTR") (at 137.16 91.44 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 37880a97-b6a0-4a9d-a6d3-f01d330a7505)
@@ -1109,8 +1124,8 @@
     (property "LCSC Part" "C2128" (at 139.7 68.58 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 511c0bc6-ca92-43ed-bbe5-e0412b4449de))
-    (pin "2" (uuid b0609c6a-007e-422e-8082-2f0b82592197))
+    (pin "1" (uuid 0d139f00-4fc1-4cf6-b2e0-700b4a82371f))
+    (pin "2" (uuid ef0a2d0e-fe4a-499e-8622-9df246ae5c01))
     (instances
       (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
