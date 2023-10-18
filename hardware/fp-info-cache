@@ -1,4 +1,4 @@
-22745743298908890
+22794966424070243
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -93331,6 +93331,20 @@ HDR-SMD_14P-P1.27-V-M-R2-C7-LS5.3
 14
 14
 easyeda2kicad
+IC-SMD_ACS711KEXLT-15AB-T
+
+
+0
+10
+10
+easyeda2kicad
+KEY-SMD_4P-L2.6-W1.6-P0.80-LS3.0
+
+
+0
+4
+4
+easyeda2kicad
 MLP55-27_L5.0-W5.0-P0.50-TL_SIC46XXX
 
 
@@ -93413,7 +93427,14 @@ USB-C-SMD_GT-USB-7052_1
 
 0
 29
-28
+25
+easyeda2kicad
+VQFN-32_L5.0-W5.0-P0.50-TL-EP
+
+
+0
+33
+33
 easyeda2kicad
 WSON-8_L1.7-W1.4-P0.40-BL-EP
 
@@ -93428,6 +93449,188 @@ WSON-12_L4.0-W4.0-P0.50-BL-EP
 0
 13
 13
+footprints
+C0402
+
+
+0
+2
+2
+footprints
+C_0603_1608Metric
+Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator
+capacitor
+0
+2
+2
+footprints
+C_1206_3216Metric
+Capacitor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator
+capacitor
+0
+2
+2
+footprints
+Crystal-3225-4P
+SMD Crystal SERIES SMD3225/4 http://www.txccrystal.com/images/pdf/7m-accuracy.pdf, 3.2x2.5mm^2 package
+SMD SMT crystal
+0
+4
+4
+footprints
+D_SMB
+Diode SMB (DO-214AA)
+Diode SMB (DO-214AA)
+0
+2
+2
+footprints
+Fuse_1812_4532Metric
+Fuse SMD 1812 (4532 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.nikhef.nl/pub/departments/mt/projects/detectorR_D/dtddice/ERJ2G.pdf), generated with kicad-footprint-generator
+fuse
+0
+5
+2
+footprints
+LED_0603_1608Metric
+LED SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator
+LED
+0
+2
+2
+footprints
+LED_RGB_0606
+
+
+0
+4
+4
+footprints
+LGA-14L_3x2.5mm_P0.5mm
+LGA-14 Bosch https://ae-bst.resource.bosch.com/media/_tech/media/datasheets/BST-BMI160-DS000-07.pdf
+lga land grid array
+0
+14
+14
+footprints
+L_0805_2012Metric
+Inductor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 80, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator
+inductor
+0
+2
+2
+footprints
+MountingHole
+Mounting Hole 3.2mm, M3
+mounting hole 3.2mm m3
+0
+0
+0
+footprints
+PH2.0 2P
+
+
+0
+8
+2
+footprints
+PinSocket_2x04_P1.27mm_Vertical
+Through hole straight socket strip, 2x04, 1.27mm pitch, double cols (from Kicad 4.0.7), script generated
+Through hole socket strip THT 2x04 1.27mm double row
+0
+16
+8
+footprints
+QFN-28-termal
+
+
+0
+49
+29
+footprints
+QFN-48-1EP_7x7mm_P0.5mm_EP5.6x5.6mm
+QFN, 48 Pin (http://www.st.com/resource/en/datasheet/stm32f042k6.pdf#page=94), generated with kicad-footprint-generator ipc_noLead_generator.py
+QFN NoLead
+0
+65
+49
+footprints
+R0402
+
+
+0
+2
+2
+footprints
+R_1206_3216Metric
+Resistor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator
+resistor
+0
+2
+2
+footprints
+SOIC-8_3.9x4.9mm_P1.27mm
+SOIC, 8 Pin (JEDEC MS-012AA, https://www.analog.com/media/en/package-pcb-resources/package/pkg_pdf/soic_narrow-r/r_8.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py
+SOIC SO
+0
+8
+8
+footprints
+SOT-23-3
+SOT, 3 Pin (https://www.jedec.org/sites/default/files/docs/Mo-178D.PDF inferred 3-pin variant), generated with kicad-footprint-generator ipc_gullwing_generator.py
+SOT TO_SOT_SMD
+0
+3
+3
+footprints
+SOT-23-6
+SOT, 6 Pin (https://www.jedec.org/sites/default/files/docs/Mo-178c.PDF variant AB), generated with kicad-footprint-generator ipc_gullwing_generator.py
+SOT TO_SOT_SMD
+0
+6
+6
+footprints
+SW_SPST_PTS810
+C&K Components, PTS 810 Series, Microminiature SMT Top Actuated, http://www.ckswitches.com/media/1476/pts810.pdf
+SPST Button Switch
+0
+4
+2
+footprints
+SolderJumper
+SMD Solder Jumper, 1x1.5mm Triangular Pads, 0.3mm gap, open
+solder jumper open
+0
+2
+2
+footprints
+USB-TYPE-C-31-M-12-SWD
+
+
+0
+26
+17
+footprints
+XH2.54 2P
+
+
+0
+8
+2
+footprints
+XH2.54 4P
+
+
+0
+16
+4
+footprints
+XH2.54 6P
+
+
+0
+24
+6
 matei
 01x05_sidemount
 Unnamed1 StepUp generated footprint
