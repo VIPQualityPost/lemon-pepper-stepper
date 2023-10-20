@@ -1,5 +1,5 @@
 # Lemon Pepper Stepper Driver
-Small, all in one hybrid stepper + BLDC driver. The board supports up to 48V @ 1.5A with a choice of either step-dir or CANbus inputs.
+Small, all in one hybrid stepper + BLDC driver, designed to mount to the back of NEMA 14 size stepper motors.. The board supports up to 48V @ 1.5A with a choice of either step-dir or CANbus inputs.
 The boards can easily be assembled by JLC and the design has been cost-optimized, coming in at about $20 per board fully assembled. 
 
 Due to the high pole pair count of stepper motors, a high resolution (21 bit) magnetic encoder is used, supporting both SPI and hardware ABI position encoding. 
