@@ -3,3 +3,5 @@
 *cubemx/
 *backups/
 *.lck
+*.pio
+*.vscode
