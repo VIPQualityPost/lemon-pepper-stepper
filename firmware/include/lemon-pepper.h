@@ -32,6 +32,20 @@
 #define CAN_TX      PB8
 #define CAN_RX      PB9
 
+// CONTROL INPUTS
+#ifdef PCB_REV1
+#define STEP_PIN    PB14
+#define DIR_PIN     PB15
+#endif
+
+#ifdef PCB_REV2
+#define STEP_PIN    PC11
+#define DIR_PIN     PA8
+
+#define I2C_SDA     PC11
+#define I2C_SCL     PA8
+#endif
+
 // AUX
 #define LED_GOOD    PB10
 #define LED_FAULT   PB11
