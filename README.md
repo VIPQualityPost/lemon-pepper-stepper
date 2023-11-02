@@ -6,4 +6,3 @@ Due to the high pole pair count of stepper motors, a high resolution (21 bit) ma
 Despite the rather high theoretical performance of this board I think you would need some serious cooling to actually hit the potential 50-70W specs of the parts.
 ![Photo of PCB](/many.png)
 ![PCB on motor](/motor.png)
-![Render of PCB](/render.png)
