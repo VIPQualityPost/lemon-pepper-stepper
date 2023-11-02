@@ -1271,7 +1271,7 @@
     (stroke (width 0) (type default))
     (uuid 3084df01-ff3d-4638-8f75-5d51c11d2a7f)
   )
-  (wire (pts (xy 83.82 87.63) (xy 73.66 87.63))
+  (wire (pts (xy 73.66 87.63) (xy 83.82 87.63))
     (stroke (width 0) (type default))
     (uuid 3096a0d9-9931-408e-bbd6-97595170acec)
   )

@@ -5,11 +5,12 @@
 #include <SimpleFOC.h>
 #include <SimpleFOCDrivers.h>
 #include "encoders/MT6835/MagneticSensorMT6835.h"
+#include "encoders/stm32hwencoder/STM32HWEncoder.h"
 
 #include "stm32g4xx_hal_conf.h"
 #include "stm32g4xx_hal_fdcan.h"
 
-#include "can.h"
+// #include "can.h"
 #include "dfu.h"
 #include "lemon-pepper.h"
 
@@ -33,56 +34,69 @@ extern uint8_t TxData[8];
 extern uint8_t RxData[8];
 
 // simpleFOC things
-#define POLEPAIRS 7
-#define RPHASE 1.4
-#define MOTORKV 1000
+#define POLEPAIRS 50
+#define RPHASE 3
+#define MOTORKV 200
+#define ENC_PPR 0xFFFD // 65533 -> 65534 ppr (65535 cause overflow on 16 bit timer)
 
-SPISettings myMT6835SPISettings(1000000, MT6835_BITORDER, SPI_MODE3);
+SPIClass spi1(ENC_COPI, ENC_CIPO, ENC_SCK);
+SPISettings myMT6835SPISettings(168000000/16, MT6835_BITORDER, SPI_MODE3);
 MagneticSensorMT6835 sensor = MagneticSensorMT6835(ENC_CS, myMT6835SPISettings);
+STM32HWEncoder enc = STM32HWEncoder(ENC_PPR, ENC_A, ENC_B, ENC_Z);
 
-BLDCDriver3PWM driver = BLDCDriver3PWM(U_PWM, V_PWM, W_PWM, U_EN, V_EN, W_EN);
-BLDCMotor motor = BLDCMotor(POLEPAIRS, RPHASE, MOTORKV);
-MagneticSensorMT6701SSI enc = MagneticSensorMT6701SSI(ENC_CS);
+StepperDriver4PWM driver = StepperDriver4PWM(MOT_A1, MOT_A2, MOT_B1, MOT_B2);
+StepperMotor motor = StepperMotor(POLEPAIRS, RPHASE, MOTORKV);
 Commander commander = Commander(SerialUSB);
+
+uint16_t counter = 0;
 
 // Prototypes
 void configureFOC(void);
-void configureCAN(void);
-void userButton_IT(void);
+// void configureCAN(void);
+// void configureEncoder(void);
 
 void setup()
 {
-	// SCB->VTOR == 0x08000000;
-	pinMode(USER_LED, OUTPUT);
-	attachInterrupt(USER_BUTTON, userButton_IT, HIGH);
+	pinMode(LED_GOOD, OUTPUT);
+	pinMode(LED_FAULT, OUTPUT);
+	pinMode(CAL_EN, OUTPUT);
+	pinMode(MOT_EN, OUTPUT);
 
 	SerialUSB.begin(115200);
 
-	EEPROM.get(0, boardData);
+	// EEPROM.get(0, boardData);
 
-	configureCAN();
-	configureFOC();
+	digitalWrite(MOT_EN, HIGH);
+	digitalWrite(CAL_EN, LOW);
 
-	if(boardData.canID == 0x000)
-	{
-		// If the can ID is not initialized, then we'll look for a free ID.
-		boardData.canID = FDCAN_FindUniqueID();
-		SerialUSB.println(boardData.canID);
-	}
+	// configureCAN();
+	// configureEncoder();
+	// configureFOC();
+	sensor.init(&spi1);
 
-	if(boardData.signature != magicWord)
-	{
-		// If the EEPROM has not been initalized yet, save all the known data.
-		EEPROM.put(0, boardData);
-	}
+	// if(boardData.canID == 0x000)
+	// {
+	// 	// If the can ID is not initialized, then we'll look for a free ID.
+	// 	boardData.canID = FDCAN_FindUniqueID();
+	// 	SerialUSB.println(boardData.canID);
+	// }
+
+	// if(boardData.signature != magicWord)
+	// {
+	// 	// If the EEPROM has not been initalized yet, save all the known data.
+	// 	EEPROM.put(0, boardData);
+	// }
 }
 
 void loop()
-{
-	motor.loopFOC();
-	motor.move();
-	commander.run();
-		
+{	
+	// motor.loopFOC();
+	// motor.move();
+	// commander.run();
+	sensor.update();
+	delay(10);
+	SerialUSB.printf("%#06x\n", sensor.readRawAngle21());
+
 	#ifdef HAS_MONITOR
 	motor.monitor();
 	#endif
@@ -102,13 +116,16 @@ void configureFOC(void){
 	#endif
 
 	// Encoder initialization.
-	// Encoder on SPI1
-	enc.init();
+	// Ideally configuring the sensor over SPI then use STM32HWEncoder
+	// sensor.init(&spi1);
+	// sensor.setABZResolution(ENC_PPR);
+
+	// enc.init();
 
 	// Driver initialization.
 	driver.pwm_frequency = 32000;
-	driver.voltage_power_supply = 5;
-	driver.voltage_limit = 2.5;
+	driver.voltage_power_supply = 9;
+	driver.voltage_limit = driver.voltage_power_supply/2;
 	driver.init();
 
 	// Motor PID parameters.
@@ -121,10 +138,10 @@ void configureFOC(void){
 
 	// Motor initialization.
 	motor.voltage_sensor_align = 2;
-	motor.current_limit = 0.5;
+	motor.current_limit = 0.35;
 	motor.velocity_limit = 50;
-	motor.controller = MotionControlType::velocity;
-	motor.foc_modulation = FOCModulationType::SinePWM;
+	motor.controller = MotionControlType::velocity_openloop;
+	motor.foc_modulation = FOCModulationType::SpaceVectorPWM;
 
 	// Monitor initialization
 	#ifdef HAS_MONITOR
@@ -137,27 +154,33 @@ void configureFOC(void){
 	motor.linkSensor(&enc);
 	motor.linkDriver(&driver);
 
-	motor.target = 0;
+	motor.target = 10;
 
-	if(boardData.signature != magicWord){
-		// If we have not initialized the EEPROM before.
-		motor.init();
-		motor.initFOC();
+	motor.zero_electric_angle = NOT_SET;
+	motor.sensor_direction = Direction::UNKNOWN;
 
-		boardData.signature = magicWord;
-		boardData.electricalZero = motor.zero_electric_angle;
-		boardData.electricalDir = motor.sensor_direction;
-	}
-	else{
-		motor.zero_electric_angle = boardData.electricalZero;
-		motor.sensor_direction = boardData.electricalDir;
-		motor.init();
-		motor.initFOC();
-	}
+	motor.init();
+	motor.initFOC();
+
+	// if(boardData.signature != magicWord){
+	// 	// If we have not initialized the EEPROM before.
+	// 	motor.init();
+	// 	motor.initFOC();
+
+	// 	boardData.signature = magicWord;
+	// 	boardData.electricalZero = motor.zero_electric_angle;
+	// 	boardData.electricalDir = motor.sensor_direction;
+	// }
+	// else{
+	// 	motor.zero_electric_angle = boardData.electricalZero;
+	// 	motor.sensor_direction = boardData.electricalDir;
+	// 	motor.init();
+	// 	motor.initFOC();
+	// }
 }
 
-void configureCAN(void){
-	FDCAN_Start(0x000);
-}
+// void configureCAN(void){
+// 	FDCAN_Start(0x000);
+// }
 
 
