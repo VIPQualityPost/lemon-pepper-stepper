@@ -154,7 +154,7 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
     // Reply globally but put the replying ID in the data packet. 
     TxHeader.Identifier = FDCAN_GlobalID;
     memset(TxData, 0x00, 8 * sizeof(uint8_t));
-    memcpy(&TxData, (sFilterConfig.FilterID1), sizeof(uint16_t));
+    //memcpy(&TxData, (sFilterConfig.FilterID1), sizeof(uint16_t));
     FDCAN_SendMessage();
   }
   else

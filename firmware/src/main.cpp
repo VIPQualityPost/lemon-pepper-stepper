@@ -10,7 +10,7 @@
 #include "stm32g4xx_hal_conf.h"
 #include "stm32g4xx_hal_fdcan.h"
 
-// #include "can.h"
+#include "can.h"
 #include "dfu.h"
 #include "lemon-pepper.h"
 
@@ -52,8 +52,7 @@ uint16_t counter = 0;
 
 // Prototypes
 void configureFOC(void);
-// void configureCAN(void);
-// void configureEncoder(void);
+void configureCAN(void);
 
 void setup()
 {
@@ -93,6 +92,7 @@ void loop()
 	// motor.loopFOC();
 	// motor.move();
 	// commander.run();
+
 	sensor.update();
 	delay(10);
 	SerialUSB.printf("%#06x\n", sensor.readRawAngle21());
@@ -117,10 +117,10 @@ void configureFOC(void){
 
 	// Encoder initialization.
 	// Ideally configuring the sensor over SPI then use STM32HWEncoder
-	// sensor.init(&spi1);
-	// sensor.setABZResolution(ENC_PPR);
+	sensor.init(&spi1);
+	sensor.setABZResolution(ENC_PPR);
 
-	// enc.init();
+	enc.init();
 
 	// Driver initialization.
 	driver.pwm_frequency = 32000;
@@ -179,8 +179,8 @@ void configureFOC(void){
 	// }
 }
 
-// void configureCAN(void){
-// 	FDCAN_Start(0x000);
-// }
+void configureCAN(void){
+	FDCAN_Start(0x000);
+}
 
 
