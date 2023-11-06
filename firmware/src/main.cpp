@@ -36,13 +36,22 @@ extern uint8_t RxData[8];
 // simpleFOC things
 #define POLEPAIRS 50
 #define RPHASE 3
-#define MOTORKV 200
-#define ENC_PPR 0xFFFD // 65533 -> 65534 ppr (65535 cause overflow on 16 bit timer)
+#define MOTORKV 40
+#define ENC_PPR 16383 // max 16384
 
-SPIClass spi1(ENC_COPI, ENC_CIPO, ENC_SCK);
+/**
+ * SPI clockdiv of 16 gives ~10.5MHz clock. May still be stable with lower divisor.
+ * The HW encoder is configured using PPR, which is then *4 for CPR (full 12384 gives overflow on 16 bit timer.)
+*/
 SPISettings myMT6835SPISettings(168000000/16, MT6835_BITORDER, SPI_MODE3);
 MagneticSensorMT6835 sensor = MagneticSensorMT6835(ENC_CS, myMT6835SPISettings);
 STM32HWEncoder enc = STM32HWEncoder(ENC_PPR, ENC_A, ENC_B, ENC_Z);
+
+/**
+ * The current sense amps have a gain of 90mA/V -> over 1.5A this is 135mA so we need gain of 24 to get full-scale.
+ * Actually we are limited to powers of 2 for gain. So it should be 16. This gives sensitivity of 1440mV/A.
+ * */ 
+InlineCurrentSense currentsense = InlineCurrentSense(1440, ISENSE_U, ISENSE_V, ISENSE_W);
 
 StepperDriver4PWM driver = StepperDriver4PWM(MOT_A1, MOT_A2, MOT_B1, MOT_B2);
 StepperMotor motor = StepperMotor(POLEPAIRS, RPHASE, MOTORKV);
@@ -53,6 +62,7 @@ uint16_t counter = 0;
 // Prototypes
 void configureFOC(void);
 void configureCAN(void);
+void calibrateEncoder(void);
 
 void setup()
 {
@@ -68,11 +78,16 @@ void setup()
 	digitalWrite(MOT_EN, HIGH);
 	digitalWrite(CAL_EN, LOW);
 
-	// configureCAN();
-	// configureEncoder();
-	// configureFOC();
-	sensor.init(&spi1);
+	configureCAN();
+	configureFOC();
 
+	if(sensor.getABZResolution() != ENC_PPR){
+		digitalWrite(LED_FAULT, HIGH);
+	}
+
+	if(false){
+		calibrateEncoder();
+	}
 	// if(boardData.canID == 0x000)
 	// {
 	// 	// If the can ID is not initialized, then we'll look for a free ID.
@@ -89,13 +104,15 @@ void setup()
 
 void loop()
 {	
-	// motor.loopFOC();
-	// motor.move();
-	// commander.run();
+	motor.loopFOC();
+	motor.move();
+	commander.run();
 
-	sensor.update();
-	delay(10);
-	SerialUSB.printf("%#06x\n", sensor.readRawAngle21());
+	if(counter == 0){
+		motor.target = -motor.target;
+	}
+
+	counter++;
 
 	#ifdef HAS_MONITOR
 	motor.monitor();
@@ -117,30 +134,34 @@ void configureFOC(void){
 
 	// Encoder initialization.
 	// Ideally configuring the sensor over SPI then use STM32HWEncoder
-	sensor.init(&spi1);
+	sensor.init();
 	sensor.setABZResolution(ENC_PPR);
 
 	enc.init();
 
 	// Driver initialization.
 	driver.pwm_frequency = 32000;
-	driver.voltage_power_supply = 9;
+	driver.voltage_power_supply = 12;
 	driver.voltage_limit = driver.voltage_power_supply/2;
 	driver.init();
 
 	// Motor PID parameters.
-	motor.PID_velocity.P = 0.2;
-	motor.PID_velocity.I = 3;
-	motor.PID_velocity.D = 0.002;
-	motor.PID_velocity.output_ramp = 100;
-	motor.LPF_velocity.Tf = 0.5;
+	motor.PID_velocity.P = 5;
+	motor.PID_velocity.I = 24;
+	motor.PID_velocity.D = 0.01;
+	motor.PID_velocity.output_ramp = 750;
+	motor.PID_velocity.limit = 10;
+	motor.LPF_velocity.Tf = 4;
+
+	motor.P_angle.P = 600;
+	motor.P_angle.limit = 10000;
 	motor.LPF_angle.Tf = 0; // try to avoid
 
 	// Motor initialization.
-	motor.voltage_sensor_align = 2;
-	motor.current_limit = 0.35;
-	motor.velocity_limit = 50;
-	motor.controller = MotionControlType::velocity_openloop;
+	// motor.voltage_sensor_align = 2;
+	motor.current_limit = 1;
+	motor.velocity_limit = 500;
+	motor.controller = MotionControlType::angle;
 	motor.foc_modulation = FOCModulationType::SpaceVectorPWM;
 
 	// Monitor initialization
@@ -151,10 +172,15 @@ void configureFOC(void){
 	motor.monitor_downsample = 250;
 	#endif
 
-	motor.linkSensor(&enc);
+	motor.linkSensor(&sensor);
 	motor.linkDriver(&driver);
 
-	motor.target = 10;
+	// currentsense.linkDriver(&driver);
+	// currentsense.init();
+
+	// motor.linkCurrentSense(&currentsense);
+
+	motor.target = 3;
 
 	motor.zero_electric_angle = NOT_SET;
 	motor.sensor_direction = Direction::UNKNOWN;
@@ -182,5 +208,34 @@ void configureFOC(void){
 void configureCAN(void){
 	FDCAN_Start(0x000);
 }
+
+void calibrateEncoder(void){
+	uint16_t calTime = micros();
+	motor.target = 35; // roughly 2000rpm -> need to write 0x1 to Reg. AUTOCAL_FREQ
+
+	MT6835Options4 currentSettings = sensor.getOptions4();
+	currentSettings.autocal_freq = 0x1;
+	sensor.setOptions4(currentSettings);
+
+	while (calTime - micros() < 2000000)
+	{
+		motor.loopFOC();
+		motor.move();
+
+		if(calTime - micros() > 2000){
+			// after motor is spinning at constant speed, enable calibration.
+			digitalWrite(CAL_EN, HIGH);
+		}
+	}
+
+	digitalWrite(CAL_EN, LOW);	
+
+	uint8_t calibrationState = sensor.getCalibrationStatus();
+
+	if(calibrationState != 0x3){
+		digitalWrite(LED_FAULT, HIGH);
+	}
+}
+
 
 
