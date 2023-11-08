@@ -5,10 +5,10 @@
 #define V_PWM       PA9
 #define W_PWM       PA1
 
-#define A1          PA0
-#define A2          PA1
-#define B1          PA9
-#define B2          PA10
+#define MOT_A1      PA0
+#define MOT_A2      PA10
+#define MOT_B1      PA9
+#define MOT_B2      PA1
 
 #define MOT_EN      PB12
 
@@ -21,7 +21,6 @@
 #define ENC_CIPO    PA6
 #define ENC_SCK     PA5
 #define ENC_CS      PC4
-#define ENC_CAL     PA4
 
 // CURRENT SENSE
 #define ISENSE_U    PA3
@@ -32,10 +31,12 @@
 #define CAN_TX      PB8
 #define CAN_RX      PB9
 
-// CONTROL INPUTS
+// PCB REV CHANGES
 #ifdef PCB_REV1
 #define STEP_PIN    PB14
 #define DIR_PIN     PB15
+
+#define CAL_EN     PB1
 #endif
 
 #ifdef PCB_REV2
@@ -44,6 +45,8 @@
 
 #define I2C_SDA     PC11
 #define I2C_SCL     PA8
+
+#define CAL_EN     PA4
 #endif
 
 // AUX
