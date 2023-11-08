@@ -1,11 +1,17 @@
+#if
 #include "adc.h"
 #include "opamp.h"
 #include "dma.h"
-#include "../stm32_mcu.h"
-#include "../../../../drivers/hardware_specific/stm32/stm32_mcu.h"
+#include "Arduino-FOC/src/current_sense/hardware_api.h"
+#include "Arduino-FOC/src/current_sense/hardware_specific/stm32_mcu.h"
+#include "Arduino-FOC/src/drivers/hardware_specific/stm32/stm32_mcu.h"
 #include "communication/SimpleFOCDebug.h"
 
-volatile uint16_t adc1Result = {0};
+float adcResolution = 4096.0f;  // 12 bit ADC
+float voltageScale = 3.3f;      // full scale voltage range of ADC
+float adcSens = adcResolution * voltageScale
+
+volatile uint16_t adc1Result[2] = {0};
 volatile uint16_t adc2Result[2] = {0};
 
 float adcSens = 3.3f * 1.440f / 4096.0f;
@@ -15,24 +21,32 @@ float _readVoltageInline(const uint8_t pin, const void *cs_params)
     switch (pin)
     {
     case PA3:
-        return adc1Result * adcSens;
+        return adc1Result[0];       // ADC1 CH13 -> Vopamp1 internal output
         break;
 
     case PB0:
-        return adc2Result[0] * adcSens;
+        return adc2Result[0];       //ADC2 CH16 -> Vopamp2 internal output
         break;
 
     case PA1:
-        return adc2Result[1] * adcSens;
+        return adc2Result[1];       //ADC2 CH18 -> Vopamp3 internal output
         break;
 
+    case TS:
+        return adc1Result[1];
+        break;
+        
     default:
         return 0.0f;
         break;
     }
 }
 
-void *_configureADCInline(const void *driver_params, const int pinA, const int pinB, const int pinC)
+float _readVoltageLowSide(const int pinA, const void* cs_params){
+    return 0.0f;
+}
+
+void* _configureADCInline(const void *driver_params, const int pinA, const int pinB, const int pinC)
 {
     _UNUSED(driver_params);
 
@@ -48,11 +62,11 @@ void *_configureADCInline(const void *driver_params, const int pinA, const int p
 
     if (HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adc1Result, 1) != HAL_OK)
     {
-        SIMPLEFOC_DEBUG("DMA read init failed");
+        SIMPLEFOC_DEBUG("DMA1 read init failed");
     }
     if (HAL_ADC_Start_DMA(&hadc2, (uint32_t *)adc2Result, 2) != HAL_OK)
     {
-        SIMPLEFOC_DEBUG("DMA read init failed");
+        SIMPLEFOC_DEBUG("DMA2 read init failed");
     }
 
     HAL_OPAMP_Start(&hopamp1);
@@ -61,13 +75,13 @@ void *_configureADCInline(const void *driver_params, const int pinA, const int p
 
     Stm32CurrentSenseParams *params = new Stm32CurrentSenseParams{
         .pins = {pinA, pinB, pinC},
-        .adc_voltage_conv = (_ADC_VOLTAGE) / (_ADC_RESOLUTION),
+        .adc_voltage_conv = adcSens,
         .timer_handle = (HardwareTimer *)(HardwareTimer_Handle[get_timer_index(TIM3)]->__this)};
 
     return params;
 }
 
-void *_configureADCInline(const void *driver_params, const int pinA, const int pinB, const int pinC)
+void* _configureADCLowSide(const void *driver_params, const int pinA, const int pinB, const int pinC)
 {
     _UNUSED(driver_params);
     _UNUSED(pinA);
@@ -76,4 +90,8 @@ void *_configureADCInline(const void *driver_params, const int pinA, const int p
 
     SIMPLEFOC_DEBUG("Lemon-Pepper does not use lowside sensing. Use inline current sense instead.");
     return SIMPLEFOC_CURRENT_SENSE_INIT_FAILED;
+}
+
+void _driverSyncLowSide(void* driver_params, void* cs_params){
+
 }

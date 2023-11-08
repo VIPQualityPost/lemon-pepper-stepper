@@ -1618,10 +1618,10 @@
     (property "LCSC Part" "" (at 269.24 130.81 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 40c1064e-5ba1-4eda-94cf-381bb0c78a56))
-    (pin "2" (uuid 186097f2-7f16-4ac9-8b32-eb08d546af74))
-    (pin "3" (uuid 578107bb-4829-4c13-9087-25c44ff0beea))
-    (pin "4" (uuid 988d197d-90b5-45c7-bbf9-3bf546cafa37))
+    (pin "1" (uuid 1606d6d0-aa5d-4923-aecc-4b057e0e213e))
+    (pin "2" (uuid e07c4f63-ae39-4620-b6c0-eb1d24528e52))
+    (pin "3" (uuid 8cf7ec5a-45c8-48de-b2a0-37678aa497a8))
+    (pin "4" (uuid 79bbdef5-7154-4313-a736-f5bad048cbd1))
     (instances
       (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
@@ -2000,7 +2000,7 @@
   )
 
   (symbol (lib_id "Jumper:SolderJumper_2_Open") (at 69.85 110.49 90) (mirror x) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
+    (in_bom no) (on_board yes) (dnp yes)
     (uuid e22d205f-8c28-4a2e-8942-03f2906b8179)
     (property "Reference" "JP101" (at 67.31 109.22 90)
       (effects (font (size 1.27 1.27)) (justify left))
@@ -2008,7 +2008,7 @@
     (property "Value" "TERM" (at 67.31 111.76 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" (at 69.85 110.49 0)
+    (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 69.85 110.49 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 69.85 110.49 0)
