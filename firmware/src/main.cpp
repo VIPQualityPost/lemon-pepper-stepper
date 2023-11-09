@@ -12,6 +12,7 @@
 
 #include "can.h"
 #include "dfu.h"
+#include "utils.h"
 #include "lemon-pepper.h"
 
 #define USBD_MANUFACTURER_STRING "matei repair lab"
@@ -235,10 +236,10 @@ uint8_t configureFOC(void)
 	motor.linkSensor(&sensor);
 	motor.linkDriver(&driver);
 
-	// currentsense.linkDriver(&driver);
-	// currentsense.init();
+	currentsense.linkDriver(&driver);
+	currentsense.init();
 
-	// motor.linkCurrentSense(&currentsense);
+	motor.linkCurrentSense(&currentsense);
 
 	motor.target = 10;
 

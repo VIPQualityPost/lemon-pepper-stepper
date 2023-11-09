@@ -4,7 +4,7 @@ OPAMP_HandleTypeDef hopamp1;
 OPAMP_HandleTypeDef hopamp2;
 OPAMP_HandleTypeDef hopamp3;
 
-void opamp_init(OPAMP_HandleTypeDef *hopamp, OPAMP_TypeDef *opamp)
+void initOPAMP(OPAMP_HandleTypeDef *hopamp, OPAMP_TypeDef *opamp)
 {
   hopamp1.Instance = opamp;
   hopamp1.Init.PowerMode = OPAMP_POWERMODE_NORMALSPEED;
@@ -15,17 +15,15 @@ void opamp_init(OPAMP_HandleTypeDef *hopamp, OPAMP_TypeDef *opamp)
   hopamp1.Init.PgaConnect = OPAMP_PGA_CONNECT_INVERTINGINPUT_NO;
   hopamp1.Init.PgaGain = OPAMP_PGA_GAIN_16_OR_MINUS_15; // Adjust this to change the gains of the opamp.
   hopamp1.Init.UserTrimming = OPAMP_TRIMMING_FACTORY;
-  if (HAL_OPAMP_Init(&hopamp) != HAL_OK)
-  {
-    Error_Handler();
-  }
+  if (HAL_OPAMP_Init(hopamp) != HAL_OK)
+    SIMPLEFOC_DEBUG("HAL OPAMP Init failed!");
 }
 
 void configureOPAMPs(void)
 {
-  opamp_init(&hopamp1, OPAMP1); // PA3
-  opamp_init(&hopamp2, OPAMP2); // PB0
-  opamp_init(&hopamp3, OPAMP3); // PA1
+  initOPAMP(&hopamp1, OPAMP1); // PA3
+  initOPAMP(&hopamp2, OPAMP2); // PB0
+  initOPAMP(&hopamp3, OPAMP3); // PA1
 }
 
 void HAL_OPAMP_MspInit(OPAMP_HandleTypeDef* opampHandle)

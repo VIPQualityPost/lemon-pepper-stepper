@@ -29,15 +29,11 @@ void MX_ADC1_Init(void)
   hadc1.Init.Overrun = ADC_OVR_DATA_PRESERVED;
   hadc1.Init.OversamplingMode = DISABLE;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
-  {
     SIMPLEFOC_DEBUG("HAL ADC1 Init fail.");
-  }
 
   multimode.Mode = ADC_MODE_INDEPENDENT;
   if (HAL_ADCEx_MultiModeConfigChannel(&hadc1, &multimode) != HAL_OK)
-  {
-    SIMPLEFOC_DEBUG("HAL ADC1 Multimode configuration fail.");
-  }
+    SIMPLEFOC_DEBUG("HAL ADC1 multimode configuration fail.");
 
   sConfig.Channel = ADC_CHANNEL_VOPAMP1;
   sConfig.Rank = ADC_REGULAR_RANK_1;
@@ -46,9 +42,12 @@ void MX_ADC1_Init(void)
   sConfig.OffsetNumber = ADC_OFFSET_NONE;
   sConfig.Offset = 0;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
+    SIMPLEFOC_DEBUG("HAL ADC OPAMP1 init failed!");
+
+  sConfig.Channel = ADC_CHANNEL_TEMPSENSOR_ADC1;
+  sConfig.Rank = ADC_REGULAR_RANK_2;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+    SIMPLEFOC_DEBUG("HAL ADC temp init failed!");
 }
 
 void MX_ADC2_Init(void)
@@ -72,9 +71,7 @@ void MX_ADC2_Init(void)
   hadc2.Init.Overrun = ADC_OVR_DATA_PRESERVED;
   hadc2.Init.OversamplingMode = DISABLE;
   if (HAL_ADC_Init(&hadc2) != HAL_OK)
-  {
-    Error_Handler();
-  }
+    SIMPLEFOC_DEBUG("HAL ADC2 init failed!");
 
   sConfig.Channel = ADC_CHANNEL_VOPAMP2;
   sConfig.Rank = ADC_REGULAR_RANK_1;
@@ -83,19 +80,15 @@ void MX_ADC2_Init(void)
   sConfig.OffsetNumber = ADC_OFFSET_NONE;
   sConfig.Offset = 0;
   if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
+    SIMPLEFOC_DEBUG("HAL ADC OPAMP2 init failed!");
 
   sConfig.Channel = ADC_CHANNEL_VOPAMP3_ADC2;
   sConfig.Rank = ADC_REGULAR_RANK_2;
   if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
+    SIMPLEFOC_DEBUG("HAL ADC OPAMP3 init failed!");
 }
 
-void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
+void ADC_DMA_Init(ADC_HandleTypeDef* adcHandle)
 {
 
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
@@ -165,25 +158,25 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
   }
 }
 
-void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
-{
+// void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
+// {
 
-  if(adcHandle->Instance==ADC1)
-  {
-    HAL_RCC_ADC12_CLK_ENABLED--;
-    if(HAL_RCC_ADC12_CLK_ENABLED==0){
-      __HAL_RCC_ADC12_CLK_DISABLE();
-    }
+//   if(adcHandle->Instance==ADC1)
+//   {
+//     HAL_RCC_ADC12_CLK_ENABLED--;
+//     if(HAL_RCC_ADC12_CLK_ENABLED==0){
+//       __HAL_RCC_ADC12_CLK_DISABLE();
+//     }
 
-    HAL_DMA_DeInit(adcHandle->DMA_Handle);
-  }
-  else if(adcHandle->Instance==ADC2)
-  {
-    HAL_RCC_ADC12_CLK_ENABLED--;
-    if(HAL_RCC_ADC12_CLK_ENABLED==0){
-      __HAL_RCC_ADC12_CLK_DISABLE();
-    }
+//     HAL_DMA_DeInit(adcHandle->DMA_Handle);
+//   }
+//   else if(adcHandle->Instance==ADC2)
+//   {
+//     HAL_RCC_ADC12_CLK_ENABLED--;
+//     if(HAL_RCC_ADC12_CLK_ENABLED==0){
+//       __HAL_RCC_ADC12_CLK_DISABLE();
+//     }
 
-    HAL_DMA_DeInit(adcHandle->DMA_Handle);
-  }
-}
+//     HAL_DMA_DeInit(adcHandle->DMA_Handle);
+//   }
+// }
