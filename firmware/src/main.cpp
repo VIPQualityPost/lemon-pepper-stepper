@@ -114,7 +114,7 @@ void setup()
 	// {
 	// 	uint8_t foundID = FDCAN_FindUniqueID();
 	// 	if (foundID != 0)
-	// 	{		
+	// 	{
 	// 		boardData.canID = foundID;
 	// 		updateData = 1;
 	// 		SIMPLEFOC_DEBUG("Unique CAN ID found: %i", foundID);
@@ -173,13 +173,14 @@ uint8_t configureFOC(void)
 	// Encoder initialization.
 	// Ideally configuring the sensor over SPI then use STM32HWEncoder
 	enc.init();
-	if(!enc.initialized)
+	if (!enc.initialized)
 		digitalWrite(LED_FAULT, HIGH);
 
 	sensor.init();
 
 	// Check if the encoder has loaded the right PPR, if not, update and then write to EEPROM.
-	if(sensor.getABZResolution() != ENC_PPR){
+	if (sensor.getABZResolution() != ENC_PPR)
+	{
 		delay(200);
 		sensor.setABZResolution(ENC_PPR);
 		sensor.writeEEPROM();
@@ -187,11 +188,12 @@ uint8_t configureFOC(void)
 		digitalWrite(LED_GOOD, HIGH);
 		digitalWrite(LED_FAULT, LOW);
 
-		for(uint8_t i=0; i < 60; i++){		// Datasheet says we need to wait 6 seconds after writing EEPROM.
+		for (uint8_t i = 0; i < 60; i++)
+		{ // Datasheet says we need to wait 6 seconds after writing EEPROM.
 			digitalToggle(LED_GOOD);
 			digitalToggle(LED_FAULT);
 			delay(100);
-		} 
+		}
 
 		digitalWrite(LED_GOOD, LOW);
 		digitalWrite(LED_FAULT, LOW);
@@ -289,10 +291,12 @@ uint8_t calibrateEncoder(void)
 		if (calTime - micros() > 2000)
 		{
 			// after motor is spinning at constant speed, enable calibration.
+			digitalWrite(LED_GOOD, HIGH);
 			digitalWrite(CAL_EN, HIGH);
 		}
 	}
 
+	digitalWrite(LED_GOOD, LOW);
 	digitalWrite(CAL_EN, LOW);
 
 	return sensor.getCalibrationStatus();
