@@ -24,8 +24,9 @@ void MX_GPIO_Init(void)
     __HAL_RCC_ADC12_CLK_ENABLE();
 }
 
-float _readVoltageInline(const uint8_t pin, const void *cs_params)
+float _readADCVoltageInline(const int pin, const void *cs_params)
 {
+    // SIMPLEFOC_DEBUG("READ ADC VOLTAGE");
     uint32_t rawResult;
     switch (pin)
     {
@@ -60,6 +61,7 @@ float _readVoltageLowSide(const int pinA, const void *cs_params)
 
 void *_configureADCInline(const void *driver_params, const int pinA, const int pinB, const int pinC)
 {
+    SIMPLEFOC_DEBUG("Configure Utils ADCInline");
     _UNUSED(driver_params);
 
     HAL_Init();
@@ -106,6 +108,7 @@ void *_configureADCLowSide(const void *driver_params, const int pinA, const int 
 
 void _driverSyncLowSide(void *_driver_params, void *_cs_params)
 {
+    SIMPLEFOC_DEBUG("CS: Sync CS to driver");
     STM32DriverParams* driver_params = (STM32DriverParams*)_driver_params;
     Stm32CurrentSenseParams* cs_params = (Stm32CurrentSenseParams*)_cs_params;
 

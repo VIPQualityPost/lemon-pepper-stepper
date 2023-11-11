@@ -37,6 +37,7 @@ InlineCurrentSenseSync::InlineCurrentSenseSync(float _mVpA, int _pinA, int _pinB
 
 // Inline sensor init function
 int InlineCurrentSenseSync::init(){
+    SIMPLEFOC_DEBUG("CS:Init Current Sense Inline Sync");
     // if no linked driver its fine in this case 
     // at least for init()
     void* drv_params = driver ? driver->params : nullptr;

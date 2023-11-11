@@ -3,8 +3,8 @@
 #include <SPI.h>
 
 #include <SimpleFOC.h>
-#include <SimpleFOCDrivers.h>
-#include "encoders/MT6835/MagneticSensorMT6835.h"
+#include "SimpleFOCDrivers.h"
+#include "encoders/mt6835/MagneticSensorMT6835.h"
 #include "encoders/stm32hwencoder/STM32HWEncoder.h"
 
 #include "stm32g4xx_hal_conf.h"
@@ -45,7 +45,9 @@ extern uint8_t RxData[8];
 #define MOTORKV 40
 #define ENC_PPR 16383 // max 16383 (zero index) -> *4 for CPR, -1 is done in init to prevent rollover on 16 bit timer
 
-#define SERIALPORT SerialUSB
+#define SERIALPORT Serial3
+
+HardwareSerial Serial3 = HardwareSerial(PB8, PB9);
 
 /**
  * SPI clockdiv of 16 gives ~10.5MHz clock. May still be stable with lower divisor.
@@ -86,11 +88,12 @@ void setup()
 	digitalWrite(MOT_EN, HIGH);
 	digitalWrite(CAL_EN, LOW);
 
-	uint8_t ret = configureCAN();
-	if (!ret){
-		SIMPLEFOC_DEBUG("CAN init failed.");
-		digitalWrite(LED_FAULT, HIGH);
-	}
+	uint8_t ret;
+	// ret = configureCAN();
+	// if (!ret){
+	// 	SIMPLEFOC_DEBUG("CAN init failed.");
+	// 	digitalWrite(LED_FAULT, HIGH);
+	// }
 	ret = configureFOC();
 	if (!ret){
 		SIMPLEFOC_DEBUG("FOC init failed.");
@@ -254,8 +257,8 @@ uint8_t configureFOC(void)
 	motor.linkDriver(&driver);
 
 	currentsense.linkDriver(&driver);
-	currentsense.init();
-
+	int ret = currentsense.init();
+	SERIALPORT.printf("Current Sense init result: %i\n", ret);
 	motor.linkCurrentSense(&currentsense);
 
 	motor.target = 10;
