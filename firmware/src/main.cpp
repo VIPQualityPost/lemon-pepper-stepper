@@ -13,6 +13,7 @@
 #include "can.h"
 #include "dfu.h"
 #include "utils.h"
+#include "InlineCurrentSenseSync.h"
 #include "lemon-pepper.h"
 
 #define USBD_MANUFACTURER_STRING "matei repair lab"
@@ -44,6 +45,8 @@ extern uint8_t RxData[8];
 #define MOTORKV 40
 #define ENC_PPR 16383 // max 16383 (zero index) -> *4 for CPR, -1 is done in init to prevent rollover on 16 bit timer
 
+#define SERIALPORT SerialUSB
+
 /**
  * SPI clockdiv of 16 gives ~10.5MHz clock. May still be stable with lower divisor.
  * The HW encoder is configured using PPR, which is then *4 for CPR (full 12384 gives overflow on 16 bit timer.)
@@ -56,11 +59,11 @@ STM32HWEncoder enc = STM32HWEncoder(ENC_PPR, ENC_A, ENC_B, ENC_Z);
  * The current sense amps have a gain of 90mA/V -> over 1.5A this is 135mA so we need gain of 24 to get full-scale.
  * Actually we are limited to powers of 2 for gain. So it should be 16. This gives sensitivity of 1440mV/A.
  * */
-InlineCurrentSense currentsense = InlineCurrentSense(1440, ISENSE_U, ISENSE_V, ISENSE_W);
+InlineCurrentSenseSync currentsense = InlineCurrentSenseSync(1440, ISENSE_U, ISENSE_V);
 
 StepperDriver4PWM driver = StepperDriver4PWM(MOT_A1, MOT_A2, MOT_B1, MOT_B2);
 StepperMotor motor = StepperMotor(POLEPAIRS);
-Commander commander = Commander(SerialUSB);
+Commander commander = Commander(SERIALPORT);
 
 uint16_t counter = 0;
 
@@ -76,17 +79,23 @@ void setup()
 	pinMode(CAL_EN, OUTPUT);
 	pinMode(MOT_EN, OUTPUT);
 
-	SerialUSB.begin(115200);
+	SERIALPORT.begin(115200);
 
 	EEPROM.get(0, boardData);
 
 	digitalWrite(MOT_EN, HIGH);
 	digitalWrite(CAL_EN, LOW);
 
-	if (!configureCAN())
+	uint8_t ret = configureCAN();
+	if (!ret){
 		SIMPLEFOC_DEBUG("CAN init failed.");
-	if (!configureFOC())
+		digitalWrite(LED_FAULT, HIGH);
+	}
+	ret = configureFOC();
+	if (!ret){
 		SIMPLEFOC_DEBUG("FOC init failed.");
+		digitalWrite(LED_FAULT, HIGH);
+	}
 
 	if (sensor.getABZResolution() != ENC_PPR) // Check that PPR of the encoder matches our expectation.
 	{
@@ -137,16 +146,24 @@ void loop()
 	motor.move();
 	commander.run();
 
-	if (counter == 0xFFF)
-	{
-		digitalToggle(LED_GOOD);
-		SerialUSB.print(sensor.getAngle());
-		SerialUSB.print("\t");
-		SerialUSB.print(enc.getAngle());
-		SerialUSB.print("\t");
-		SerialUSB.println(sensor.getABZResolution());
 
-		// SerialUSB.printf("%d\t%d\t%d\n", sensor.getAngle(), sensor.getABZResolution(), enc.getAngle());
+
+	if (counter == 0xFF)
+	{
+		PhaseCurrent_s current = currentsense.getPhaseCurrents();
+		digitalToggle(LED_GOOD);
+		SERIALPORT.print(current.a);
+		SERIALPORT.print("\t");
+		SERIALPORT.print(current.b);
+		SERIALPORT.print("\t");
+		SERIALPORT.println(current.c);
+		// SERIALPORT.print(sensor.getAngle());
+		// SERIALPORT.print("\t");
+		// SERIALPORT.print(enc.getAngle());
+		// SERIALPORT.print("\t");
+		// SERIALPORT.println(sensor.getABZResolution());
+
+		// SERIALPORT.printf("%d\t%d\t%d\n", sensor.getAngle(), sensor.getABZResolution(), enc.getAngle());
 		counter = 0;
 	}
 
@@ -168,7 +185,7 @@ uint8_t configureFOC(void)
 	commander.verbose = VerboseMode::machine_readable;
 
 #ifdef SIMPLEFOC_STM32_DEBUG
-	SimpleFOCDebug::enable(&SerialUSB);
+	SimpleFOCDebug::enable(&SERIALPORT);
 #endif
 
 	// Encoder initialization.
@@ -227,7 +244,7 @@ uint8_t configureFOC(void)
 
 // Monitor initialization
 #ifdef HAS_MONITOR
-	motor.useMonitoring(SerialUSB);
+	motor.useMonitoring(SERIALPORT);
 	motor.monitor_start_char = 'M';
 	motor.monitor_end_char = 'M';
 	motor.monitor_downsample = 250;
@@ -283,13 +300,13 @@ uint8_t calibrateEncoder(void)
 	currentSettings.autocal_freq = 0x1;
 	sensor.setOptions4(currentSettings);
 
-	uint16_t calTime = micros();
-	while (calTime - micros() < 2000000)
+	uint32_t calTime = micros();
+	while ((micros() - calTime) < 2000000)
 	{
 		motor.loopFOC();
 		motor.move();
 
-		if (calTime - micros() > 2000)
+		if ((micros() -calTime) > 2000)
 		{
 			// after motor is spinning at constant speed, enable calibration.
 			digitalWrite(LED_GOOD, HIGH);

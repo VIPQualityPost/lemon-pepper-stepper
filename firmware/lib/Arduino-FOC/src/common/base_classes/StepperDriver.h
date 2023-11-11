@@ -12,7 +12,7 @@ class StepperDriver: public FOCDriver{
          * @param Ua phase A voltage
          * @param Ub phase B voltage
         */
-        virtual void setPwm(float Ua, float Ub) = 0;
+        virtual void setPwm(float Ua, float Ub, float Uc=NOT_SET) = 0;
 };
 
 #endif

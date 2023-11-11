@@ -24,8 +24,8 @@ class CurrentSense{
      * Linking the current sense with the motor driver
      * Only necessary if synchronisation in between the two is required
      */
-    void linkDriver(BLDCDriver *driver);
-    void linkDriver(StepperDriver *driver);
+    void linkDriver(FOCDriver *driver);
+    // void linkDriver(StepperDriver *driver);
 
     // variables
     bool skip_align = false; //!< variable signaling that the phase current direction should be verified during initFOC()

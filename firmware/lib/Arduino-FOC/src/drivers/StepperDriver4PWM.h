@@ -45,7 +45,8 @@ class StepperDriver4PWM: public StepperDriver
      * @param Ua phase A voltage
      * @param Ub phase B voltage
     */
-    void setPwm(float Ua, float Ub) override;
+    void setPwm(float Ua, float Ub, float NOT_USED = NOT_SET) override;
+    // void setPwm(float Ua, float Ub) override;
 
   private:
         
