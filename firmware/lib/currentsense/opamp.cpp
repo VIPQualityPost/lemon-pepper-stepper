@@ -6,15 +6,26 @@ OPAMP_HandleTypeDef hopamp3;
 
 void initOPAMP(OPAMP_HandleTypeDef *hopamp, OPAMP_TypeDef *opamp)
 {
-  hopamp1.Instance = opamp;
-  hopamp1.Init.PowerMode = OPAMP_POWERMODE_NORMALSPEED;
-  hopamp1.Init.Mode = OPAMP_PGA_MODE;
-  hopamp1.Init.NonInvertingInput = OPAMP_NONINVERTINGINPUT_IO1;
-  hopamp1.Init.InternalOutput = ENABLE;
-  hopamp1.Init.TimerControlledMuxmode = OPAMP_TIMERCONTROLLEDMUXMODE_DISABLE;
-  hopamp1.Init.PgaConnect = OPAMP_PGA_CONNECT_INVERTINGINPUT_NO;
-  hopamp1.Init.PgaGain = OPAMP_PGA_GAIN_16_OR_MINUS_15; // Adjust this to change the gains of the opamp.
-  hopamp1.Init.UserTrimming = OPAMP_TRIMMING_FACTORY;
+  #ifdef USE_OPAMP_PGA
+  hopamp->Instance = opamp;
+  hopamp->Init.PowerMode = OPAMP_POWERMODE_NORMALSPEED;
+  hopamp->Init.Mode = OPAMP_PGA_MODE;
+  hopamp->Init.NonInvertingInput = OPAMP_NONINVERTINGINPUT_IO1;
+  hopamp->Init.InternalOutput = ENABLE;
+  hopamp->Init.TimerControlledMuxmode = OPAMP_TIMERCONTROLLEDMUXMODE_DISABLE;
+  hopamp->Init.PgaConnect = OPAMP_PGA_CONNECT_INVERTINGINPUT_NO;
+  hopamp->Init.PgaGain = OPAMP_PGA_GAIN_16_OR_MINUS_15; // Adjust this to change the gains of the opamp.
+  hopamp->Init.UserTrimming = OPAMP_TRIMMING_FACTORY;
+  #else
+  hopamp->Instance = opamp;
+  hopamp->Init.PowerMode = OPAMP_POWERMODE_NORMALSPEED;
+  hopamp->Init.Mode = OPAMP_FOLLOWER_MODE;
+  hopamp->Init.NonInvertingInput = OPAMP_NONINVERTINGINPUT_IO1;
+  hopamp->Init.InternalOutput = ENABLE;
+  hopamp->Init.TimerControlledMuxmode = OPAMP_TIMERCONTROLLEDMUXMODE_DISABLE;
+  hopamp->Init.UserTrimming = OPAMP_TRIMMING_FACTORY;
+  #endif
+
   if (HAL_OPAMP_Init(hopamp) != HAL_OK)
     SIMPLEFOC_DEBUG("HAL OPAMP Init failed!");
 }
