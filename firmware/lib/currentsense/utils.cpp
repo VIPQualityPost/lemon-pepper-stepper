@@ -115,11 +115,20 @@ void _driverSyncLowSide(void *_driver_params, void *_cs_params)
     _stopTimers(driver_params->timers, 6);
 
     // See RM0440 pg. 1169
-    // This grabs the timer handle used for ADC and sets the direction bit as upcounting (?)
+    // Grab the timer handle used for ADC and sets the direction bit as upcounting
     cs_params->timer_handle->getHandle()->Instance->CR1 |= TIM_CR1_DIR;
 
-    // This sets the value of the timer to the reload value. I think this is so that an event is immediately fired
+    /** Set the value of the timer to the reload value, so that overflow event is generated immediately.
+     * This is because we are using repetition counter to count every other event, skipping the underflow at 
+     * valleys of PWM. We can downsample every other peak if repetition counter is increased to 3
+     */
     cs_params->timer_handle->getHandle()->Instance->CNT = cs_params->timer_handle->getHandle()->Instance->ARR;
+
+    // Set TIM_CR1_URS to 0b1 -> only update events are overflows/underflow
+    cs_params->timer_handle->getHandle()->Instance->CR1 |= 0x0004;
+
+    // Set TIM_CR2_MMS to 0b010 -> update event (overflow and underflow) mapped to tim2_trgo
+    cs_params->timer_handle->getHandle()->Instance->CR2 |= 0x0020;
 
     _startTimers(driver_params->timers, 6);
 }

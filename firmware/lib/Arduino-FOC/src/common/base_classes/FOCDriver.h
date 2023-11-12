@@ -12,7 +12,7 @@ class FOCDriver{
 
         virtual void disable() = 0;
 
-        virtual void setPwm(float a, float b, float c);
+        virtual void setPwm(float a, float b, float c) = 0;
         // virtual void setPwm(uint8_t a, uint8_t b);
 
         long pwm_frequency;
