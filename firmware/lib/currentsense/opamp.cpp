@@ -59,11 +59,11 @@ void HAL_OPAMP_MspInit(OPAMP_HandleTypeDef* opampHandle)
   }
   else if(opampHandle->Instance==OPAMP3)
   {
-    __HAL_RCC_GPIOA_CLK_ENABLE();
-    GPIO_InitStruct.Pin = GPIO_PIN_1;
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    GPIO_InitStruct.Pin = GPIO_PIN_13;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
   }
 }
 
@@ -80,7 +80,7 @@ void HAL_OPAMP_MspDeInit(OPAMP_HandleTypeDef* opampHandle)
   }
   else if(opampHandle->Instance==OPAMP3)
   {
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_1);
+    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_13);
   }
 }
 
