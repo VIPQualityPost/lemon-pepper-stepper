@@ -74,7 +74,7 @@ void *_configureADCInline(const void *driver_params, const int pinA, const int p
     ADC_DMA_Init(&hadc1);
     ADC_DMA_Init(&hadc2);
 
-    if (HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adc1Result, 1) != HAL_OK)
+    if (HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adc1Result, 2) != HAL_OK)
     {
         SIMPLEFOC_DEBUG("DMA1 read init failed");
     }

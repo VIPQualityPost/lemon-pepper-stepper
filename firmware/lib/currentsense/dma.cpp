@@ -16,7 +16,6 @@ void MX_DMA_Init(void)
   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC12;
   PeriphClkInit.Adc12ClockSelection = RCC_ADC12CLKSOURCE_SYSCLK;
   HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit);
-
 }
 
 extern "C" {
