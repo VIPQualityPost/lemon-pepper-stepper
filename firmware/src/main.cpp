@@ -36,8 +36,8 @@ uint8_t updateData = 0;
 const uint16_t magicWord = 0xAF0C;
 
 // canbus things
-extern uint8_t TxData[8];
-extern uint8_t RxData[8];
+extern volatile uint8_t TxData[8];
+extern volatile uint8_t RxData[8];
 
 // simpleFOC things
 #define POLEPAIRS 50
@@ -68,6 +68,8 @@ StepperMotor motor = StepperMotor(POLEPAIRS);
 Commander commander = Commander(SERIALPORT);
 
 uint16_t counter = 0;
+extern volatile uint16_t adc1Result[3];
+extern volatile uint16_t adc2Result[2];
 
 // Prototypes
 uint8_t configureFOC(void);
@@ -149,28 +151,10 @@ void loop()
 	motor.move();
 	commander.run();
 
-
-
-	if (counter == 0xFF)
-	{
-		PhaseCurrent_s current = currentsense.getPhaseCurrents();
+	if(counter == 0){
 		digitalToggle(LED_GOOD);
-		SERIALPORT.print(current.a);
-		SERIALPORT.print("\t");
-		SERIALPORT.print(current.b);
-		SERIALPORT.print("\t");
-		SERIALPORT.println(current.c);
-		// SERIALPORT.print(sensor.getAngle());
-		// SERIALPORT.print("\t");
-		// SERIALPORT.print(enc.getAngle());
-		// SERIALPORT.print("\t");
-		// SERIALPORT.println(sensor.getABZResolution());
-
-		// SERIALPORT.printf("%d\t%d\t%d\n", sensor.getAngle(), sensor.getABZResolution(), enc.getAngle());
-		counter = 0;
+		Serial.println(adc1Result[0]);
 	}
-
-	counter++;
 
 #ifdef HAS_MONITOR
 	motor.monitor();

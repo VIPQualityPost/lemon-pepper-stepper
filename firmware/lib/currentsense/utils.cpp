@@ -10,7 +10,7 @@ float adcResolution = 4096.0f; // 12 bit ADC
 float voltageScale = 3.3f;     // full scale voltage range of ADC
 float adcSens = adcResolution * voltageScale;
 
-volatile uint16_t adc1Result[2] = {0};
+volatile uint16_t adc1Result[3] = {0};
 volatile uint16_t adc2Result[2] = {0};
 
 void MX_GPIO_Init(void)
@@ -20,8 +20,9 @@ void MX_GPIO_Init(void)
     __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
     __HAL_RCC_GPIOC_CLK_ENABLE();
-
     __HAL_RCC_ADC12_CLK_ENABLE();
+
+    OPAMP_GPIO_Init();
 }
 
 float _readADCVoltageInline(const int pin, const void *cs_params)
@@ -30,6 +31,10 @@ float _readADCVoltageInline(const int pin, const void *cs_params)
     uint32_t rawResult;
     switch (pin)
     {
+    case PA2: 
+        rawResult = adc1Result[1];
+        break;
+
     case PA3:
         rawResult = adc1Result[0]; // ADC1 CH13 -> Vopamp1 internal output
         break;
@@ -38,13 +43,13 @@ float _readADCVoltageInline(const int pin, const void *cs_params)
         rawResult = adc2Result[0]; // ADC2 CH16 -> Vopamp2 internal output
         break;
 
-    case PA1:
-        rawResult = adc2Result[1]; // ADC2 CH18 -> Vopamp3 internal output
+    case PA13:
+        rawResult = adc2Result[2]; // ADC2 CH18 -> Vopamp3 internal output
         break;
 
-    case PA2:
-        rawResult = adc1Result[1]; // ADC1 CH16 -> not sure what pin should represent this?
-        break;
+    // case PA2:
+    //     rawResult = adc1Result[1]; // ADC1 CH16 -> not sure what pin should represent this?
+    //     break;
 
     default:
         return 0.0f;
@@ -65,16 +70,21 @@ void *_configureADCInline(const void *driver_params, const int pinA, const int p
     _UNUSED(driver_params);
 
     HAL_Init();
+    HAL_SYSCFG_VREFBUF_VoltageScalingConfig(SYSCFG_VREFBUF_VOLTAGE_SCALE2);
+    HAL_SYSCFG_EnableVREFBUF();  
+    HAL_SYSCFG_VREFBUF_HighImpedanceConfig(SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE);
     MX_GPIO_Init();
     MX_DMA_Init();
     MX_ADC1_Init();
     MX_ADC2_Init();
     configureOPAMPs();
 
-    ADC_DMA_Init(&hadc1);
-    ADC_DMA_Init(&hadc2);
+    ADC_DMA_Init();
 
-    if (HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adc1Result, 2) != HAL_OK)
+    HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED);
+    HAL_ADCEx_Calibration_Start(&hadc2, ADC_SINGLE_ENDED);
+
+    if (HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adc1Result, 3) != HAL_OK)
     {
         SIMPLEFOC_DEBUG("DMA1 read init failed");
     }

@@ -5,8 +5,6 @@ ADC_HandleTypeDef hadc2;
 DMA_HandleTypeDef hdma_adc1;
 DMA_HandleTypeDef hdma_adc2;
 
-uint32_t HAL_RCC_ADC12_CLK_ENABLED = 0;
-
 void MX_ADC1_Init(void)
 {
   ADC_MultiModeTypeDef multimode = {0};
@@ -21,7 +19,7 @@ void MX_ADC1_Init(void)
   hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   hadc1.Init.LowPowerAutoWait = DISABLE;
   hadc1.Init.ContinuousConvMode = DISABLE;
-  hadc1.Init.NbrOfConversion = 2;
+  hadc1.Init.NbrOfConversion = 3;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIG_T2_TRGO;
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
@@ -35,18 +33,23 @@ void MX_ADC1_Init(void)
   if (HAL_ADCEx_MultiModeConfigChannel(&hadc1, &multimode) != HAL_OK)
     SIMPLEFOC_DEBUG("HAL ADC1 multimode configuration fail.");
 
+  // sConfig.Channel = ADC_CHANNEL_VOPAMP1;
   sConfig.Channel = ADC_CHANNEL_VOPAMP1;
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_2CYCLES_5;
   sConfig.SingleDiff = ADC_SINGLE_ENDED;
-  sConfig.OffsetNumber = ADC_OFFSET_1;
-  sConfig.Offset = 0x7FF;
-  sConfig.OffsetSaturation = ENABLE;
+  sConfig.OffsetNumber = ADC_OFFSET_NONE;
+  sConfig.Offset = 0;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
     SIMPLEFOC_DEBUG("HAL ADC OPAMP1 init failed!");
 
-  sConfig.Channel = ADC_CHANNEL_TEMPSENSOR_ADC1;
+  sConfig.Channel = ADC_CHANNEL_3;
   sConfig.Rank = ADC_REGULAR_RANK_2;
+  if(HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+    SIMPLEFOC_DEBUG("HAL ADC Vmotor init failed!");
+
+  sConfig.Channel = ADC_CHANNEL_TEMPSENSOR_ADC1;
+  sConfig.Rank = ADC_REGULAR_RANK_3;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
     SIMPLEFOC_DEBUG("HAL ADC temp init failed!");
 }
@@ -78,9 +81,8 @@ void MX_ADC2_Init(void)
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_2CYCLES_5;
   sConfig.SingleDiff = ADC_SINGLE_ENDED;
-  sConfig.OffsetNumber = ADC_OFFSET_1;
-  sConfig.Offset = 0x7FF;
-  sConfig.OffsetSaturation = ENABLE;
+  sConfig.OffsetNumber = ADC_OFFSET_NONE;
+  sConfig.Offset = 0;
   if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
     SIMPLEFOC_DEBUG("HAL ADC OPAMP2 init failed!");
 
@@ -90,72 +92,73 @@ void MX_ADC2_Init(void)
     SIMPLEFOC_DEBUG("HAL ADC OPAMP3 init failed!");
 }
 
-void ADC_DMA_Init(ADC_HandleTypeDef* adcHandle)
+uint32_t HAL_RCC_ADC12_CLK_ENABLED = 0;
+
+void ADC_DMA_Init(void)
 {
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC12;
+  PeriphClkInit.Adc12ClockSelection = RCC_ADC12CLKSOURCE_SYSCLK;
+  if(HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+    SIMPLEFOC_DEBUG("Error initializing peripheral clock in adc.cpp");
+
   HAL_RCC_ADC12_CLK_ENABLED++;
-  if(HAL_RCC_ADC12_CLK_ENABLED==1){
+  if (HAL_RCC_ADC12_CLK_ENABLED == 1)
+  {
     __HAL_RCC_ADC12_CLK_ENABLE();
   }
 
+  /* ADC1 DMA Init */
+  hdma_adc1.Instance = DMA1_Channel1;
+  hdma_adc1.Init.Request = DMA_REQUEST_ADC1;
+  hdma_adc1.Init.Direction = DMA_PERIPH_TO_MEMORY;
+  hdma_adc1.Init.PeriphInc = DMA_PINC_DISABLE;
+  hdma_adc1.Init.MemInc = DMA_MINC_ENABLE;
+  hdma_adc1.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
+  hdma_adc1.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;
+  hdma_adc1.Init.Mode = DMA_CIRCULAR;
+  hdma_adc1.Init.Priority = DMA_PRIORITY_LOW;
+  if (HAL_DMA_Init(&hdma_adc1) != HAL_OK)
+    SIMPLEFOC_DEBUG("HAL error enabling DMA1 channel 1.");
+
+  __HAL_LINKDMA(&hadc1, DMA_Handle, hdma_adc1);
+
+  /* ADC2 DMA Init */
+  hdma_adc2.Instance = DMA1_Channel2;
+  hdma_adc2.Init.Request = DMA_REQUEST_ADC2;
+  hdma_adc2.Init.Direction = DMA_PERIPH_TO_MEMORY;
+  hdma_adc2.Init.PeriphInc = DMA_PINC_DISABLE;
+  hdma_adc2.Init.MemInc = DMA_MINC_ENABLE;
+  hdma_adc2.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
+  hdma_adc2.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;
+  hdma_adc2.Init.Mode = DMA_CIRCULAR;
+  hdma_adc2.Init.Priority = DMA_PRIORITY_LOW;
+  if (HAL_DMA_Init(&hdma_adc2) != HAL_OK)
+    SIMPLEFOC_DEBUG("HAL error enabling DMA1 channel 2.");
+
+  __HAL_LINKDMA(&hadc2, DMA_Handle, hdma_adc2);
+}
+
+void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
+{
+
   if(adcHandle->Instance==ADC1)
   {
-    /* ADC1 DMA Init */
-    /* ADC1 Init */
-    hdma_adc1.Instance = DMA1_Channel1;
-    hdma_adc1.Init.Request = DMA_REQUEST_ADC1;
-    hdma_adc1.Init.Direction = DMA_PERIPH_TO_MEMORY;
-    hdma_adc1.Init.PeriphInc = DMA_PINC_DISABLE;
-    hdma_adc1.Init.MemInc = DMA_MINC_ENABLE;
-    hdma_adc1.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
-    hdma_adc1.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;
-    hdma_adc1.Init.Mode = DMA_CIRCULAR;
-    hdma_adc1.Init.Priority = DMA_PRIORITY_LOW;
-    HAL_DMA_DeInit(&hdma_adc1);
-    if (HAL_DMA_Init(&hdma_adc1) != HAL_OK)
-      SIMPLEFOC_DEBUG("HAL error enabling DMA1 channel 1.");
+    HAL_RCC_ADC12_CLK_ENABLED--;
+    if(HAL_RCC_ADC12_CLK_ENABLED==0){
+      __HAL_RCC_ADC12_CLK_DISABLE();
+    }
 
-    __HAL_LINKDMA(adcHandle,DMA_Handle,hdma_adc1);
+    HAL_DMA_DeInit(adcHandle->DMA_Handle);
   }
   else if(adcHandle->Instance==ADC2)
   {
-    /* ADC2 DMA Init */
-    /* ADC2 Init */
-    hdma_adc2.Instance = DMA1_Channel2;
-    hdma_adc2.Init.Request = DMA_REQUEST_ADC2;
-    hdma_adc2.Init.Direction = DMA_PERIPH_TO_MEMORY;
-    hdma_adc2.Init.PeriphInc = DMA_PINC_DISABLE;
-    hdma_adc2.Init.MemInc = DMA_MINC_ENABLE;
-    hdma_adc2.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
-    hdma_adc2.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;
-    hdma_adc2.Init.Mode = DMA_CIRCULAR;
-    hdma_adc2.Init.Priority = DMA_PRIORITY_LOW;
-    HAL_DMA_DeInit(&hdma_adc2);
-    if (HAL_DMA_Init(&hdma_adc2) != HAL_OK)
-      SIMPLEFOC_DEBUG("HAL error enabling DMA1 channel 2.");
+    HAL_RCC_ADC12_CLK_ENABLED--;
+    if(HAL_RCC_ADC12_CLK_ENABLED==0){
+      __HAL_RCC_ADC12_CLK_DISABLE();
+    }
 
-    __HAL_LINKDMA(adcHandle,DMA_Handle,hdma_adc2);
+    HAL_DMA_DeInit(adcHandle->DMA_Handle);
   }
 }
-
-// void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
-// {
-
-//   if(adcHandle->Instance==ADC1)
-//   {
-//     HAL_RCC_ADC12_CLK_ENABLED--;
-//     if(HAL_RCC_ADC12_CLK_ENABLED==0){
-//       __HAL_RCC_ADC12_CLK_DISABLE();
-//     }
-
-//     HAL_DMA_DeInit(adcHandle->DMA_Handle);
-//   }
-//   else if(adcHandle->Instance==ADC2)
-//   {
-//     HAL_RCC_ADC12_CLK_ENABLED--;
-//     if(HAL_RCC_ADC12_CLK_ENABLED==0){
-//       __HAL_RCC_ADC12_CLK_DISABLE();
-//     }
-
-//     HAL_DMA_DeInit(adcHandle->DMA_Handle);
-//   }
-// }

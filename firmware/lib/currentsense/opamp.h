@@ -12,6 +12,7 @@ extern OPAMP_HandleTypeDef hopamp2;
 extern OPAMP_HandleTypeDef hopamp3;
 
 void configureOPAMPs(void);
+void OPAMP_GPIO_Init(void);
 
 #endif 
 
