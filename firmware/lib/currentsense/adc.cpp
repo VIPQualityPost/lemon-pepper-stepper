@@ -140,25 +140,3 @@ void ADC_DMA_Init(void)
   __HAL_LINKDMA(&hadc2, DMA_Handle, hdma_adc2);
 }
 
-void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
-{
-
-  if(adcHandle->Instance==ADC1)
-  {
-    HAL_RCC_ADC12_CLK_ENABLED--;
-    if(HAL_RCC_ADC12_CLK_ENABLED==0){
-      __HAL_RCC_ADC12_CLK_DISABLE();
-    }
-
-    HAL_DMA_DeInit(adcHandle->DMA_Handle);
-  }
-  else if(adcHandle->Instance==ADC2)
-  {
-    HAL_RCC_ADC12_CLK_ENABLED--;
-    if(HAL_RCC_ADC12_CLK_ENABLED==0){
-      __HAL_RCC_ADC12_CLK_DISABLE();
-    }
-
-    HAL_DMA_DeInit(adcHandle->DMA_Handle);
-  }
-}
