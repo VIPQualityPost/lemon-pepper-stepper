@@ -61,9 +61,12 @@ STM32HWEncoder enc = STM32HWEncoder(ENC_PPR, ENC_A, ENC_B, ENC_Z);
  * The current sense amps have a gain of 90mA/V -> over 1.5A this is 135mA so we need gain of 24 to get full-scale.
  * Actually we are limited to powers of 2 for gain. So it should be 16. This gives sensitivity of 1440mV/A.
  * */
-InlineCurrentSenseSync currentsense = InlineCurrentSenseSync(1440, ISENSE_U, ISENSE_V);
+InlineCurrentSenseSync currentsense = InlineCurrentSenseSync(90, ISENSE_U, ISENSE_V, ISENSE_W);
 
 StepperDriver4PWM driver = StepperDriver4PWM(MOT_A1, MOT_A2, MOT_B1, MOT_B2);
+// StepperDriver4PWM driver = StepperDriver4PWM(PA0, PA9, PA1, PA10, PB12);
+// StepperDriver4PWM driver = StepperDriver4PWM(MOT_A1, MOT_A2, MOT_B1, MOT_B2);
+// StepperMotor motor = StepperMotor(POLEPAIRS, RPHASE, MOTORKV, 0.0045);
 StepperMotor motor = StepperMotor(POLEPAIRS);
 Commander commander = Commander(SERIALPORT);
 
@@ -145,17 +148,26 @@ void setup()
 	// }
 }
 
+DQCurrent_s foc_currents;
+float electrical_angle;
+PhaseCurrent_s phase_currents;
+
 void loop()
 {
 	motor.loopFOC();
 	motor.move();
 	commander.run();
 
-	if(counter == 0){
-		digitalToggle(LED_GOOD);
-		Serial.println(adc1Result[0]);
-	}
+	electrical_angle = motor.electricalAngle();
+	phase_currents = currentsense.getPhaseCurrents();
+	foc_currents = currentsense.getFOCCurrents(electrical_angle);
 
+	if(counter == 0xFFF){
+		digitalToggle(LED_GOOD);
+		// Serial.println(adc1Result[0]);
+		counter = 0;
+	}
+counter++;
 #ifdef HAS_MONITOR
 	motor.monitor();
 #endif
@@ -211,15 +223,17 @@ uint8_t configureFOC(void)
 	driver.init();
 
 	// Motor PID parameters.
-	motor.PID_velocity.P = 5;
-	motor.PID_velocity.I = 24;
-	motor.PID_velocity.D = 0.01;
+    motor.PID_velocity.P = 0.035;
+    motor.PID_velocity.I = 0.01;
+    motor.PID_velocity.D = 0.000;
+    motor.LPF_velocity.Tf = 0.004;
 	motor.PID_velocity.output_ramp = 750;
 	motor.PID_velocity.limit = 500;
-	motor.LPF_velocity.Tf = 4;
 
-	motor.P_angle.P = 600;
-	motor.P_angle.limit = 10000;
+	motor.P_angle.P = 350;
+    motor.P_angle.I = 8;
+    motor.P_angle.D = 0.3;
+    motor.LPF_angle = 0.001;
 	motor.LPF_angle.Tf = 0; // try to avoid
 
 	// Motor initialization.

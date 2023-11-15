@@ -7,8 +7,8 @@
 #include "opamp.h"
 
 float adcResolution = 4096.0f; // 12 bit ADC
-float voltageScale = 3.3f;     // full scale voltage range of ADC
-float adcSens = adcResolution * voltageScale;
+float voltageScale = 2.9f;     // full scale voltage range of ADC
+float adcSens =  voltageScale / adcResolution;
 
 volatile uint16_t adc1Result[3] = {0};
 volatile uint16_t adc2Result[2] = {0};
@@ -28,24 +28,24 @@ void MX_GPIO_Init(void)
 float _readADCVoltageInline(const int pin, const void *cs_params)
 {
     // SIMPLEFOC_DEBUG("READ ADC VOLTAGE");
-    uint32_t rawResult;
+    uint16_t rawResult;
     switch (pin)
     {
-    case PA2: 
-        rawResult = adc1Result[1];
+    case PA3: 
+        rawResult = adc1Result[0];
         break;
 
-    case PA3:
-        rawResult = adc1Result[0]; // ADC1 CH13 -> Vopamp1 internal output
+    case PB13:
+        rawResult = adc2Result[0]; // ADC1 CH13 -> Vopamp1 internal output
         break;
 
     case PB0:
-        rawResult = adc2Result[0]; // ADC2 CH16 -> Vopamp2 internal output
+        rawResult = adc2Result[1]; // ADC2 CH16 -> Vopamp2 internal output
         break;
 
-    case PA13:
-        rawResult = adc2Result[2]; // ADC2 CH18 -> Vopamp3 internal output
-        break;
+    // case PA13:
+    //     rawResult = adc2Result[2]; // ADC2 CH18 -> Vopamp3 internal output
+    //     break;
 
     // case PA2:
     //     rawResult = adc1Result[1]; // ADC1 CH16 -> not sure what pin should represent this?

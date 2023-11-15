@@ -26,7 +26,7 @@ void configureOPAMPs(void)
   if(HAL_OPAMP_Init(&hopamp2) != HAL_OK)
     SIMPLEFOC_DEBUG("OPAMP2 init failed.");
 
-  hopamp3.Instance = OPAMP2;
+  hopamp3.Instance = OPAMP3;
   hopamp3.Init.PowerMode = OPAMP_POWERMODE_NORMALSPEED;
   hopamp3.Init.Mode = OPAMP_FOLLOWER_MODE;
   hopamp3.Init.NonInvertingInput = OPAMP_NONINVERTINGINPUT_IO1;
