@@ -63,7 +63,7 @@
         "annular_width": "error",
         "clearance": "error",
         "connection_width": "warning",
-        "copper_edge_clearance": "error",
+        "copper_edge_clearance": "ignore",
         "copper_sliver": "warning",
         "courtyards_overlap": "error",
         "diff_pair_gap_out_of_range": "error",
@@ -175,12 +175,17 @@
         0.0,
         0.125,
         0.15,
-        0.2
+        0.2,
+        0.4
       ],
       "via_dimensions": [
         {
           "diameter": 0.0,
           "drill": 0.0
+        },
+        {
+          "diameter": 0.45,
+          "drill": 0.2
         },
         {
           "diameter": 0.8,
@@ -436,7 +441,7 @@
       },
       {
         "bus_width": 12,
-        "clearance": 0.2,
+        "clearance": 0.1,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -470,7 +475,7 @@
       },
       {
         "bus_width": 12,
-        "clearance": 0.2,
+        "clearance": 0.1,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -496,7 +501,6 @@
       "/current sense/V_IN": "MOTOR",
       "/current sense/V_OUT": "MOTOR",
       "/current sense/W_IN": "MOTOR",
-      "/current sense/W_OUT": "MOTOR",
       "/half bridges/OUT1B": "MOTOR",
       "/usb/USB_5V": "PWR",
       "Net-(D602-K)": "MOTOR",
