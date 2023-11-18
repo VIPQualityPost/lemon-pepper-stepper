@@ -36,7 +36,7 @@
   (pad "1" thru_hole circle (at -13 13) (size 5.8 5.8) (drill 3.1) (layers "*.Cu" "*.Mask") (tstamp 84f65f2d-1e57-4337-9ef0-857a127cb8a6))
   (pad "1" thru_hole circle (at 13 -13) (size 5.8 5.8) (drill 3.1) (layers "*.Cu" "*.Mask") (tstamp 60c60df9-8125-432a-b921-b118e1c20297))
   (pad "1" thru_hole circle (at 13 13) (size 5.8 5.8) (drill 3.1) (layers "*.Cu" "*.Mask") (tstamp 27971454-c6d8-4a02-b4ad-1435accc00b2))
-  (model "/Users/mateijordache/Documents/electronics_projects/lemon-pepper-stepper/mechanical/Unnamed.wrl"
+  (model "/Users/mateijordache/Documents/electronics_projects/lemon-pepper-stepper/mechanical/heatsink-nema-14.step"
     (offset (xyz 0 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))

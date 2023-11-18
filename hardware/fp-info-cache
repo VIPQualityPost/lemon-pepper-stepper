@@ -1,4 +1,4 @@
-22900322608223073
+22903723509550632
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -93590,6 +93590,13 @@ KEY-SMD_4P-L2.6-W1.6-P0.80-LS3.0
 4
 4
 easyeda2kicad
+KEY-SMD_B3U-3000P
+
+
+0
+2
+2
+easyeda2kicad
 MLP55-27_L5.0-W5.0-P0.50-TL_SIC46XXX
 
 
@@ -94338,6 +94345,13 @@ Unnamed StepUp generated footprint
 0
 4
 1
+mechanical
+PinHeader_1x05_P1.27mm_SMD
+surface-mounted straight pin header, 2x05, 1.27mm pitch, double rows
+Surface mounted pin header SMD 2x05 1.27mm double row
+0
+5
+5
 mechanical
 usb_c
 Unnamed StepUp generated footprint
