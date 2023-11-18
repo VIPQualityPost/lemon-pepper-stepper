@@ -3,8 +3,8 @@
 #include <SPI.h>
 
 #include <SimpleFOC.h>
-#include <SimpleFOCDrivers.h>
-#include "encoders/MT6835/MagneticSensorMT6835.h"
+#include "SimpleFOCDrivers.h"
+#include "encoders/mt6835/MagneticSensorMT6835.h"
 #include "encoders/stm32hwencoder/STM32HWEncoder.h"
 
 #include "stm32g4xx_hal_conf.h"
@@ -13,6 +13,7 @@
 #include "can.h"
 #include "dfu.h"
 #include "utils.h"
+#include "InlineCurrentSenseSync.h"
 #include "lemon-pepper.h"
 
 #define USBD_MANUFACTURER_STRING "matei repair lab"
@@ -35,14 +36,18 @@ uint8_t updateData = 0;
 const uint16_t magicWord = 0xAF0C;
 
 // canbus things
-extern uint8_t TxData[8];
-extern uint8_t RxData[8];
+extern volatile uint8_t TxData[8];
+extern volatile uint8_t RxData[8];
 
 // simpleFOC things
 #define POLEPAIRS 50
 #define RPHASE 3
 #define MOTORKV 40
 #define ENC_PPR 16383 // max 16383 (zero index) -> *4 for CPR, -1 is done in init to prevent rollover on 16 bit timer
+
+#define SERIALPORT Serial3
+
+HardwareSerial Serial3 = HardwareSerial(PB8, PB9);
 
 /**
  * SPI clockdiv of 16 gives ~10.5MHz clock. May still be stable with lower divisor.
@@ -53,21 +58,29 @@ MagneticSensorMT6835 sensor = MagneticSensorMT6835(ENC_CS, myMT6835SPISettings);
 STM32HWEncoder enc = STM32HWEncoder(ENC_PPR, ENC_A, ENC_B, ENC_Z);
 
 /**
- * The current sense amps have a gain of 90mA/V -> over 1.5A this is 135mA so we need gain of 24 to get full-scale.
- * Actually we are limited to powers of 2 for gain. So it should be 16. This gives sensitivity of 1440mV/A.
- * */
-InlineCurrentSense currentsense = InlineCurrentSense(1440, ISENSE_U, ISENSE_V, ISENSE_W);
+ * TODO: Change the current sense code to reflect the new inline current sense amplifier choice with sense resistor.
+ */
+// InlineCurrentSenseSync currentsense = InlineCurrentSenseSync(90, ISENSE_U, ISENSE_V, ISENSE_W);
 
 StepperDriver4PWM driver = StepperDriver4PWM(MOT_A1, MOT_A2, MOT_B1, MOT_B2);
+// StepperMotor motor = StepperMotor(POLEPAIRS, RPHASE, MOTORKV, 0.0045);
 StepperMotor motor = StepperMotor(POLEPAIRS);
-Commander commander = Commander(SerialUSB);
+Commander commander = Commander(SERIALPORT);
 
 uint16_t counter = 0;
+extern volatile uint16_t adc1Result[3];
+extern volatile uint16_t adc2Result[2];
+
+DQCurrent_s foc_currents;
+float electrical_angle;
+PhaseCurrent_s phase_currents;
 
 // Prototypes
 uint8_t configureFOC(void);
 uint8_t configureCAN(void);
 uint8_t calibrateEncoder(void);
+
+void userButton(void);
 
 void setup()
 {
@@ -75,18 +88,28 @@ void setup()
 	pinMode(LED_FAULT, OUTPUT);
 	pinMode(CAL_EN, OUTPUT);
 	pinMode(MOT_EN, OUTPUT);
+	pinMode(USER_BUTTON, INPUT);
 
-	SerialUSB.begin(115200);
+	attachInterrupt(USER_BUTTON, userButton, RISING);
+
+	SERIALPORT.begin(115200);
 
 	EEPROM.get(0, boardData);
 
 	digitalWrite(MOT_EN, HIGH);
 	digitalWrite(CAL_EN, LOW);
 
-	if (!configureCAN())
-		SIMPLEFOC_DEBUG("CAN init failed.");
-	if (!configureFOC())
+	uint8_t ret;
+	// ret = configureCAN();
+	// if (!ret){
+	// 	SIMPLEFOC_DEBUG("CAN init failed.");
+	// 	digitalWrite(LED_FAULT, HIGH);
+	// }
+	ret = configureFOC();
+	if (!ret){
 		SIMPLEFOC_DEBUG("FOC init failed.");
+		digitalWrite(LED_FAULT, HIGH);
+	}
 
 	if (sensor.getABZResolution() != ENC_PPR) // Check that PPR of the encoder matches our expectation.
 	{
@@ -137,21 +160,16 @@ void loop()
 	motor.move();
 	commander.run();
 
-	if (counter == 0xFFF)
-	{
-		digitalToggle(LED_GOOD);
-		SerialUSB.print(sensor.getAngle());
-		SerialUSB.print("\t");
-		SerialUSB.print(enc.getAngle());
-		SerialUSB.print("\t");
-		SerialUSB.println(sensor.getABZResolution());
+	electrical_angle = motor.electricalAngle();
+	// phase_currents = currentsense.getPhaseCurrents();
+	// foc_currents = currentsense.getFOCCurrents(electrical_angle);
 
-		// SerialUSB.printf("%d\t%d\t%d\n", sensor.getAngle(), sensor.getABZResolution(), enc.getAngle());
+	if(counter == 0xFFF){
+		digitalToggle(LED_GOOD);
+		// Serial.println(adc1Result[0]);
 		counter = 0;
 	}
-
-	counter++;
-
+counter++;
 #ifdef HAS_MONITOR
 	motor.monitor();
 #endif
@@ -168,7 +186,7 @@ uint8_t configureFOC(void)
 	commander.verbose = VerboseMode::machine_readable;
 
 #ifdef SIMPLEFOC_STM32_DEBUG
-	SimpleFOCDebug::enable(&SerialUSB);
+	SimpleFOCDebug::enable(&SERIALPORT);
 #endif
 
 	// Encoder initialization.
@@ -207,15 +225,17 @@ uint8_t configureFOC(void)
 	driver.init();
 
 	// Motor PID parameters.
-	motor.PID_velocity.P = 5;
-	motor.PID_velocity.I = 24;
-	motor.PID_velocity.D = 0.01;
+    motor.PID_velocity.P = 0.035;
+    motor.PID_velocity.I = 0.01;
+    motor.PID_velocity.D = 0.000;
+    motor.LPF_velocity.Tf = 0.004;
 	motor.PID_velocity.output_ramp = 750;
 	motor.PID_velocity.limit = 500;
-	motor.LPF_velocity.Tf = 4;
 
-	motor.P_angle.P = 600;
-	motor.P_angle.limit = 10000;
+	motor.P_angle.P = 350;
+    motor.P_angle.I = 8;
+    motor.P_angle.D = 0.3;
+    motor.LPF_angle = 0.001;
 	motor.LPF_angle.Tf = 0; // try to avoid
 
 	// Motor initialization.
@@ -227,7 +247,7 @@ uint8_t configureFOC(void)
 
 // Monitor initialization
 #ifdef HAS_MONITOR
-	motor.useMonitoring(SerialUSB);
+	motor.useMonitoring(SERIALPORT);
 	motor.monitor_start_char = 'M';
 	motor.monitor_end_char = 'M';
 	motor.monitor_downsample = 250;
@@ -236,10 +256,10 @@ uint8_t configureFOC(void)
 	motor.linkSensor(&sensor);
 	motor.linkDriver(&driver);
 
-	currentsense.linkDriver(&driver);
-	currentsense.init();
-
-	motor.linkCurrentSense(&currentsense);
+	// currentsense.linkDriver(&driver);
+	// int ret = currentsense.init();
+	// SERIALPORT.printf("Current Sense init result: %i\n", ret);
+	// motor.linkCurrentSense(&currentsense);
 
 	motor.target = 10;
 
@@ -283,13 +303,13 @@ uint8_t calibrateEncoder(void)
 	currentSettings.autocal_freq = 0x1;
 	sensor.setOptions4(currentSettings);
 
-	uint16_t calTime = micros();
-	while (calTime - micros() < 2000000)
+	uint32_t calTime = micros();
+	while ((micros() - calTime) < 2000000)
 	{
 		motor.loopFOC();
 		motor.move();
 
-		if (calTime - micros() > 2000)
+		if ((micros() -calTime) > 2000)
 		{
 			// after motor is spinning at constant speed, enable calibration.
 			digitalWrite(LED_GOOD, HIGH);
@@ -301,4 +321,10 @@ uint8_t calibrateEncoder(void)
 	digitalWrite(CAL_EN, LOW);
 
 	return sensor.getCalibrationStatus();
+}
+
+void userButton(void)
+{
+	if(USB->DADDR != 0)
+		jump_to_bootloader();
 }

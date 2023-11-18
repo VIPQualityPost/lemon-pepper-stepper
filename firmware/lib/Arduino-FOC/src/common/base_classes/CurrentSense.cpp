@@ -110,12 +110,12 @@ DQCurrent_s CurrentSense::getFOCCurrents(float angle_el)
 /**
     Driver linking to the current sense
 */
-void CurrentSense::linkDriver(BLDCDriver *_driver)
+void CurrentSense::linkDriver(FOCDriver *_driver)
 {
     driver = _driver;
 }
 
-void CurrentSense::linkDriver(StepperDriver *_driver)
-{
-    driver = _driver;
-}
+// void CurrentSense::linkDriver(StepperDriver *_driver)
+// {
+//     driver = _driver;
+// }

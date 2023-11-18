@@ -60,8 +60,9 @@ int StepperDriver4PWM::init() {
 }
 
 
+
 // Set voltage to the pwm pin
-void StepperDriver4PWM::setPwm(float Ualpha, float Ubeta) {
+void StepperDriver4PWM::setPwm(float Ualpha, float Ubeta, float Uc) {
   float duty_cycle1A(0.0f),duty_cycle1B(0.0f),duty_cycle2A(0.0f),duty_cycle2B(0.0f);
   // limit the voltage in driver
   Ualpha = _constrain(Ualpha, -voltage_limit, voltage_limit);

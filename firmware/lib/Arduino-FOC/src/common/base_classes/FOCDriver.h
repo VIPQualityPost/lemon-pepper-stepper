@@ -1,7 +1,8 @@
-#ifndef FOCMOTOR_H
-#define FOTMOTOR_H
+#ifndef FOCDRIVER_H
+#define FOCDRIVER_H
 
 #include "Arduino.h"
+#include "../foc_utils.h"
 
 class FOCDriver{
     public: 
@@ -10,6 +11,9 @@ class FOCDriver{
         virtual void enable() = 0;
 
         virtual void disable() = 0;
+
+        virtual void setPwm(float a, float b, float c) = 0;
+        // virtual void setPwm(uint8_t a, uint8_t b);
 
         long pwm_frequency;
         float voltage_power_supply;
