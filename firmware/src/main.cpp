@@ -58,14 +58,11 @@ MagneticSensorMT6835 sensor = MagneticSensorMT6835(ENC_CS, myMT6835SPISettings);
 STM32HWEncoder enc = STM32HWEncoder(ENC_PPR, ENC_A, ENC_B, ENC_Z);
 
 /**
- * The current sense amps have a gain of 90mA/V -> over 1.5A this is 135mA so we need gain of 24 to get full-scale.
- * Actually we are limited to powers of 2 for gain. So it should be 16. This gives sensitivity of 1440mV/A.
- * */
-InlineCurrentSenseSync currentsense = InlineCurrentSenseSync(90, ISENSE_U, ISENSE_V, ISENSE_W);
+ * TODO: Change the current sense code to reflect the new inline current sense amplifier choice with sense resistor.
+ */
+// InlineCurrentSenseSync currentsense = InlineCurrentSenseSync(90, ISENSE_U, ISENSE_V, ISENSE_W);
 
 StepperDriver4PWM driver = StepperDriver4PWM(MOT_A1, MOT_A2, MOT_B1, MOT_B2);
-// StepperDriver4PWM driver = StepperDriver4PWM(PA0, PA9, PA1, PA10, PB12);
-// StepperDriver4PWM driver = StepperDriver4PWM(MOT_A1, MOT_A2, MOT_B1, MOT_B2);
 // StepperMotor motor = StepperMotor(POLEPAIRS, RPHASE, MOTORKV, 0.0045);
 StepperMotor motor = StepperMotor(POLEPAIRS);
 Commander commander = Commander(SERIALPORT);
@@ -74,10 +71,16 @@ uint16_t counter = 0;
 extern volatile uint16_t adc1Result[3];
 extern volatile uint16_t adc2Result[2];
 
+DQCurrent_s foc_currents;
+float electrical_angle;
+PhaseCurrent_s phase_currents;
+
 // Prototypes
 uint8_t configureFOC(void);
 uint8_t configureCAN(void);
 uint8_t calibrateEncoder(void);
+
+void userButton(void);
 
 void setup()
 {
@@ -85,6 +88,9 @@ void setup()
 	pinMode(LED_FAULT, OUTPUT);
 	pinMode(CAL_EN, OUTPUT);
 	pinMode(MOT_EN, OUTPUT);
+	pinMode(USER_BUTTON, INPUT);
+
+	attachInterrupt(USER_BUTTON, userButton, RISING);
 
 	SERIALPORT.begin(115200);
 
@@ -148,10 +154,6 @@ void setup()
 	// }
 }
 
-DQCurrent_s foc_currents;
-float electrical_angle;
-PhaseCurrent_s phase_currents;
-
 void loop()
 {
 	motor.loopFOC();
@@ -159,8 +161,8 @@ void loop()
 	commander.run();
 
 	electrical_angle = motor.electricalAngle();
-	phase_currents = currentsense.getPhaseCurrents();
-	foc_currents = currentsense.getFOCCurrents(electrical_angle);
+	// phase_currents = currentsense.getPhaseCurrents();
+	// foc_currents = currentsense.getFOCCurrents(electrical_angle);
 
 	if(counter == 0xFFF){
 		digitalToggle(LED_GOOD);
@@ -254,10 +256,10 @@ uint8_t configureFOC(void)
 	motor.linkSensor(&sensor);
 	motor.linkDriver(&driver);
 
-	currentsense.linkDriver(&driver);
-	int ret = currentsense.init();
-	SERIALPORT.printf("Current Sense init result: %i\n", ret);
-	motor.linkCurrentSense(&currentsense);
+	// currentsense.linkDriver(&driver);
+	// int ret = currentsense.init();
+	// SERIALPORT.printf("Current Sense init result: %i\n", ret);
+	// motor.linkCurrentSense(&currentsense);
 
 	motor.target = 10;
 
@@ -319,4 +321,10 @@ uint8_t calibrateEncoder(void)
 	digitalWrite(CAL_EN, LOW);
 
 	return sensor.getCalibrationStatus();
+}
+
+void userButton(void)
+{
+	if(USB->DADDR != 0)
+		jump_to_bootloader();
 }
