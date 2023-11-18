@@ -524,8 +524,6 @@
     (uuid fcd534ea-b41d-4528-bc1a-4e524034ea88)
   )
 
-  (no_connect (at 153.67 151.13) (uuid f5d8335a-9511-4bb6-951a-024181b821df))
-
   (wire (pts (xy 153.67 59.69) (xy 153.67 54.61))
     (stroke (width 0) (type default))
     (uuid 0cfebd83-704c-4e49-94be-7db78aaf7d4d)
@@ -613,10 +611,6 @@
   (wire (pts (xy 133.35 106.68) (xy 137.16 106.68))
     (stroke (width 0) (type default))
     (uuid 4b8796b5-db3e-4e27-82c5-8928e7d356cf)
-  )
-  (wire (pts (xy 153.67 151.13) (xy 156.21 151.13))
-    (stroke (width 0) (type default))
-    (uuid 4eb6aaf3-6755-4374-ab4c-4820d3914d52)
   )
   (wire (pts (xy 143.51 111.76) (xy 153.67 111.76))
     (stroke (width 0) (type default))
@@ -814,10 +808,6 @@
     (uuid a211305c-cec6-43fb-9543-c19ca6abe168)
   )
 
-  (hierarchical_label "W_SENSE" (shape input) (at 156.21 151.13 0) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify left))
-    (uuid 04131efd-46a9-4abd-9a5a-0ec18b54986e)
-  )
   (hierarchical_label "U_OUT" (shape input) (at 88.9 62.23 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 1eb11783-23c0-4ea4-8639-255008e743e8)
