@@ -158,9 +158,13 @@ class FOCMotor
     float current_sp;//!< target current ( q current )
     float shaft_velocity_sp;//!< current target velocity
     float shaft_angle_sp;//!< current target angle
+    uint8_t current_feedforward=0; // flag to enable feed forward for the current controller; 1= enabled, 0 = disabled
     DQVoltage_s voltage;//!< current d and q voltage set to the motor
+    DQVoltage_s pid_voltage;//!< current d and q voltage output from PID controllers
+    DQVoltage_s feedforward_voltage;// !< estimated voltages to feed forward into the PID outputs
+    ABCurrent_s ab_current;
     DQCurrent_s current;//!< current d and q current measured
-    float voltage_bemf; //!< estimated backemf voltage (if provided KV constant)
+    float voltage_bemf = 0; //!< estimated backemf voltage (if provided KV constant)
 
     // motor configuration parameters
     float voltage_sensor_align;//!< sensor and motor align voltage parameter

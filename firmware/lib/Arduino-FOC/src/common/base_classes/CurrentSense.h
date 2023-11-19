@@ -63,6 +63,10 @@ class CurrentSense{
      */
     virtual float getDCCurrent(float angle_el = 0);
 
+    virtual ABCurrent_s getABCurrents(PhaseCurrent_s current);
+    
+    virtual DQCurrent_s getDQCurrents(ABCurrent_s current, float angle_el);
+
     /**
      * Function used for FOC contorl, it reads the DQ currents of the motor 
      *   It uses the function getPhaseCurrents internally

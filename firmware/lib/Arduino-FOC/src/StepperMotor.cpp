@@ -278,6 +278,46 @@ void StepperMotor::loopFOC() {
   // This function will not have numerical issues because it uses Sensor::getMechanicalAngle() 
   // which is in range 0-2PI
   electrical_angle = electricalAngle();
+  PhaseCurrent_s phase_currents;
+  DQCurrent_s temp_dq_current;
+
+  switch (torque_controller) {
+    case TorqueControlType::voltage:
+      // no need to do anything really
+      break;
+    case TorqueControlType::dc_current:
+      if(!current_sense) return;
+      // read overall current magnitude
+      current.q = current_sense->getDCCurrent(electrical_angle);
+      // filter the value values
+      current.q = LPF_current_q(current.q);
+      // calculate the phase voltage
+      pid_voltage.q = PID_current_q(current_sp - current.q);
+      // d voltage  - lag compensation
+      if(_isset(phase_inductance)) pid_voltage.d = _constrain( -current_sp*shaft_velocity*pole_pairs*phase_inductance, -voltage_limit, voltage_limit);
+      else pid_voltage.d = 0;
+      break;
+    case TorqueControlType::foc_current:
+      if(!current_sense) return;
+      // read dq currents
+      phase_currents = current_sense->getPhaseCurrents();
+      ab_current = current_sense->getABCurrents(phase_currents);
+      temp_dq_current = current_sense->getDQCurrents(ab_current, electrical_angle);
+      // filter values
+      current.q = LPF_current_q(temp_dq_current.q);
+      current.d = LPF_current_d(temp_dq_current.d);
+      // calculate the phase voltages
+      pid_voltage.q = PID_current_q(current_sp - current.q);
+      pid_voltage.d = PID_current_d(-current.d);
+      break;
+    default:
+      // no torque control selected
+      SIMPLEFOC_DEBUG("MOT: no torque control selected!");
+      break;
+  }
+  
+  voltage.q = pid_voltage.q + feedforward_voltage.q;
+  voltage.d = pid_voltage.d + feedforward_voltage.d;
 
   // set the phase voltage - FOC heart function :)
   setPhaseVoltage(voltage.q, voltage.d, electrical_angle);
@@ -319,12 +359,13 @@ void StepperMotor::move(float new_target) {
   // choose control loop
   switch (controller) {
     case MotionControlType::torque:
-      if(!_isset(phase_resistance))  voltage.q = target; // if voltage torque control
-      else  voltage.q =  target*phase_resistance + voltage_bemf;
-      voltage.q = _constrain(voltage.q, -voltage_limit, voltage_limit);
+      if(!_isset(phase_resistance))  feedforward_voltage.q = target; // if voltage torque control
+      else  feedforward_voltage.q =  target*phase_resistance + voltage_bemf;
+      feedforward_voltage.q = _constrain(feedforward_voltage.q, -voltage_limit, voltage_limit);
       // set d-component (lag compensation if known inductance)
-      if(!_isset(phase_inductance)) voltage.d = 0;
-      else voltage.d = _constrain( -target*shaft_velocity*pole_pairs*phase_inductance, -voltage_limit, voltage_limit);
+      if(!_isset(phase_inductance)) feedforward_voltage.d = 0;
+      else feedforward_voltage.d = _constrain( -target*shaft_velocity*pole_pairs*phase_inductance, -voltage_limit, voltage_limit);
+      current_sp = target;
       break;
     case MotionControlType::angle:
       // angle set point
@@ -336,11 +377,11 @@ void StepperMotor::move(float new_target) {
       current_sp = PID_velocity(shaft_velocity_sp - shaft_velocity); // if voltage torque control
       // if torque controlled through voltage
       // use voltage if phase-resistance not provided
-      if(!_isset(phase_resistance))  voltage.q = current_sp;
-      else  voltage.q =  _constrain( current_sp*phase_resistance + voltage_bemf , -voltage_limit, voltage_limit);
+      if(!_isset(phase_resistance))  feedforward_voltage.q = current_sp;
+      else  feedforward_voltage.q =  _constrain( current_sp*phase_resistance + voltage_bemf , -voltage_limit, voltage_limit);
       // set d-component (lag compensation if known inductance)
-      if(!_isset(phase_inductance)) voltage.d = 0;
-      else voltage.d = _constrain( -current_sp*shaft_velocity*pole_pairs*phase_inductance, -voltage_limit, voltage_limit);
+      if(!_isset(phase_inductance)) feedforward_voltage.d = 0;
+      else feedforward_voltage.d = _constrain( -current_sp*shaft_velocity*pole_pairs*phase_inductance, -voltage_limit, voltage_limit);
       break;
     case MotionControlType::velocity:
       // velocity set point
@@ -349,23 +390,23 @@ void StepperMotor::move(float new_target) {
       current_sp = PID_velocity(shaft_velocity_sp - shaft_velocity); // if current/foc_current torque control
       // if torque controlled through voltage control
       // use voltage if phase-resistance not provided
-      if(!_isset(phase_resistance))  voltage.q = current_sp;
-      else  voltage.q = _constrain( current_sp*phase_resistance + voltage_bemf , -voltage_limit, voltage_limit);
+      if(!_isset(phase_resistance))  feedforward_voltage.q = current_sp;
+      else  feedforward_voltage.q = _constrain( current_sp * phase_resistance + voltage_bemf , -voltage_limit, voltage_limit);
       // set d-component (lag compensation if known inductance)
-      if(!_isset(phase_inductance)) voltage.d = 0;
-      else voltage.d = _constrain( -current_sp*shaft_velocity*pole_pairs*phase_inductance, -voltage_limit, voltage_limit);
+      if(!_isset(phase_inductance)) feedforward_voltage.d = 0;
+      else feedforward_voltage.d = _constrain( -current_sp * shaft_velocity * pole_pairs * phase_inductance, -voltage_limit, voltage_limit);
       break;
     case MotionControlType::velocity_openloop:
       // velocity control in open loop
       shaft_velocity_sp = target;
-      voltage.q = velocityOpenloop(shaft_velocity_sp); // returns the voltage that is set to the motor
-      voltage.d = 0; // TODO d-component lag-compensation 
+      feedforward_voltage.q = velocityOpenloop(shaft_velocity_sp); // returns the voltage that is set to the motor
+      feedforward_voltage.d = 0;
       break;
     case MotionControlType::angle_openloop:
       // angle control in open loop
       shaft_angle_sp = target;
-      voltage.q = angleOpenloop(shaft_angle_sp); // returns the voltage that is set to the motor
-      voltage.d = 0; // TODO d-component lag-compensation 
+      feedforward_voltage.q = angleOpenloop(shaft_angle_sp); // returns the voltage that is set to the motor
+      feedforward_voltage.d = 0;
       break;
   }
 }

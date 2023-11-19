@@ -83,6 +83,28 @@ PhaseCurrent_s InlineCurrentSenseSync::getPhaseCurrents(){
     return current;
 }
 
+ABCurrent_s getABCurrents(PhaseCurrent_s current) {
+    // assign AB currents from phase currents here, maybe average the phase that's measured twice, do smoothing, etc.
+
+    ABCurrent_s ab_current;
+    ab_current.alpha = current.a;
+    ab_current.beta = current.b;
+    return ab_current;
+
+}
+
+
+DQCurrent_s InlineCurrentSenseSync::getDQCurrents(ABCurrent_s current, float angle_el){
+ // calculate park transform
+    float ct;
+    float st;
+    _sincos(angle_el, &st, &ct);
+    DQCurrent_s return_current;
+    return_current.d = current.alpha * ct + current.beta * st;
+    return_current.q = current.beta * ct - current.alpha * st;
+    return return_current;
+}
+
 // Function aligning the current sense with motor driver
 // if all pins are connected well none of this is really necessary! - can be avoided
 // returns flag

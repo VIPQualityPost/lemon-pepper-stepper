@@ -34,6 +34,10 @@ class InlineCurrentSenseSync: public CurrentSense{
 
     // CurrentSense interface implementing functions 
     int init() override;
+
+    ABCurrent_s getABCurrents(PhaseCurrent_s current);
+    
+    DQCurrent_s getDQCurrents(ABCurrent_s current, float angle_el);
     PhaseCurrent_s getPhaseCurrents() override;
     int driverAlign(float align_voltage) override;
 
