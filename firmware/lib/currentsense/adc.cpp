@@ -85,17 +85,12 @@ void MX_ADC2_Init(void)
   if (HAL_ADC_Init(&hadc2) != HAL_OK)
     SIMPLEFOC_DEBUG("HAL ADC2 init failed!");
 
-  sConfig.Channel = ADC_CHANNEL_VOPAMP2;
+  sConfig.Channel = ADC_CHANNEL_VOPAMP3_ADC2;
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_2CYCLES_5;
   sConfig.SingleDiff = ADC_SINGLE_ENDED;
   sConfig.OffsetNumber = ADC_OFFSET_NONE;
   sConfig.Offset = 0;
-  if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
-    SIMPLEFOC_DEBUG("HAL ADC OPAMP2 init failed!");
-
-  sConfig.Channel = ADC_CHANNEL_VOPAMP3_ADC2;
-  sConfig.Rank = ADC_REGULAR_RANK_2;
   if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
     SIMPLEFOC_DEBUG("HAL ADC OPAMP3 init failed!");
 }

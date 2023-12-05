@@ -65,11 +65,11 @@ STM32HWEncoder enc = STM32HWEncoder(ENC_PPR, ENC_A, ENC_B, ENC_Z);
 StepperDriver4PWM driver = StepperDriver4PWM(MOT_A1, MOT_A2, MOT_B1, MOT_B2);
 // StepperMotor motor = StepperMotor(POLEPAIRS, RPHASE, MOTORKV, 0.0045);
 StepperMotor motor = StepperMotor(POLEPAIRS);
+StepDirListener step_dir = StepDirListener(STEP_PIN, DIR_PIN, _2PI/200.0);
 Commander commander = Commander(SERIALPORT);
 
 uint16_t counter = 0;
-extern volatile uint16_t adc1Result[3];
-extern volatile uint16_t adc2Result[2];
+float stepCounter;
 
 DQCurrent_s foc_currents;
 float electrical_angle;
@@ -81,6 +81,7 @@ uint8_t configureCAN(void);
 uint8_t calibrateEncoder(void);
 
 void userButton(void);
+void onStep(void) {step_dir.handle();}
 
 void setup()
 {
@@ -105,6 +106,7 @@ void setup()
 	// 	SIMPLEFOC_DEBUG("CAN init failed.");
 	// 	digitalWrite(LED_FAULT, HIGH);
 	// }
+
 	ret = configureFOC();
 	if (!ret){
 		SIMPLEFOC_DEBUG("FOC init failed.");
@@ -160,16 +162,13 @@ void loop()
 	motor.move();
 	commander.run();
 
-	electrical_angle = motor.electricalAngle();
-	// phase_currents = currentsense.getPhaseCurrents();
-	// foc_currents = currentsense.getFOCCurrents(electrical_angle);
-
 	if(counter == 0xFFF){
 		digitalToggle(LED_GOOD);
-		// Serial.println(adc1Result[0]);
 		counter = 0;
 	}
-counter++;
+
+	counter++;
+
 #ifdef HAS_MONITOR
 	motor.monitor();
 #endif
@@ -191,6 +190,11 @@ uint8_t configureFOC(void)
 
 	// Encoder initialization.
 	// Ideally configuring the sensor over SPI then use STM32HWEncoder
+
+	step_dir.init();
+	step_dir.enableInterrupt(onStep);
+	step_dir.attach(&stepCounter);
+
 	enc.init();
 	if (!enc.initialized)
 		digitalWrite(LED_FAULT, HIGH);
@@ -327,4 +331,6 @@ void userButton(void)
 {
 	if(USB->DADDR != 0)
 		jump_to_bootloader();
+	else
+		digitalToggle(LED_FAULT);
 }
