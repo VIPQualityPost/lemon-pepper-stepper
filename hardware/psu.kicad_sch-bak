@@ -1157,7 +1157,7 @@
   (symbol (lib_id "Device:R_Small_US") (at 181.61 69.85 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 7ff65167-8bca-4499-8b7d-7b6a43b5ee29)
-    (property "Reference" "R506" (at 184.15 68.58 0)
+    (property "Reference" "R?" (at 184.15 68.58 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "0R" (at 184.15 71.12 0)
@@ -1177,7 +1177,7 @@
     (instances
       (project "lemon-pepper"
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/1237e3d8-f89f-4b6e-a633-6dbf7c464e03"
-          (reference "R506") (unit 1)
+          (reference "R?") (unit 1)
         )
       )
     )

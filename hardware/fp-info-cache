@@ -1,4 +1,4 @@
-22903723509550632
+22908828871134027
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -93464,6 +93464,13 @@ varistor
 2
 2
 easyeda2kicad
+BNC-TH_DOSIN-801-0051
+
+
+0
+5
+5
+easyeda2kicad
 BUZ-SMD_4P-L7.5-W7.5-P7.59-TL
 
 
@@ -93582,6 +93589,20 @@ IC-SMD_ACS711KEXLT-15AB-T
 0
 10
 10
+easyeda2kicad
+IND-SMD_L4.0-W4.0
+
+
+0
+2
+2
+easyeda2kicad
+IND-SMD_L7.0-W6.6_FXL0630
+
+
+0
+2
+2
 easyeda2kicad
 KEY-SMD_4P-L2.6-W1.6-P0.80-LS3.0
 
