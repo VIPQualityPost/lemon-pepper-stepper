@@ -282,10 +282,6 @@
           (stroke (width 0) (type default))
           (fill (type background))
         )
-        (pin power_out line (at -1.27 -20.32 90) (length 2.54)
-          (name "GND" (effects (font (size 1.27 1.27))))
-          (number "1" (effects (font (size 1.27 1.27))))
-        )
         (pin input line (at -19.05 2.54 0) (length 2.54)
           (name "IN1B" (effects (font (size 1.27 1.27))))
           (number "13" (effects (font (size 1.27 1.27))))
@@ -344,7 +340,11 @@
         )
       )
       (symbol "L6226QTR_1_1"
-        (pin passive line (at -1.27 -20.32 90) (length 2.54) hide
+        (pin power_in line (at -1.27 -20.32 90) (length 2.54)
+          (name "GND" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin no_connect line (at 6.35 -20.32 90) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "10" (effects (font (size 1.27 1.27))))
         )
@@ -356,7 +356,7 @@
           (name "SENSEB" (effects (font (size 1.27 1.27))))
           (number "12" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -1.27 -20.32 90) (length 2.54) hide
+        (pin no_connect line (at 6.35 -20.32 90) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "18" (effects (font (size 1.27 1.27))))
         )
@@ -388,7 +388,7 @@
           (name "OUT1A" (effects (font (size 1.27 1.27))))
           (number "31" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -1.27 -20.32 90) (length 2.54) hide
+        (pin no_connect line (at 6.35 -20.32 90) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "32" (effects (font (size 1.27 1.27))))
         )
@@ -856,7 +856,7 @@
     (property "Value" "L6226QTR" (at 138.43 92.71 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "easyeda2kicad:VQFN-32_L5.0-W5.0-P0.50-TL-EP" (at 137.16 129.54 0)
+    (property "Footprint" "matei:ST-L6226Q-VQFN32" (at 137.16 129.54 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://lcsc.com/product-detail/Motor-Drivers_STMicroelectronics-L6226QTR_C95357.html" (at 137.16 132.08 0)
