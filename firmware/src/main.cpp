@@ -45,9 +45,9 @@ extern volatile uint8_t RxData[8];
 #define MOTORKV 40
 #define ENC_PPR 16383 // max 16383 (zero index) -> *4 for CPR, -1 is done in init to prevent rollover on 16 bit timer
 
-#define SERIALPORT Serial3
+#define SERIALPORT SerialUSB
 
-HardwareSerial Serial3 = HardwareSerial(PB8, PB9);
+// HardwareSerial Serial3 = HardwareSerial(PB8, PB9);
 
 /**
  * SPI clockdiv of 16 gives ~10.5MHz clock. May still be stable with lower divisor.
@@ -93,7 +93,7 @@ void setup()
 
 	attachInterrupt(USER_BUTTON, userButton, RISING);
 
-	SERIALPORT.begin(115200);
+	SerialUSB.begin();
 
 	EEPROM.get(0, boardData);
 
