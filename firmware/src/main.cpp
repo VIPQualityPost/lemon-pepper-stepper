@@ -265,7 +265,10 @@ uint8_t configureFOC(void)
 	// SERIALPORT.printf("Current Sense init result: %i\n", ret);
 	// motor.linkCurrentSense(&currentsense);
 
-	motor.target = 10;
+	sensor.update();
+	float start_angle = motor.shaftAngle();
+	motor.target = start_angle;
+	SIMPLEFOC_DEBUG("Setting Motor target to current position");
 
 	motor.zero_electric_angle = NOT_SET;
 	motor.sensor_direction = Direction::UNKNOWN;
