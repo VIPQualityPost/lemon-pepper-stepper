@@ -522,7 +522,7 @@
   (symbol (lib_id "Device:R_Small_US") (at 107.95 86.36 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6ce927d7-7f7d-4606-9fa7-f6da06fdd47b)
-    (property "Reference" "R?" (at 105.41 85.09 0)
+    (property "Reference" "R401" (at 105.41 85.09 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10k" (at 105.41 87.63 0)
@@ -541,9 +541,6 @@
     (pin "2" (uuid 622f4233-7a57-4ac1-b922-f15f27105aef))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "R?") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/e3a86f21-c1c7-4a99-9511-7bc9966878a0"
           (reference "R401") (unit 1)
         )
@@ -591,7 +588,7 @@
   (symbol (lib_id "power:+3V3") (at 107.95 81.28 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid a957ced1-9f14-450e-a1f3-96a8f9bbe8a3)
-    (property "Reference" "#PWR0313" (at 107.95 85.09 0)
+    (property "Reference" "#PWR0404" (at 107.95 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 107.95 76.2 0)
@@ -606,9 +603,6 @@
     (pin "1" (uuid bcb42574-5cf1-4371-9c33-6adb5d7ffbc7))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "#PWR0313") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/e3a86f21-c1c7-4a99-9511-7bc9966878a0"
           (reference "#PWR0404") (unit 1)
         )
