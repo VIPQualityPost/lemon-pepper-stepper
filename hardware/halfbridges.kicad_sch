@@ -850,7 +850,7 @@
   (symbol (lib_id "easyeda2kicad:L6226QTR") (at 137.16 91.44 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 37880a97-b6a0-4a9d-a6d3-f01d330a7505)
-    (property "Reference" "U?" (at 138.43 90.17 0)
+    (property "Reference" "U601" (at 138.43 90.17 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "L6226QTR" (at 138.43 92.71 0)
@@ -900,9 +900,6 @@
     (pin "8" (uuid 01f56fa4-97c0-4948-ac05-b5f07bac82c0))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
-          (reference "U?") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/ac193888-c8ba-43d9-af32-3c2e2d16ba47"
           (reference "U601") (unit 1)
         )
@@ -913,7 +910,7 @@
   (symbol (lib_id "matei:Vmot") (at 158.75 55.88 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 50f18639-c15e-4a10-a2e8-8837c5da88fb)
-    (property "Reference" "#PWR0105" (at 153.67 59.69 0)
+    (property "Reference" "#PWR0602" (at 153.67 59.69 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "Vmot" (at 158.75 50.8 0)
@@ -928,9 +925,6 @@
     (pin "1" (uuid fd8b8e1c-a085-4f75-8152-b8d020343dc8))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
-          (reference "#PWR0105") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/ac193888-c8ba-43d9-af32-3c2e2d16ba47"
           (reference "#PWR0602") (unit 1)
         )
@@ -941,7 +935,7 @@
   (symbol (lib_id "power:GND") (at 158.75 116.84 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 64a45537-fa6d-43ea-a9bf-92d58d5a7aa5)
-    (property "Reference" "#PWR0103" (at 158.75 123.19 0)
+    (property "Reference" "#PWR0603" (at 158.75 123.19 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 158.75 121.92 0)
@@ -956,9 +950,6 @@
     (pin "1" (uuid 1091c7e7-9714-466a-a53d-94b1b03fb950))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
-          (reference "#PWR0103") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/ac193888-c8ba-43d9-af32-3c2e2d16ba47"
           (reference "#PWR0603") (unit 1)
         )
@@ -969,7 +960,7 @@
   (symbol (lib_id "Device:R_Small_US") (at 97.79 99.06 270) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8890abe6-70b8-4275-9fc5-c77630cd7d38)
-    (property "Reference" "R?" (at 97.79 102.87 90)
+    (property "Reference" "R601" (at 97.79 102.87 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "5k1" (at 97.79 105.41 90)
@@ -988,9 +979,6 @@
     (pin "2" (uuid cd601b00-70dc-40ba-99e4-7bb108b315f3))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
-          (reference "R?") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/ac193888-c8ba-43d9-af32-3c2e2d16ba47"
           (reference "R601") (unit 1)
         )
@@ -1001,7 +989,7 @@
   (symbol (lib_id "Device:D_Small") (at 139.7 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 8bcdea43-24d6-4037-aa47-a0b54c9c0c4e)
-    (property "Reference" "D?" (at 139.7 52.07 0)
+    (property "Reference" "D602" (at 139.7 52.07 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1N4148WS" (at 139.7 54.61 0)
@@ -1026,9 +1014,6 @@
     (pin "2" (uuid 1462ce2d-de52-43c2-bc35-343f43d93c27))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
-          (reference "D?") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/ac193888-c8ba-43d9-af32-3c2e2d16ba47"
           (reference "D602") (unit 1)
         )
@@ -1039,7 +1024,7 @@
   (symbol (lib_id "Device:C_Small") (at 149.86 68.58 90) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b314e2a1-05b5-4717-81c4-f8b715eeebac)
-    (property "Reference" "C?" (at 147.32 62.23 90)
+    (property "Reference" "C602" (at 147.32 62.23 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "220n" (at 147.32 64.77 90)
@@ -1058,9 +1043,6 @@
     (pin "2" (uuid 17c91ad8-55e0-4fb5-9961-11c9d590b282))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
-          (reference "C?") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/ac193888-c8ba-43d9-af32-3c2e2d16ba47"
           (reference "C602") (unit 1)
         )
@@ -1071,7 +1053,7 @@
   (symbol (lib_id "Device:C_Small") (at 129.54 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid bf8452e9-5264-4688-ab6e-658f3294d8a8)
-    (property "Reference" "C?" (at 127 62.2363 0)
+    (property "Reference" "C601" (at 127 62.2363 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "10n" (at 127 64.7763 0)
@@ -1090,9 +1072,6 @@
     (pin "2" (uuid 6fd5555d-c2c3-4275-afe7-e6a1408fe16f))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
-          (reference "C?") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/ac193888-c8ba-43d9-af32-3c2e2d16ba47"
           (reference "C601") (unit 1)
         )
@@ -1103,7 +1082,7 @@
   (symbol (lib_id "Device:D_Small") (at 139.7 68.58 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f33a26df-aece-43c8-9415-6ac5576d1432)
-    (property "Reference" "D?" (at 139.7 62.23 0)
+    (property "Reference" "D603" (at 139.7 62.23 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1N4148WS" (at 139.7 64.77 0)
@@ -1128,9 +1107,6 @@
     (pin "2" (uuid ef0a2d0e-fe4a-499e-8622-9df246ae5c01))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
-          (reference "D?") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/ac193888-c8ba-43d9-af32-3c2e2d16ba47"
           (reference "D603") (unit 1)
         )
@@ -1141,7 +1117,7 @@
   (symbol (lib_id "power:+3V3") (at 92.71 96.52 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid f9aa1b99-228b-439d-817b-005acf7c5a62)
-    (property "Reference" "#PWR0109" (at 92.71 100.33 0)
+    (property "Reference" "#PWR0601" (at 92.71 100.33 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 92.71 91.44 0)
@@ -1156,9 +1132,6 @@
     (pin "1" (uuid 2d18ddd1-f5cd-4b26-9116-bcce81c12086))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
-          (reference "#PWR0109") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/ac193888-c8ba-43d9-af32-3c2e2d16ba47"
           (reference "#PWR0601") (unit 1)
         )
@@ -1169,7 +1142,7 @@
   (symbol (lib_id "Device:LED") (at 107.95 99.06 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid fd0e2a50-e9d1-47f3-a8dd-0b3fcc5e140e)
-    (property "Reference" "D?" (at 108.9025 102.87 0)
+    (property "Reference" "D601" (at 108.9025 102.87 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "OCD" (at 108.9025 105.41 0)
@@ -1188,9 +1161,6 @@
     (pin "2" (uuid eebdaa37-993b-417c-ab77-12378ce2558d))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
-          (reference "D?") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad/ac193888-c8ba-43d9-af32-3c2e2d16ba47"
           (reference "D601") (unit 1)
         )

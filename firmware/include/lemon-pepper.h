@@ -30,6 +30,15 @@
 #define ISENSE_U    PA3     // VOPAMP1_P, ADC1_IN4
 #define ISENSE_V    PB13    // VOPAMP3_P
 
+/**
+ * 0b00 10V/V
+ * 0b01 20V/V
+ * 0b10 50V/V
+ * 0b11 100V/V
+*/
+#define ISENSEGAIN_0 PC13   // GAIN0 
+#define ISENSEGAIN_1 PC14   // GAIN1
+
 // COMMUNICATION
 /** 
  * Note that you can only use one input peripheral 

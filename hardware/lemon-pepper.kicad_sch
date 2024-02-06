@@ -1368,7 +1368,7 @@
   (symbol (lib_id "Device:R_Small_US") (at 82.55 92.71 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2ee515ec-1c12-40ce-9c56-215ed6b94d01)
-    (property "Reference" "R602" (at 78.74 90.17 90)
+    (property "Reference" "R104" (at 78.74 90.17 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "0R" (at 86.36 90.17 90)
@@ -1387,9 +1387,6 @@
     (pin "2" (uuid 876c1359-50ed-48de-a448-e8f2eb799a0b))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "R602") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
           (reference "R104") (unit 1)
         )
@@ -1432,7 +1429,7 @@
   (symbol (lib_id "Device:R_Small_US") (at 82.55 95.25 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 46ce0156-2765-4c40-8ac1-08ac50337531)
-    (property "Reference" "R603" (at 78.74 97.79 90)
+    (property "Reference" "R105" (at 78.74 97.79 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "0R" (at 86.36 97.79 90)
@@ -1451,9 +1448,6 @@
     (pin "2" (uuid bceff20a-34d8-4368-af34-4924bbfbdc45))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "R603") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
           (reference "R105") (unit 1)
         )
@@ -1867,7 +1861,7 @@
   (symbol (lib_id "Device:R_Small_US") (at 69.85 57.15 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d321c20b-6961-4094-9a94-4da017abbada)
-    (property "Reference" "R602" (at 66.04 54.61 90)
+    (property "Reference" "R102" (at 66.04 54.61 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "5k1" (at 73.66 54.61 90)
@@ -1886,9 +1880,6 @@
     (pin "2" (uuid 40b4b1b3-387b-478b-9cd9-cbc244f28d01))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "R602") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
           (reference "R102") (unit 1)
         )
@@ -2036,7 +2027,7 @@
   (symbol (lib_id "Device:R_Small_US") (at 69.85 59.69 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f3ddb8ee-dbb4-493a-ae39-77e171290f99)
-    (property "Reference" "R603" (at 66.04 62.23 90)
+    (property "Reference" "R101" (at 66.04 62.23 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "5k1" (at 73.66 62.23 90)
@@ -2055,9 +2046,6 @@
     (pin "2" (uuid b0567dc0-ca1d-4799-af33-c94b78192c48))
     (instances
       (project "lemon-pepper"
-        (path "/0306e2fa-4433-4288-91d9-65a3484207ad/7f2d245a-6dca-4eb9-9839-7fdf255edd98"
-          (reference "R603") (unit 1)
-        )
         (path "/0306e2fa-4433-4288-91d9-65a3484207ad"
           (reference "R101") (unit 1)
         )
