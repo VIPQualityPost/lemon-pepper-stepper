@@ -6,6 +6,9 @@ on:
       - main
     types:
       - closed
+  push:
+    branches:
+      - main
 
 env:
   workflow_project_dir: hardware
