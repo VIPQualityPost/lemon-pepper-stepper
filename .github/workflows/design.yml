@@ -1,0 +1,46 @@
+name: Hardware Design
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+env:
+  workflow_project_dir: <your-project-dir>
+  kicad_project_name: <your-project-name>
+
+jobs:
+  buildfiles:
+    name: Design check & documentation build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create output directory
+        run: mkdir -p ${workflow_project_dir}/outputs/gerbers
+
+      - name: Install KiCad
+        run: sudo bash ./scripts/dependencies.sh
+
+      - name: Verify clean design files
+        run: |
+          kicad-cli sch erc -o ${workflow_project_dir}/outputs/erc_errors.json --format json --severity-error --exit-code-violations ${workflow_project_dir}/${kicad_project_name}.kicad_sch
+          kicad-cli pcb drc -o ${workflow_project_dir}/outputs/drc_errors.json --format json --severity-error --exit-code-violations ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+
+      - name: Export design file PDFs
+        run: |
+          kicad-cli sch export pdf -o ${workflow_project_dir}/outputs/${kicad_project_name}-sch.pdf ${workflow_project_dir}/${kicad_project_name}.kicad_sch
+          kicad-cli pcb export pdf -o ${workflow_project_dir}/outputs/${kicad_project_name}-pcb-front.pdf -l "F.Cu,F.Mask,F.Silkscreen" ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          kicad-cli pcb export pdf -o ${workflow_project_dir}/outputs/${kicad_project_name}-pcb-back.pdf --erd --ev --mirror -l "B.Cu,B.Mask,B.Silkscreen" ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: design-artifacts
+          path: <your-project-dir>/outputs
