@@ -10,8 +10,8 @@ on:
       - main
 
 env:
-  workflow_project_dir: <your-project-dir>
-  kicad_project_name: <your-project-name>
+  workflow_project_dir: hardware
+  kicad_project_name: lemon-pepper
 
 jobs:
   buildfiles:
@@ -43,4 +43,4 @@ jobs:
         if: always()
         with:
           name: design-artifacts
-          path: <your-project-dir>/outputs
+          path: hardware/outputs
