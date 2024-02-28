@@ -1,3 +1,6 @@
+[![Hardware Design](https://github.com/VIPQualityPost/lemon-pepper-stepper/actions/workflows/design.yml/badge.svg?branch=main)](https://github.com/VIPQualityPost/lemon-pepper-stepper/actions/workflows/design.yml)
+[![Assembly Documentation](https://github.com/VIPQualityPost/lemon-pepper-stepper/actions/workflows/documentation.yml/badge.svg)](https://github.com/VIPQualityPost/lemon-pepper-stepper/actions/workflows/documentation.yml)
+
 # Lemon Pepper Stepper Driver
 Small, all in one hybrid stepper + BLDC driver, designed to mount to the back of NEMA 14/17 size stepper motors. The board supports up to 48V @ 1.5A with a choice of either step-dir, CAN bus, I2C, UART or USB input. Additionally, there are 5 GPIO broken out that can be used for a second encoder (AB hardware encoder or I2C), endstops or other general purposes. Current sensing is also included on-board.
 The boards can easily be assembled by JLC and the design has been cost-optimized, coming in at about $20 per board fully assembled (minus connectors, which need to be modified to sit flat on motor back). 
