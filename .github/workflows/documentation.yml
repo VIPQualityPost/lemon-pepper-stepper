@@ -1,0 +1,59 @@
+name: Assembly Documentation
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+env:
+  workflow_project_dir: hardware
+  kicad_project_name: lemon-pepper
+
+jobs:
+  buildfiles:
+    if: github.event.pull_request.merged == true
+    name: Design check & documentation build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create output directory
+        run: mkdir -p ${workflow_project_dir}/outputs/gerbers
+
+      - name: Install KiCad
+        run: sudo bash ./scripts/dependencies.sh
+
+      - name: Export design file PDFs
+        run: |
+          kicad-cli sch export pdf -o ${workflow_project_dir}/outputs/${kicad_project_name}-sch.pdf ${workflow_project_dir}/${kicad_project_name}.kicad_sch
+          kicad-cli pcb export pdf -o ${workflow_project_dir}/outputs/${kicad_project_name}-pcb-front.pdf -l "F.Cu,F.Mask,F.Silkscreen,Edge.Cuts" ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          kicad-cli pcb export pdf -o ${workflow_project_dir}/outputs/${kicad_project_name}-pcb-back.pdf --erd --ev --mirror -l "B.Cu,B.Mask,B.Silkscreen,Edge.Cuts" ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+
+      - name: Export assembly documentation
+        run: |
+          kicad-cli sch export bom -o ${workflow_project_dir}/outputs/raw-BOM.csv --fields "Reference,Value,Footprint,LCSC ID" --exclude-dnp --group-by "Val" --sort-asc ${workflow_project_dir}/${kicad_project_name}.kicad_sch
+          kicad-cli pcb export pos -o ${workflow_project_dir}/outputs/raw-CPL.csv --side front --format csv --use-drill-file-origin --exclude-dnp ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+
+      - name: Convert BOM & CPL to JLC format
+        run: |
+          python3 scripts/jlc_bom_formatter.py ${workflow_project_dir}/outputs/raw-BOM.csv ${workflow_project_dir}/outputs/${kicad_project_name}-BOM.csv
+          python3 scripts/jlc_cpl_formatter.py ${workflow_project_dir}/outputs/raw-CPL.csv ${workflow_project_dir}/outputs/${kicad_project_name}-CPL.csv
+          sudo rm ${workflow_project_dir}/outputs/raw-BOM.csv ${workflow_project_dir}/outputs/raw-CPL.csv
+
+      - name: Export mechanical files
+        run: |
+          kicad-cli pcb export gerbers -o ${workflow_project_dir}/outputs/gerbers/ -l "F.Cu,F.Mask,F.Silkscreen,F.Paste,In1.Cu,In2.Cu,B.Cu,B.Mask,B.Silkscreen,B.Paste,Edge.Cuts"--erd --ev --use-drill-file-origin --no-protel-ext ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          kicad-cli pcb export drill -o ${workflow_project_dir}/outputs/gerbers/ --drill-origin plot --format gerber ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          cd ${workflow_project_dir}/outputs
+          zip -r ${kicad_project_name}-gerbers.zip gerbers
+          sudo rm -r gerbers
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: documentation-artifacts
+          path: hardware/outputs
