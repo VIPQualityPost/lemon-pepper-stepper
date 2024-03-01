@@ -46,7 +46,6 @@ jobs:
           git config --global user.name "robot"
           git fetch 
           git checkout documentation
-          git pull documentation
           git add ${workflow_project_dir}/*.pdf
           git commit -m "Add design file PDFs to repo [skip ci]"
           git push origin documentation
