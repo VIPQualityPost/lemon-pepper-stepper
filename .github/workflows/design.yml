@@ -44,10 +44,9 @@ jobs:
         run: |
           git config --global user.email "robot@mateijordache.info"
           git config --global user.name "robot"
-          git switch -c documentation
           git add ${workflow_project_dir}/*.pdf
           git commit -m "Add design file PDFs to repo [skip ci]"
-          gh pr create --head documentation --title "Add design file PDFs to repo" --body "Automated PR from GHA"
+          gh pr create --head main --title "Add design file PDFs to repo" --body "Automated PR from GHA"
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
