@@ -35,21 +35,8 @@ jobs:
       - name: Export design file PDFs
         run: |
           kicad-cli sch export pdf -o ${workflow_project_dir}/${kicad_project_name}-sch.pdf ${workflow_project_dir}/${kicad_project_name}.kicad_sch
-          kicad-cli pcb export pdf -o ${workflow_project_dir}/${kicad_project_name}-pcb-front.pdf -l "F.Cu,F.Mask,F.Silkscreen" ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
-          kicad-cli pcb export pdf -o ${workflow_project_dir}/${kicad_project_name}-pcb-back.pdf --erd --ev --mirror -l "B.Cu,B.Mask,B.Silkscreen" ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
-
-      - name: Add PDFs to repo
-        env: 
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.email "robot@mateijordache.info"
-          git config --global user.name "robot"
-          git fetch 
-          git checkout documentation
-          git add ${workflow_project_dir}/*.pdf
-          git commit -m "Add design file PDFs to repo [skip ci]"
-          git push origin documentation
-          gh pr create --head documentation --base main --title "Add design file PDFs to repo" --body "Automated PR from GHA"
+          kicad-cli pcb export pdf -o ${workflow_project_dir}/${kicad_project_name}-pcb-front.pdf -l "F.Cu,F.Mask,Edge.Cuts" ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          kicad-cli pcb export pdf -o ${workflow_project_dir}/${kicad_project_name}-pcb-back.pdf --erd --ev --mirror -l "B.Cu,B.Mask,Edge.Cuts" ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
