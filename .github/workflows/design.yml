@@ -44,8 +44,9 @@ jobs:
         run: |
           git config --global user.email "robot@mateijordache.info"
           git config --global user.name "robot"
+          git fetch 
           git checkout documentation
-          git pull
+          git pull documentation
           git add ${workflow_project_dir}/*.pdf
           git commit -m "Add design file PDFs to repo [skip ci]"
           git push origin documentation
