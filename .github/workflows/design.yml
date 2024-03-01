@@ -46,6 +46,7 @@ jobs:
           git config --global user.name "robot"
           git add ${workflow_project_dir}/*.pdf
           git commit -m "Add design file PDFs to repo [skip ci]"
+          git push origin HEAD
           gh pr create --head main --title "Add design file PDFs to repo" --body "Automated PR from GHA"
 
       - name: Archive artifacts
