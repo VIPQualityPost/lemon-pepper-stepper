@@ -2115,7 +2115,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC Part" "C7420376"
+		(property "LCSC ID" "C7420376"
 			(at 182.88 91.44 0)
 			(effects
 				(font
@@ -2210,7 +2210,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC Part" "C963223"
+		(property "LCSC ID" "C963223"
 			(at 114.3 90.17 0)
 			(effects
 				(font
@@ -2339,7 +2339,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC Part" "C1567"
+		(property "LCSC ID" "C1567"
 			(at 160.02 100.33 0)
 			(effects
 				(font
@@ -2507,7 +2507,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC Part" "C1567"
+		(property "LCSC ID" "C1567"
 			(at 149.86 100.33 0)
 			(effects
 				(font

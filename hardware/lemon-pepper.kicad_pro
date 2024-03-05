@@ -535,19 +535,7 @@
       "version": 3
     },
     "net_colors": null,
-    "netclass_assignments": {
-      "/current sense/U_IN": "MOTOR",
-      "/current sense/U_OUT": "MOTOR",
-      "/current sense/V_IN": "MOTOR",
-      "/current sense/V_OUT": "MOTOR",
-      "/current sense/W_IN": "MOTOR",
-      "/half bridges/OUT1B": "MOTOR",
-      "/usb/USB_5V": "PWR",
-      "Net-(C503-Pad1)": "PWR",
-      "Net-(D602-K)": "MOTOR",
-      "Net-(D603-K)": "MOTOR",
-      "Net-(U501-LX)": "PWR"
-    },
+    "netclass_assignments": null,
     "netclass_patterns": [
       {
         "netclass": "GND",
@@ -629,7 +617,7 @@
           "group_by": false,
           "label": "Datasheet",
           "name": "Datasheet",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
@@ -648,11 +636,47 @@
           "label": "DNP",
           "name": "${DNP}",
           "show": true
+        },
+        {
+          "group_by": false,
+          "label": "#",
+          "name": "${ITEM_NUMBER}",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "LCSC ID",
+          "name": "LCSC ID",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "Sim.Device",
+          "name": "Sim.Device",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Sim.Pins",
+          "name": "Sim.Pins",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Sim.Type",
+          "name": "Sim.Type",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Description",
+          "name": "Description",
+          "show": false
         }
       ],
       "filter_string": "",
       "group_symbols": true,
-      "name": "Grouped By Value",
+      "name": "",
       "sort_asc": true,
       "sort_field": "Reference"
     },
