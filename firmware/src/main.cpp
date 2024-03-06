@@ -60,7 +60,8 @@ STM32HWEncoder enc = STM32HWEncoder(ENC_PPR, ENC_A, ENC_B, ENC_Z);
 /**
  * TODO: Change the current sense code to reflect the new inline current sense amplifier choice with sense resistor.
  */
-// InlineCurrentSenseSync currentsense = InlineCurrentSenseSync(90, ISENSE_U, ISENSE_V, ISENSE_W);
+// InlineCurrentSenseSync currentsense = InlineCurrentSenseSync(90, ISENSE_U, ISENSE_V, ISENSE_W); // ACS711 current sensors
+// InlineCurrentSenseSync currentsense = InlineCurrentSenseSync(0.02, 50, ISENSE_U, ISENSE_V, ISENSE_W); // max49925
 
 StepperDriver4PWM driver = StepperDriver4PWM(MOT_A1, MOT_A2, MOT_B1, MOT_B2);
 // StepperMotor motor = StepperMotor(POLEPAIRS, RPHASE, MOTORKV, 0.0045);
@@ -90,6 +91,8 @@ void setup()
 	pinMode(CAL_EN, OUTPUT);
 	pinMode(MOT_EN, OUTPUT);
 	pinMode(USER_BUTTON, INPUT);
+	pinMode(ISENSEGAIN_0, OUTPUT);
+	pinMode(ISENSEGAIN_1, OUTPUT);
 
 	attachInterrupt(USER_BUTTON, userButton, RISING);
 
@@ -100,6 +103,8 @@ void setup()
 	digitalWrite(MOT_EN, HIGH);
 	digitalWrite(CAL_EN, LOW);
 
+	digitalWrite(ISENSEGAIN_0, LOW);
+	digitalWrite(ISENSEGAIN_1, HIGH);
 	uint8_t ret;
 	// ret = configureCAN();
 	// if (!ret){
