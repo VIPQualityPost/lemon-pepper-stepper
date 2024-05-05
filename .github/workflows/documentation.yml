@@ -46,7 +46,7 @@ jobs:
           kicad-cli pcb export drill -o ${workflow_project_dir}/outputs/ --drill-origin plot --format gerber ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
           cd ${workflow_project_dir}/outputs/
           zip -r ${kicad_project_name}-gerbers . -i \*.gbr
-          sudo rm -r *.gbr
+          sudo rm -r *.gbr *.gbrjob
 
       - name: Add PDFs to repo
         env: 
