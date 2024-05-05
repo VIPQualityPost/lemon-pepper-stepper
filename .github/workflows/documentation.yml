@@ -42,11 +42,11 @@ jobs:
 
       - name: Export mechanical files
         run: |
-          kicad-cli pcb export gerbers -o ${workflow_project_dir}/outputs/gerbers/ -l "F.Cu,F.Mask,F.Silkscreen,F.Paste,In1.Cu,In2.Cu,B.Cu,B.Mask,B.Silkscreen,B.Paste,Edge.Cuts"--erd --ev --use-drill-file-origin --no-protel-ext ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
-          kicad-cli pcb export drill -o ${workflow_project_dir}/outputs/gerbers/ --drill-origin plot --format gerber ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          kicad-cli pcb export gerbers -o ${workflow_project_dir}/outputs/ -l "F.Cu,F.Mask,F.Silkscreen,F.Paste,In1.Cu,In2.Cu,B.Cu,B.Mask,B.Silkscreen,B.Paste,Edge.Cuts"--erd --ev --use-drill-file-origin --no-protel-ext ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          kicad-cli pcb export drill -o ${workflow_project_dir}/outputs/ --drill-origin plot --format gerber ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
           cd ${workflow_project_dir}/outputs/
           zip -r ${kicad_project_name}-gerbers . -i \*.gbr
-          sudo rm -r gerbers
+          sudo rm -r *.gbr
 
       - name: Add PDFs to repo
         env: 
