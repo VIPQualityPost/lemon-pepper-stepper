@@ -32,7 +32,7 @@ jobs:
       - name: Export assembly documentation
         run: |
           kicad-cli sch export bom -o ${workflow_project_dir}/outputs/raw-BOM.csv --fields "Reference,Value,Footprint,LCSC ID" --exclude-dnp --group-by "Val" --sort-asc ${workflow_project_dir}/${kicad_project_name}.kicad_sch
-          kicad-cli pcb export pos -o ${workflow_project_dir}/outputs/raw-CPL.csv --side front --format csv --use-drill-file-origin --exclude-dnp ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          kicad-cli pcb export pos -o ${workflow_project_dir}/outputs/raw-CPL.csv --side front --format csv --use-drill-file-origin --exclude-dnp --units mm ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
 
       - name: Convert BOM & CPL to JLC format
         run: |
