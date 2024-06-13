@@ -26,8 +26,8 @@ jobs:
       - name: Export design file PDFs
         run: |
           kicad-cli sch export pdf -o ${workflow_project_dir}/${kicad_project_name}-sch.pdf ${workflow_project_dir}/${kicad_project_name}.kicad_sch
-          kicad-cli pcb export pdf -o ${workflow_project_dir}/${kicad_project_name}-pcb-front.pdf -l "F.Cu,F.Mask,F.Silkscreen,Edge.Cuts" ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
-          kicad-cli pcb export pdf -o ${workflow_project_dir}/${kicad_project_name}-pcb-back.pdf --erd --ev --mirror -l "B.Cu,B.Mask,B.Silkscreen,Edge.Cuts" ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          kicad-cli pcb export pdf -o ${workflow_project_dir}/${kicad_project_name}-pcb-front.pdf -l "F.Cu,F.Mask,F.Silkscreen,Edge.Cuts," ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          kicad-cli pcb export pdf -o ${workflow_project_dir}/${kicad_project_name}-pcb-back.pdf --erd --ev --mirror -l "B.Cu,B.Mask,B.Silkscreen,Edge.Cuts," ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
 
       - name: Export assembly documentation
         run: |
@@ -42,7 +42,7 @@ jobs:
 
       - name: Export mechanical files
         run: |
-          kicad-cli pcb export gerbers -o ${workflow_project_dir}/outputs/ -l "F.Cu,F.Mask,F.Silkscreen,F.Paste,In1.Cu,In2.Cu,B.Cu,B.Mask,B.Silkscreen,B.Paste,Edge.Cuts"--erd --ev --use-drill-file-origin --no-protel-ext ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          kicad-cli pcb export gerbers -o ${workflow_project_dir}/outputs/ -l "F.Cu,F.Mask,F.Silkscreen,F.Paste,In1.Cu,In2.Cu,B.Cu,B.Mask,B.Silkscreen,B.Paste,Edge.Cuts,"--erd --ev --use-drill-file-origin --no-protel-ext ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
           kicad-cli pcb export drill -o ${workflow_project_dir}/outputs/ --drill-origin plot --format gerber ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
           cd ${workflow_project_dir}/outputs/
           zip -r ${kicad_project_name}-gerbers . -i \*.gbr
