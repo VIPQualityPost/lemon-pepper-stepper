@@ -576,7 +576,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "/Users/mateijordache/Desktop/lp/",
+      "plot": "",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "../mechanical/lemon-pepper.step",
@@ -645,9 +645,9 @@
         },
         {
           "group_by": false,
-          "label": "LCSC Part",
-          "name": "LCSC Part",
-          "show": false
+          "label": "LCSC ID",
+          "name": "LCSC ID",
+          "show": true
         },
         {
           "group_by": false,
@@ -722,7 +722,7 @@
   "sheets": [
     [
       "0306e2fa-4433-4288-91d9-65a3484207ad",
-      ""
+      "Root"
     ],
     [
       "3af4e77c-61b4-4c93-bd22-ce60f55b568c",
