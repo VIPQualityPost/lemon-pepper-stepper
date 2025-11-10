@@ -9,14 +9,33 @@ def reduce_layer(layername):
     else:
         return ''
 
+def drop_columns_containing(df, substring):
+    """
+    Drops columns from a Pandas DataFrame if their name contains a specific substring.
+
+    Args:
+        df (pd.DataFrame): The DataFrame to modify.
+        substring (str): The substring to search for in column names.
+
+    Returns:
+        pd.DataFrame: The modified DataFrame with the specified columns dropped.
+    """
+    columns_to_drop = [col for col in df.columns if substring in col]
+    df = df.drop(columns=columns_to_drop, axis=1)
+    return df
+
 if __name__ == "__main__":
     cpl_file = pd.read_csv(sys.argv[1])
 
     # Remove header rows from table
-    cpl_file.drop([0,1,2,3,4,5])
+    # cpl_file.drop([0,1,2,3,4,5])
 
     # Assign names and sort rows to match JLC format
     cpl_file.columns = ['Designator', 'Val', 'Package', 'Mid X', 'Mid Y', 'Rotation', 'Layer']
+
+    # # Drop all comment rows
+    cpl_file = drop_columns_containing(cpl_file, '#')
+
     cpl_file = cpl_file.reindex(columns=['Designator', 'Mid X', 'Mid Y', 'Layer', 'Rotation'])
 
     # Change top/bottom to T/B
