@@ -2087,7 +2087,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SRV05-4"
+		(property "Value" "SRV05-4A"
 			(at 179.7303 78.74 0)
 			(effects
 				(font
@@ -2123,7 +2123,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC ID" "C7420376"
+		(property "LCSC ID" "C20615829"
 			(at 182.88 91.44 0)
 			(effects
 				(font
