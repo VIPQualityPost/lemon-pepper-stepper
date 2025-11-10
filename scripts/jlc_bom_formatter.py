@@ -10,7 +10,10 @@ def footprintFix(fpName):
             return propertiesList[1][-1] + propertiesList[2]
 
     # Strip out library name from FP.
-    return fpName.split(":")[-1]
+    if isinstance(fpName, float):
+        print("Malformed BOM, check you are not missing footprint assignments.")
+    else:
+        return fpName.split(":")[-1]
 
 bom_file = pd.read_csv(sys.argv[1])
 

@@ -32,13 +32,17 @@ jobs:
       - name: Export assembly documentation
         run: |
           kicad-cli sch export bom -o ${workflow_project_dir}/outputs/raw-BOM.csv --fields "Reference,Value,Footprint,LCSC ID" --exclude-dnp --group-by "Val" --sort-asc ${workflow_project_dir}/${kicad_project_name}.kicad_sch
-          kicad-cli pcb export pos -o ${workflow_project_dir}/outputs/raw-CPL.csv --side front --format csv --use-drill-file-origin --exclude-dnp --units mm ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          kicad-cli pcb export pos -o ${workflow_project_dir}/outputs/raw-CPL.csv --side both --format csv --use-drill-file-origin --exclude-dnp --units mm ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          kicad-cli pcb export pos -o ${workflow_project_dir}/outputs/raw-CPL-top.csv --side front --format csv --use-drill-file-origin --exclude-dnp --units mm ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
+          kicad-cli pcb export pos -o ${workflow_project_dir}/outputs/raw-CPL-bot.csv --side back --format csv --use-drill-file-origin --exclude-dnp --units mm ${workflow_project_dir}/${kicad_project_name}.kicad_pcb
 
       - name: Convert BOM & CPL to JLC format
         run: |
           python3 scripts/jlc_bom_formatter.py ${workflow_project_dir}/outputs/raw-BOM.csv ${workflow_project_dir}/outputs/${kicad_project_name}-BOM.csv
           python3 scripts/jlc_cpl_formatter.py ${workflow_project_dir}/outputs/raw-CPL.csv ${workflow_project_dir}/outputs/${kicad_project_name}-CPL.csv
-          sudo rm ${workflow_project_dir}/outputs/raw-BOM.csv ${workflow_project_dir}/outputs/raw-CPL.csv
+          python3 scripts/jlc_cpl_formatter.py ${workflow_project_dir}/outputs/raw-CPL-top.csv ${workflow_project_dir}/outputs/${kicad_project_name}-CPL-top.csv
+          python3 scripts/jlc_cpl_formatter.py ${workflow_project_dir}/outputs/raw-CPL-bot.csv ${workflow_project_dir}/outputs/${kicad_project_name}-CPL-bot.csv
+          sudo rm ${workflow_project_dir}/outputs/raw-BOM.csv ${workflow_project_dir}/outputs/raw-CPL.csv ${workflow_project_dir}/outputs/raw-CPL-top.csv ${workflow_project_dir}/outputs/raw-CPL-bot.csv 
 
       - name: Export mechanical files
         run: |
