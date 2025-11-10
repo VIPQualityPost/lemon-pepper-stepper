@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20231120)
+	(version 20250114)
 	(generator "eeschema")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(uuid "0306e2fa-4433-4288-91d9-65a3484207ad")
 	(paper "A4")
 	(title_block
@@ -13,7 +13,9 @@
 	(lib_symbols
 		(symbol "Connector_Generic:Conn_01x04"
 			(pin_names
-				(offset 1.016) hide)
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -80,19 +82,19 @@
 			)
 			(symbol "Conn_01x04_1_1"
 				(rectangle
-					(start -1.27 -4.953)
-					(end 0 -5.207)
+					(start -1.27 3.81)
+					(end 1.27 -6.35)
 					(stroke
-						(width 0.1524)
+						(width 0.254)
 						(type default)
 					)
 					(fill
-						(type none)
+						(type background)
 					)
 				)
 				(rectangle
-					(start -1.27 -2.413)
-					(end 0 -2.667)
+					(start -1.27 2.667)
+					(end 0 2.413)
 					(stroke
 						(width 0.1524)
 						(type default)
@@ -113,8 +115,8 @@
 					)
 				)
 				(rectangle
-					(start -1.27 2.667)
-					(end 0 2.413)
+					(start -1.27 -2.413)
+					(end 0 -2.667)
 					(stroke
 						(width 0.1524)
 						(type default)
@@ -124,14 +126,14 @@
 					)
 				)
 				(rectangle
-					(start -1.27 3.81)
-					(end 1.27 -6.35)
+					(start -1.27 -4.953)
+					(end 0 -5.207)
 					(stroke
-						(width 0.254)
+						(width 0.1524)
 						(type default)
 					)
 					(fill
-						(type background)
+						(type none)
 					)
 				)
 				(pin passive line
@@ -207,11 +209,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:C_Small"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0.254) hide)
+				(offset 0.254)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -281,10 +288,10 @@
 			(symbol "C_Small_0_1"
 				(polyline
 					(pts
-						(xy -1.524 -0.508) (xy 1.524 -0.508)
+						(xy -1.524 0.508) (xy 1.524 0.508)
 					)
 					(stroke
-						(width 0.3302)
+						(width 0.3048)
 						(type default)
 					)
 					(fill
@@ -293,10 +300,10 @@
 				)
 				(polyline
 					(pts
-						(xy -1.524 0.508) (xy 1.524 0.508)
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
 					)
 					(stroke
-						(width 0.3048)
+						(width 0.3302)
 						(type default)
 					)
 					(fill
@@ -342,11 +349,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:D"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 1.016) hide)
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -444,10 +456,10 @@
 				)
 				(polyline
 					(pts
-						(xy 1.27 0) (xy -1.27 0)
+						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
 					)
 					(stroke
-						(width 0)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -456,10 +468,10 @@
 				)
 				(polyline
 					(pts
-						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
+						(xy 1.27 0) (xy -1.27 0)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -505,11 +517,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:R_Small_US"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0.254) hide)
+				(offset 0.254)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -579,7 +596,7 @@
 			(symbol "R_Small_US_1_1"
 				(polyline
 					(pts
-						(xy 0 0) (xy 1.016 -0.381) (xy 0 -0.762) (xy -1.016 -1.143) (xy 0 -1.524)
+						(xy 0 1.524) (xy 1.016 1.143) (xy 0 0.762) (xy -1.016 0.381) (xy 0 0)
 					)
 					(stroke
 						(width 0)
@@ -591,7 +608,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 1.524) (xy 1.016 1.143) (xy 0 0.762) (xy -1.016 0.381) (xy 0 0)
+						(xy 0 0) (xy 1.016 -0.381) (xy 0 -0.762) (xy -1.016 -1.143) (xy 0 -1.524)
 					)
 					(stroke
 						(width 0)
@@ -638,10 +655,13 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Jumper:SolderJumper_2_Open"
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -707,30 +727,6 @@
 				)
 			)
 			(symbol "SolderJumper_2_Open_0_1"
-				(arc
-					(start -0.254 1.016)
-					(mid -1.2656 0)
-					(end -0.254 -1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -0.254 1.016)
-					(mid -1.2656 0)
-					(end -0.254 -1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
 				(polyline
 					(pts
 						(xy -0.254 1.016) (xy -0.254 -1.016)
@@ -743,6 +739,54 @@
 						(type none)
 					)
 				)
+				(arc
+					(start -0.254 -1.016)
+					(mid -1.2656 0)
+					(end -0.254 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -0.254 -1.016)
+					(mid -1.2656 0)
+					(end -0.254 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(arc
+					(start 0.254 1.016)
+					(mid 1.2656 0)
+					(end 0.254 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0.254 1.016)
+					(mid 1.2656 0)
+					(end 0.254 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
 				(polyline
 					(pts
 						(xy 0.254 1.016) (xy 0.254 -1.016)
@@ -753,30 +797,6 @@
 					)
 					(fill
 						(type none)
-					)
-				)
-				(arc
-					(start 0.254 -1.016)
-					(mid 1.2656 0)
-					(end 0.254 1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 0.254 -1.016)
-					(mid 1.2656 0)
-					(end 0.254 1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
 					)
 				)
 			)
@@ -818,6 +838,7 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Mechanical:Fiducial"
 			(exclude_from_sim no)
@@ -897,11 +918,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Mechanical:MountingHole_Pad"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 1.016) hide)
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -999,10 +1025,13 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Motor:Stepper_Motor_bipolar"
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1093,70 +1122,10 @@
 				)
 			)
 			(symbol "Stepper_Motor_bipolar_0_1"
-				(arc
-					(start -4.445 -2.54)
-					(mid -3.8127 -1.905)
-					(end -4.445 -1.27)
-					(stroke
-						(width 0)
-						(type default)
+				(polyline
+					(pts
+						(xy -5.08 2.54) (xy -4.445 2.54)
 					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -4.445 -1.27)
-					(mid -3.8127 -0.635)
-					(end -4.445 0)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -4.445 0)
-					(mid -3.8127 0.635)
-					(end -4.445 1.27)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -4.445 1.27)
-					(mid -3.8127 1.905)
-					(end -4.445 2.54)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -2.54 4.445)
-					(mid -1.905 3.8127)
-					(end -1.27 4.445)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -1.27 4.445)
-					(mid -0.635 3.8127)
-					(end 0 4.445)
 					(stroke
 						(width 0)
 						(type default)
@@ -1177,10 +1146,46 @@
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy -5.08 2.54) (xy -4.445 2.54)
+				(arc
+					(start -4.445 2.54)
+					(mid -3.8127 1.905)
+					(end -4.445 1.27)
+					(stroke
+						(width 0)
+						(type default)
 					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -4.445 1.27)
+					(mid -3.8127 0.635)
+					(end -4.445 0)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -4.445 0)
+					(mid -3.8127 -0.635)
+					(end -4.445 -1.27)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -4.445 -1.27)
+					(mid -3.8127 -1.905)
+					(end -4.445 -2.54)
 					(stroke
 						(width 0)
 						(type default)
@@ -1201,10 +1206,22 @@
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy 2.54 5.08) (xy 2.54 4.445)
+				(arc
+					(start -1.27 4.445)
+					(mid -1.905 3.8127)
+					(end -2.54 4.445)
+					(stroke
+						(width 0)
+						(type default)
 					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0 4.445)
+					(mid -0.635 3.8127)
+					(end -1.27 4.445)
 					(stroke
 						(width 0)
 						(type default)
@@ -1225,9 +1242,9 @@
 					)
 				)
 				(arc
-					(start 0 4.445)
+					(start 1.27 4.445)
 					(mid 0.635 3.8127)
-					(end 1.27 4.445)
+					(end 0 4.445)
 					(stroke
 						(width 0)
 						(type default)
@@ -1237,9 +1254,21 @@
 					)
 				)
 				(arc
-					(start 1.27 4.445)
+					(start 2.54 4.445)
 					(mid 1.905 3.8127)
-					(end 2.54 4.445)
+					(end 1.27 4.445)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 5.08) (xy 2.54 4.445)
+					)
 					(stroke
 						(width 0)
 						(type default)
@@ -1261,6 +1290,24 @@
 						)
 					)
 					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -7.62 -2.54 0)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1304,25 +1351,8 @@
 						)
 					)
 				)
-				(pin passive line
-					(at -7.62 -2.54 0)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "matei:Vmot"
 			(power)
@@ -1400,7 +1430,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -1412,7 +1442,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -1426,7 +1456,8 @@
 			(symbol "Vmot_1_1"
 				(pin power_in line
 					(at 0 0 90)
-					(length 0) hide
+					(length 0)
+					(hide yes)
 					(name "Vmot"
 						(effects
 							(font
@@ -1443,6 +1474,7 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:GND"
 			(power)
@@ -1522,7 +1554,8 @@
 			(symbol "GND_1_1"
 				(pin power_in line
 					(at 0 0 270)
-					(length 0) hide
+					(length 0)
+					(hide yes)
 					(name "GND"
 						(effects
 							(font
@@ -1539,7 +1572,52 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
+	)
+	(text "this pinout should work\nfor all pre-wired steppers\nAABB\nABAB"
+		(exclude_from_sim no)
+		(at 255.27 121.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1276c32e-1a1d-4dcb-8832-3d53c3059079")
+	)
+	(text "parts rated\nto 60V !!!"
+		(exclude_from_sim no)
+		(at 92.71 161.29 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1d21e7e5-3416-4890-8e93-e64117c69fe3")
+	)
+	(text "from some kind\nof stepstick\nadapter"
+		(exclude_from_sim no)
+		(at 34.29 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "8dcfe298-ee22-4078-ad10-9fc7d62ce925")
+	)
+	(text "\"hybrid\" stepper\nor normal bldc"
+		(exclude_from_sim no)
+		(at 261.62 125.73 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e1f069bd-1b9f-4e58-bb61-c2510bca0dfc")
 	)
 	(junction
 		(at 106.68 177.8)
@@ -2856,50 +2934,6 @@
 			(type default)
 		)
 		(uuid "fdc9c3f7-f89e-4c76-b52e-bce7014699b0")
-	)
-	(text "this pinout should work\nfor all pre-wired steppers\nAABB\nABAB"
-		(exclude_from_sim no)
-		(at 255.27 121.92 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "1276c32e-1a1d-4dcb-8832-3d53c3059079")
-	)
-	(text "parts rated\nto 60V !!!"
-		(exclude_from_sim no)
-		(at 92.71 161.29 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "1d21e7e5-3416-4890-8e93-e64117c69fe3")
-	)
-	(text "from some kind\nof stepstick\nadapter"
-		(exclude_from_sim no)
-		(at 34.29 93.98 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "8dcfe298-ee22-4078-ad10-9fc7d62ce925")
-	)
-	(text "\"hybrid\" stepper\nor normal bldc"
-		(exclude_from_sim no)
-		(at 261.62 125.73 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "e1f069bd-1b9f-4e58-bb61-c2510bca0dfc")
 	)
 	(netclass_flag ""
 		(length 2.54)
@@ -5075,6 +5109,10 @@
 	(sheet
 		(at 31.75 121.92)
 		(size 30.48 27.94)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5113,6 +5151,10 @@
 	(sheet
 		(at 31.75 36.83)
 		(size 30.48 27.94)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5142,43 +5184,43 @@
 		)
 		(pin "USB_P" bidirectional
 			(at 62.23 41.91 0)
+			(uuid "aaa229a4-c7fe-44de-a75c-7505f25a175c")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "aaa229a4-c7fe-44de-a75c-7505f25a175c")
 		)
 		(pin "USB_N" bidirectional
 			(at 62.23 44.45 0)
+			(uuid "0cfb0af1-5b69-4617-ade9-739a7da56908")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "0cfb0af1-5b69-4617-ade9-739a7da56908")
 		)
 		(pin "UCPD_CC2" bidirectional
 			(at 62.23 59.69 0)
+			(uuid "a9dd6d0a-26be-401c-83af-3f5195732d6a")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "a9dd6d0a-26be-401c-83af-3f5195732d6a")
 		)
 		(pin "UCPD_CC1" bidirectional
 			(at 62.23 57.15 0)
+			(uuid "305994e6-2172-4ce6-b78e-302150cfc6ec")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "305994e6-2172-4ce6-b78e-302150cfc6ec")
 		)
 		(instances
 			(project "lemon-pepper"
@@ -5191,6 +5233,10 @@
 	(sheet
 		(at 193.04 114.3)
 		(size 53.34 34.29)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5220,103 +5266,103 @@
 		)
 		(pin "U_IN" input
 			(at 243.84 114.3 90)
+			(uuid "c6f18afa-fa81-4abb-b61d-90d1d3744c1b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "c6f18afa-fa81-4abb-b61d-90d1d3744c1b")
 		)
 		(pin "U_OUT" output
 			(at 246.38 140.97 0)
+			(uuid "ea973d60-8574-4294-9cc3-d5dcf4d70a7b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "ea973d60-8574-4294-9cc3-d5dcf4d70a7b")
 		)
 		(pin "V_OUT" output
 			(at 246.38 144.78 0)
+			(uuid "4cbf8096-6b07-40c0-b8bf-f8dd2e1baf10")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "4cbf8096-6b07-40c0-b8bf-f8dd2e1baf10")
 		)
 		(pin "W_OUT" output
 			(at 246.38 133.35 0)
+			(uuid "23b74e08-c081-473c-87e7-8f1c393ee459")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "23b74e08-c081-473c-87e7-8f1c393ee459")
 		)
 		(pin "V_IN" input
 			(at 240.03 114.3 90)
+			(uuid "a3bc5605-10c2-4965-8386-e49581b3fa1e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "a3bc5605-10c2-4965-8386-e49581b3fa1e")
 		)
 		(pin "W_IN" input
 			(at 236.22 114.3 90)
+			(uuid "561a38ea-c042-4a51-aeac-d65f3cfa5542")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "561a38ea-c042-4a51-aeac-d65f3cfa5542")
 		)
 		(pin "V_SENSE" output
 			(at 217.17 114.3 90)
+			(uuid "311502d2-42b6-4f77-8bfd-872f2d064c6d")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "311502d2-42b6-4f77-8bfd-872f2d064c6d")
 		)
 		(pin "U_SENSE" output
 			(at 220.98 114.3 90)
+			(uuid "782932d6-e090-41b9-9e9e-b7b23097870e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "782932d6-e090-41b9-9e9e-b7b23097870e")
 		)
 		(pin "GAIN_1" input
 			(at 224.79 114.3 90)
+			(uuid "b4202b3b-9e84-4051-9aec-646db771513b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "b4202b3b-9e84-4051-9aec-646db771513b")
 		)
 		(pin "GAIN_0" input
 			(at 228.6 114.3 90)
+			(uuid "811a27e0-fc99-4232-99be-7a5e6a8546d7")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "811a27e0-fc99-4232-99be-7a5e6a8546d7")
 		)
 		(instances
 			(project "lemon-pepper"
@@ -5329,6 +5375,10 @@
 	(sheet
 		(at 92.71 36.83)
 		(size 43.18 111.76)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5358,233 +5408,233 @@
 		)
 		(pin "USB_N" bidirectional
 			(at 92.71 44.45 180)
+			(uuid "2ddbf672-f3f4-451b-a328-fe0c49d9dd8c")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "2ddbf672-f3f4-451b-a328-fe0c49d9dd8c")
 		)
 		(pin "USB_P" bidirectional
 			(at 92.71 41.91 180)
+			(uuid "211584fb-5057-499d-b4d3-0a89aae92d28")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "211584fb-5057-499d-b4d3-0a89aae92d28")
 		)
 		(pin "ENC_CAL" output
 			(at 135.89 130.81 0)
+			(uuid "128edcdf-261b-43cd-8700-0d11fd34caf4")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "128edcdf-261b-43cd-8700-0d11fd34caf4")
 		)
 		(pin "~{MOT_SHDN}" output
 			(at 135.89 48.26 0)
+			(uuid "deee487d-5c17-4482-9012-eb83b41362a2")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "deee487d-5c17-4482-9012-eb83b41362a2")
 		)
 		(pin "~{ENC_CS}" output
 			(at 135.89 137.16 0)
+			(uuid "57e4a128-98fc-45d8-a88a-7658ee19d6ac")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "57e4a128-98fc-45d8-a88a-7658ee19d6ac")
 		)
 		(pin "DIR" input
 			(at 92.71 92.71 180)
+			(uuid "488759b6-fb1d-406c-a1cb-49d855b2a3b8")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "488759b6-fb1d-406c-a1cb-49d855b2a3b8")
 		)
 		(pin "STEP" input
 			(at 92.71 95.25 180)
+			(uuid "e69298d2-b4c5-481c-8926-b071845f7ef3")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "e69298d2-b4c5-481c-8926-b071845f7ef3")
 		)
 		(pin "SPI1_SCK" output
 			(at 135.89 144.78 0)
+			(uuid "020a2a45-23d6-4b03-a554-204197d4b28f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "020a2a45-23d6-4b03-a554-204197d4b28f")
 		)
 		(pin "SPI1_COPI" output
 			(at 135.89 139.7 0)
+			(uuid "78da78c3-ab88-4b04-b7fc-15e353b2e4a5")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "78da78c3-ab88-4b04-b7fc-15e353b2e4a5")
 		)
 		(pin "SPI1_CIPO" input
 			(at 135.89 142.24 0)
+			(uuid "1deb0b89-9c38-42f0-9076-12e2f6213433")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "1deb0b89-9c38-42f0-9076-12e2f6213433")
 		)
 		(pin "OPAMP3_VINP" input
 			(at 135.89 101.6 0)
+			(uuid "e38080eb-38c4-416c-a2b1-19f2f4020e59")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "e38080eb-38c4-416c-a2b1-19f2f4020e59")
 		)
 		(pin "OPAMP1_VINP" input
 			(at 135.89 97.79 0)
+			(uuid "00ae8448-5ce9-45c6-9082-d5c3f060c618")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "00ae8448-5ce9-45c6-9082-d5c3f060c618")
 		)
 		(pin "CANH" bidirectional
 			(at 92.71 102.87 180)
+			(uuid "bb56502b-307e-45f0-8419-b84f0781db0a")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "bb56502b-307e-45f0-8419-b84f0781db0a")
 		)
 		(pin "CANL" bidirectional
 			(at 92.71 100.33 180)
+			(uuid "e63a1e67-e91b-434a-b227-dda0b76b9d72")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "e63a1e67-e91b-434a-b227-dda0b76b9d72")
 		)
 		(pin "TIM2_CH4" output
 			(at 135.89 59.69 0)
+			(uuid "fa8cc594-79a9-4c06-8267-e2d592ac44db")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "fa8cc594-79a9-4c06-8267-e2d592ac44db")
 		)
 		(pin "TIM2_CH3" output
 			(at 135.89 62.23 0)
+			(uuid "f401a85e-2717-43bf-bfaa-68637557ca14")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "f401a85e-2717-43bf-bfaa-68637557ca14")
 		)
 		(pin "TIM2_CH2" output
 			(at 135.89 57.15 0)
+			(uuid "afa4f03d-b3f9-49cc-8d99-4ce15ff476c6")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "afa4f03d-b3f9-49cc-8d99-4ce15ff476c6")
 		)
 		(pin "TIM2_CH1" output
 			(at 135.89 54.61 0)
+			(uuid "9ddbb6a1-19e8-4d4e-89b2-7638af082cbe")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "9ddbb6a1-19e8-4d4e-89b2-7638af082cbe")
 		)
 		(pin "TIM3_ETR" input
 			(at 135.89 125.73 0)
+			(uuid "4d42009f-23c8-453b-8051-27a0dc2dc5b9")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "4d42009f-23c8-453b-8051-27a0dc2dc5b9")
 		)
 		(pin "TIM3_CH1" input
 			(at 135.89 120.65 0)
+			(uuid "1b72858b-9229-4bf3-8518-7d20aaeba61e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "1b72858b-9229-4bf3-8518-7d20aaeba61e")
 		)
 		(pin "TIM3_CH2" input
 			(at 135.89 123.19 0)
+			(uuid "a162bbe7-f6bd-4d0b-b62d-add1ec6e5493")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "a162bbe7-f6bd-4d0b-b62d-add1ec6e5493")
 		)
 		(pin "GAIN_0" output
 			(at 135.89 90.17 0)
+			(uuid "642fc72a-2cf0-4cdf-b021-920b2a9a7bed")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "642fc72a-2cf0-4cdf-b021-920b2a9a7bed")
 		)
 		(pin "GAIN_1" output
 			(at 135.89 92.71 0)
+			(uuid "02881a3e-c439-4c96-b497-3518d4c282b8")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "02881a3e-c439-4c96-b497-3518d4c282b8")
 		)
 		(instances
 			(project "lemon-pepper"
@@ -5597,6 +5647,10 @@
 	(sheet
 		(at 167.64 36.83)
 		(size 38.1 39.37)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5626,103 +5680,103 @@
 		)
 		(pin "OUT2B" output
 			(at 205.74 59.69 0)
+			(uuid "b043629d-a78c-429d-8c82-a969d414dcf5")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "b043629d-a78c-429d-8c82-a969d414dcf5")
 		)
 		(pin "OUT1A" output
 			(at 205.74 57.15 0)
+			(uuid "ceb21191-d73b-4b1c-8e4b-051ca29a2156")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "ceb21191-d73b-4b1c-8e4b-051ca29a2156")
 		)
 		(pin "OUT2A" output
 			(at 205.74 54.61 0)
+			(uuid "e2081b05-98d2-4b64-8b93-e2409ebc73bb")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "e2081b05-98d2-4b64-8b93-e2409ebc73bb")
 		)
 		(pin "OUT1B" output
 			(at 205.74 52.07 0)
+			(uuid "58773861-f03a-4a1c-82fb-0148b3d308db")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "58773861-f03a-4a1c-82fb-0148b3d308db")
 		)
 		(pin "IN2B" input
 			(at 167.64 57.15 180)
+			(uuid "79a6e749-10e4-43b0-be86-8b111a3f73d5")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "79a6e749-10e4-43b0-be86-8b111a3f73d5")
 		)
 		(pin "IN1B" input
 			(at 167.64 54.61 180)
+			(uuid "3395a2a8-df08-4d3e-b8a3-475649bb1e75")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "3395a2a8-df08-4d3e-b8a3-475649bb1e75")
 		)
 		(pin "IN1A" input
 			(at 167.64 59.69 180)
+			(uuid "6e6998ab-c54b-4777-b495-68246c459767")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "6e6998ab-c54b-4777-b495-68246c459767")
 		)
 		(pin "ENB" input
 			(at 167.64 50.8 180)
+			(uuid "b4a28b00-5068-4a3a-8ed1-b2bd2ebb1c6f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "b4a28b00-5068-4a3a-8ed1-b2bd2ebb1c6f")
 		)
 		(pin "ENA" input
 			(at 167.64 48.26 180)
+			(uuid "6a8e3a4f-e98b-4065-8f6b-113f6f3aa22f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "6a8e3a4f-e98b-4065-8f6b-113f6f3aa22f")
 		)
 		(pin "IN2A" input
 			(at 167.64 62.23 180)
+			(uuid "db4ad5b7-0b1c-420d-aa3f-7c9443e5bb3b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "db4ad5b7-0b1c-420d-aa3f-7c9443e5bb3b")
 		)
 		(instances
 			(project "lemon-pepper"
@@ -5735,6 +5789,10 @@
 	(sheet
 		(at 158.75 114.3)
 		(size 26.67 34.29)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5764,83 +5822,83 @@
 		)
 		(pin "B" output
 			(at 158.75 123.19 180)
+			(uuid "8438fa37-4637-4ea6-bc9a-4d7f2ade10b7")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "8438fa37-4637-4ea6-bc9a-4d7f2ade10b7")
 		)
 		(pin "Z" output
 			(at 158.75 125.73 180)
+			(uuid "dd12f713-ff17-41e4-8685-f85c5f7b1c90")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "dd12f713-ff17-41e4-8685-f85c5f7b1c90")
 		)
 		(pin "A" output
 			(at 158.75 120.65 180)
+			(uuid "05174bd5-7fd9-40eb-8c47-fca1bccbcde2")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "05174bd5-7fd9-40eb-8c47-fca1bccbcde2")
 		)
 		(pin "COPI" input
 			(at 158.75 139.7 180)
+			(uuid "20c5ef79-05b9-44ec-ae1f-c614bc04c63a")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "20c5ef79-05b9-44ec-ae1f-c614bc04c63a")
 		)
 		(pin "CIPO" output
 			(at 158.75 142.24 180)
+			(uuid "7bc1c9d4-733d-419a-a750-0a324d121953")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "7bc1c9d4-733d-419a-a750-0a324d121953")
 		)
 		(pin "CS" input
 			(at 158.75 137.16 180)
+			(uuid "7f5ead0f-9063-4d26-92a9-e8a8a5e9f33e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "7f5ead0f-9063-4d26-92a9-e8a8a5e9f33e")
 		)
 		(pin "SCK" input
 			(at 158.75 144.78 180)
+			(uuid "08b9c2d8-5049-4733-9108-b3e5f4455ae4")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "08b9c2d8-5049-4733-9108-b3e5f4455ae4")
 		)
 		(pin "CAL_EN" input
 			(at 158.75 130.81 180)
+			(uuid "3044826c-17d5-48e5-a619-5f5ac520b53d")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "3044826c-17d5-48e5-a619-5f5ac520b53d")
 		)
 		(instances
 			(project "lemon-pepper"
@@ -5855,4 +5913,5 @@
 			(page "1")
 		)
 	)
+	(embedded_fonts no)
 )
