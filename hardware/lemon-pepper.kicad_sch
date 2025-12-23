@@ -4616,7 +4616,7 @@
 				)
 			)
 		)
-		(property "Footprint" "mechanical:NEMA14"
+		(property "Footprint" "matei-kicad-footprints:nema-14-17-hybrid"
 			(at 261.62 64.77 0)
 			(effects
 				(font

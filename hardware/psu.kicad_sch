@@ -2584,7 +2584,7 @@
 				)
 			)
 		)
-		(property "Footprint" "easyeda2kicad:TDFN-8_L2.0-W2.0-P0.50-BL"
+		(property "Footprint" "Package_DFN_QFN:TDFN-8-1EP_2x2mm_P0.5mm_EP0.8x1.2mm"
 			(at 146.05 99.06 0)
 			(effects
 				(font
