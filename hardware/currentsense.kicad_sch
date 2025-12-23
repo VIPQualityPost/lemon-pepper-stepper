@@ -11,7 +11,7 @@
 		(company "matei repair lab")
 	)
 	(lib_symbols
-		(symbol "Device:C_Small"
+		(symbol "lemon-pepper-symbols:C_Small"
 			(pin_numbers
 				(hide yes)
 			)
@@ -151,145 +151,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:R_Small_US"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0.254)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "R"
-				(at 0.762 0.508 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "R_Small_US"
-				(at 0.762 -1.016 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Resistor, small US symbol"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "r resistor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "R_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "R_Small_US_1_1"
-				(polyline
-					(pts
-						(xy 0 1.524) (xy 1.016 1.143) (xy 0 0.762) (xy -1.016 0.381) (xy 0 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 1.016 -0.381) (xy 0 -0.762) (xy -1.016 -1.143) (xy 0 -1.524)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at 0 2.54 270)
-					(length 1.016)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 1.016)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "matei:MAX49925"
+		(symbol "lemon-pepper-symbols:MAX49925"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -635,10 +497,152 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "lemon-pepper-symbols:R_Small_US"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 0.762 0.508 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "R_Small_US"
+				(at 0.762 -1.016 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor, small US symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "r resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_Small_US_1_1"
+				(polyline
+					(pts
+						(xy 0 1.524) (xy 1.016 1.143) (xy 0 0.762) (xy -1.016 0.381) (xy 0 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 1.016 -0.381) (xy 0 -0.762) (xy -1.016 -1.143) (xy 0 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 0 2.54 270)
+					(length 1.016)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 1.016)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:+3V3"
 			(power)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0)
+				(hide yes)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -738,8 +742,7 @@
 				(pin power_in line
 					(at 0 0 90)
 					(length 0)
-					(hide yes)
-					(name "+3V3"
+					(name "~"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -759,8 +762,12 @@
 		)
 		(symbol "power:GND"
 			(power)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0)
+				(hide yes)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -836,8 +843,7 @@
 				(pin power_in line
 					(at 0 0 270)
 					(length 0)
-					(hide yes)
-					(name "GND"
+					(name "~"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1617,7 +1623,7 @@
 		(uuid "f27d6576-8dc6-4b35-a6ee-606d878ff90e")
 	)
 	(symbol
-		(lib_id "Device:C_Small")
+		(lib_id "lemon-pepper-symbols:C_Small")
 		(at 160.02 52.07 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1643,7 +1649,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "lemon-pepper-footprints:C_0402_1005Metric"
 			(at 160.02 52.07 0)
 			(effects
 				(font
@@ -1661,7 +1667,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor, small symbol"
 			(at 160.02 52.07 0)
 			(effects
 				(font
@@ -1695,7 +1701,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small_US")
+		(lib_id "lemon-pepper-symbols:R_Small_US")
 		(at 153.67 46.99 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1720,7 +1726,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "lemon-pepper-footprints:R_0402_1005Metric"
 			(at 153.67 46.99 0)
 			(effects
 				(font
@@ -1738,7 +1744,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor, small US symbol"
 			(at 153.67 46.99 0)
 			(effects
 				(font
@@ -1816,7 +1822,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
 			(at 137.16 87.63 0)
 			(effects
 				(font
@@ -1882,7 +1888,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
 			(at 137.16 35.56 0)
 			(effects
 				(font
@@ -1948,7 +1954,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 137.16 118.11 0)
 			(effects
 				(font
@@ -1970,7 +1976,7 @@
 		)
 	)
 	(symbol
-		(lib_id "matei:MAX49925")
+		(lib_id "lemon-pepper-symbols:MAX49925")
 		(at 118.11 49.53 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1995,7 +2001,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_DFN_QFN:DFN-10-1EP_3x3mm_P0.5mm_EP1.75x2.7mm"
+		(property "Footprint" "lemon-pepper-footprints:DFN-10-1EP_3x3mm_P0.5mm_EP1.75x2.7mm"
 			(at 118.11 71.12 0)
 			(effects
 				(font
@@ -2074,7 +2080,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small_US")
+		(lib_id "lemon-pepper-symbols:R_Small_US")
 		(at 96.52 102.87 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2100,7 +2106,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
+		(property "Footprint" "lemon-pepper-footprints:R_1206_3216Metric"
 			(at 96.52 102.87 0)
 			(effects
 				(font
@@ -2118,7 +2124,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor, small US symbol"
 			(at 96.52 102.87 0)
 			(effects
 				(font
@@ -2152,7 +2158,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small_US")
+		(lib_id "lemon-pepper-symbols:R_Small_US")
 		(at 153.67 99.06 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2177,7 +2183,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "lemon-pepper-footprints:R_0402_1005Metric"
 			(at 153.67 99.06 0)
 			(effects
 				(font
@@ -2195,7 +2201,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor, small US symbol"
 			(at 153.67 99.06 0)
 			(effects
 				(font
@@ -2229,7 +2235,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
+		(lib_id "lemon-pepper-symbols:C_Small")
 		(at 160.02 104.14 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2255,7 +2261,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "lemon-pepper-footprints:C_0402_1005Metric"
 			(at 160.02 104.14 0)
 			(effects
 				(font
@@ -2273,7 +2279,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor, small symbol"
 			(at 160.02 104.14 0)
 			(effects
 				(font
@@ -2351,7 +2357,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 137.16 66.04 0)
 			(effects
 				(font
@@ -2373,7 +2379,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
+		(lib_id "lemon-pepper-symbols:C_Small")
 		(at 146.05 104.14 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2399,7 +2405,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "lemon-pepper-footprints:C_0402_1005Metric"
 			(at 146.05 104.14 0)
 			(effects
 				(font
@@ -2417,7 +2423,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor, small symbol"
 			(at 146.05 104.14 0)
 			(effects
 				(font
@@ -2451,7 +2457,7 @@
 		)
 	)
 	(symbol
-		(lib_id "matei:MAX49925")
+		(lib_id "lemon-pepper-symbols:MAX49925")
 		(at 118.11 101.6 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2476,7 +2482,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_DFN_QFN:DFN-10-1EP_3x3mm_P0.5mm_EP1.75x2.7mm"
+		(property "Footprint" "lemon-pepper-footprints:DFN-10-1EP_3x3mm_P0.5mm_EP1.75x2.7mm"
 			(at 118.11 123.19 0)
 			(effects
 				(font
@@ -2555,7 +2561,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small_US")
+		(lib_id "lemon-pepper-symbols:R_Small_US")
 		(at 96.52 50.8 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2581,7 +2587,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
+		(property "Footprint" "lemon-pepper-footprints:R_1206_3216Metric"
 			(at 96.52 50.8 0)
 			(effects
 				(font
@@ -2599,7 +2605,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor, small US symbol"
 			(at 96.52 50.8 0)
 			(effects
 				(font
@@ -2633,7 +2639,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
+		(lib_id "lemon-pepper-symbols:C_Small")
 		(at 146.05 52.07 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2659,7 +2665,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "lemon-pepper-footprints:C_0402_1005Metric"
 			(at 146.05 52.07 0)
 			(effects
 				(font
@@ -2677,7 +2683,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor, small symbol"
 			(at 146.05 52.07 0)
 			(effects
 				(font
