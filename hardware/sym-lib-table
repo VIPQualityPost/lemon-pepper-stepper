@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "lemon-pepper-symbols")(type "KiCad")(uri "${KIPRJMOD}/lemon-pepper-symbols.kicad_sym")(options "")(descr ""))
+)
